@@ -19,7 +19,10 @@ export default function ProjectsList() {
           <DataLoader />
         ) : (
           <div className="flex flex-col gap-4">
-            <TableHeader selectedIds={selectedIds} />
+            <TableHeader
+              selectedIds={selectedIds}
+              setSelectedIds={setSelectedIds}
+            />
 
             <DataTable<Project>
               data={data?.data || []}

@@ -58,7 +58,7 @@ export default function CollapsedItem({ item }: Props) {
         onMouseLeave={() => setHovered(false)}
       >
         <div
-          className={`flex items-center justify-center py-4 px-6 
+          className={`flex items-center justify-center py-4 px-6 cursor-pointer
           text-[var(--text)] hover:text-[var(--main)] 
           ${hovered ? "bg-[#f5f5f5]" : ""} 
           `}

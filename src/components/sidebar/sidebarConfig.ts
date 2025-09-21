@@ -53,7 +53,7 @@ export const sidebarItems: SidebarItemType[] = [
       { label: "RD-3 Reports", to: "/rd3-reports" },
       { label: "RD-5 Reports", to: "/rd5-reports" },
       { label: "DR Reports", to: "/dr-reports" },
-      { label: "Inspections Reports", to: "/inspections-reports" },
+      { label: "Inspections Reports", to: "/inspection-reports" },
       { label: "RD-6 Reports", to: "/rd6-reports" },
       { label: "RD-7 Reports", to: "/rd7-reports" },
     ],

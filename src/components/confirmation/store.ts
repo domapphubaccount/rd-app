@@ -4,7 +4,7 @@ interface ConfirmModalOptions {
   description: string;
   title: string;
   btnText: string;
-  type: "warn" | "danger" | "info";
+  type: "warn" | "danger";
 }
 
 interface ConfirmModalState extends ConfirmModalOptions {
@@ -17,7 +17,7 @@ export const useConfirmModalStore = create<ConfirmModalState>((set) => ({
   description: "",
   title: "",
   btnText: "",
-  type: "info",
+  type: "danger",
   show: false,
   open: (options) => set({ show: true, ...options }),
   close: () =>
@@ -26,6 +26,6 @@ export const useConfirmModalStore = create<ConfirmModalState>((set) => ({
       description: "",
       title: "",
       btnText: "",
-      type: "info",
+      type: "danger",
     }),
 }));

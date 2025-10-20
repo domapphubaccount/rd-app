@@ -20,6 +20,8 @@ import Rd6Reports from "@/routes/reports/Rd6Reports";
 import Rd7Reports from "@/routes/reports/Rd7Reports";
 import DrReports from "@/routes/reports/DrReports";
 import InspectionReports from "@/routes/reports/InspectionReports";
+// tickets
+import TicketList from "@/routes/tickets/TicketList";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +88,10 @@ export const router = createBrowserRouter([
       {
         path: "/inspection-reports",
         element: <InspectionReports />,
+      },
+      {
+        path: "/tickets",
+        element: <TicketList />,
       },
     ],
   },

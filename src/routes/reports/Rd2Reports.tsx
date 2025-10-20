@@ -1,5 +1,5 @@
 import DataLoader from "@/components/shared/DataLoader";
-import TableHeader from "@/features/cost-estimation/TableHeader";
+import TableHeader from "@/features/rd2-reports/TableHeader";
 import useGetReports from "@/features/rd2-reports/useGetReports";
 import type { Rd2Report } from "./../../features/rd2-reports/types";
 import DataTable from "@/components/data-table/DataTable";

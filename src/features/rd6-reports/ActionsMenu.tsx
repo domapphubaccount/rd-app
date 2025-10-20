@@ -27,12 +27,12 @@ const ActionsMenu: React.FC = () => {
       >
         <DropdownMenuItem className="cursor-pointer text-sm text-gray-700 p-2 hover:bg-gray-100 hover:rounded-md flex items-center gap-2">
           <UserCog className="w-4 h-4 text-gray-500" />
-          Transfer To
+          Change Responsibility
         </DropdownMenuItem>
 
         <DropdownMenuItem className="cursor-pointer text-sm text-gray-700 p-2 hover:bg-gray-100 hover:rounded-md flex items-center gap-2">
           <MessageSquare className="w-4 h-4 text-gray-500" />
-          Delete
+          Client Communication Details
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

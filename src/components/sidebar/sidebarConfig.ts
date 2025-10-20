@@ -3,7 +3,6 @@ import {
   Calendar,
   ClipboardMinus,
   FileChartColumn,
-  Folder,
   Network,
   Ticket,
   UserCog,
@@ -71,12 +70,6 @@ export const sidebarItems: SidebarItemType[] = [
     ],
   },
   { type: "link", label: "End Users", to: "/end-users", icon: UserCog },
-  {
-    type: "link",
-    label: "Contractor Guide",
-    to: "/contractor-guide",
-    icon: Folder,
-  },
   {
     type: "link",
     label: "Company Structure",

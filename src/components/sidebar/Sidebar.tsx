@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSidebarStore } from "./themeStore";
 import { sidebarItems } from "./sidebarConfig";
 import { Link, useLocation } from "react-router";
+import { settingsSidebarItems } from "./settingsSidebarConfig";
 import SidebarItem from "./SidebarItem";
 import CollapsedItem from "./CollapsedItem";
 
@@ -9,8 +10,14 @@ export default function Sidebar() {
   const { isOpen } = useSidebarStore();
   const location = useLocation();
 
+  const isSettingLayout = location.pathname.startsWith("/settings");
+
+  const currentSidebarItems = isSettingLayout
+    ? settingsSidebarItems
+    : sidebarItems;
+
   const getDefaultOpen = () =>
-    sidebarItems.find(
+    currentSidebarItems.find(
       (item) =>
         item.type === "accordion" &&
         item.items.some((sub) => location.pathname.startsWith(sub.to))
@@ -40,7 +47,7 @@ export default function Sidebar() {
 
       {isOpen ? (
         <div className="h-[calc(100vh-70px)] flex flex-col">
-          {sidebarItems.map((item) => (
+          {currentSidebarItems.map((item) => (
             <div key={item.label} className="relative">
               <CollapsedItem item={item} />
             </div>
@@ -48,7 +55,7 @@ export default function Sidebar() {
         </div>
       ) : (
         <div className="h-[calc(100vh-70px)] overflow-y-auto flex flex-col">
-          {sidebarItems.map((item) => (
+          {currentSidebarItems.map((item) => (
             <div key={item.label} className="relative">
               <SidebarItem item={item} open={open} setOpen={setOpen} />
             </div>

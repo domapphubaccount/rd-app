@@ -1,8 +1,8 @@
-import { ChevronLeft, ChevronRight, Settings } from "lucide-react";
-import { useSidebarStore } from "../sidebar/themeStore";
-import { Link } from "react-router";
-import BreadCrumb from "./BreadCrumb";
 import UserMenu from "./UserMenu";
+import BreadCrumb from "./BreadCrumb";
+import { Link } from "react-router";
+import { useSidebarStore } from "../sidebar/themeStore";
+import { ChevronLeft, ChevronRight, Settings } from "lucide-react";
 
 export default function Navbar() {
   const { isOpen, toggle } = useSidebarStore();
@@ -24,7 +24,7 @@ export default function Navbar() {
 
       <div className="flex items-center gap-4">
         <Link
-          to="/settings"
+          to="/settings/general-settings"
           className="w-9 h-9 rounded-full border border-[#f4f4f4] flex items-center justify-center"
         >
           <Settings className="w-5 h-5 text-[var(--text)]" />

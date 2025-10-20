@@ -35,6 +35,9 @@ import RD7Quotations from "@/routes/quotations/RD7Quotations";
 // Tickets
 import TicketList from "@/routes/tickets/TicketList";
 
+// Settings
+import GeneralSettings from "@/routes/settings/GeneralSettings";
+
 export const router = createBrowserRouter([
   {
     path: "/login",
@@ -79,6 +82,21 @@ export const router = createBrowserRouter([
 
       // Tickets
       { path: "tickets", element: <TicketList /> },
+
+      // Settings
+      {
+        path: "settings",
+        children: [
+          {
+            index: true,
+            element: <Navigate to="general-settings" replace />,
+          },
+          {
+            path: "general-settings",
+            element: <GeneralSettings />,
+          },
+        ],
+      },
     ],
   },
 ]);

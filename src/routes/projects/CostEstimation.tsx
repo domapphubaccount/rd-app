@@ -1,9 +1,9 @@
-import type { CostEstimation } from "@/features/cost-estimation/types";
+import type { CostEstimation } from "@/features/projects/cost-estimation/types";
 import DataTable from "@/components/data-table/DataTable";
 import DataLoader from "@/components/shared/DataLoader";
-import useGetEstimations from "@/features/cost-estimation/useGetEstimations";
-import estimationColumns from "@/features/cost-estimation/tableConfig";
-import TableHeader from "@/features/cost-estimation/TableHeader";
+import useGetEstimations from "@/features/projects/cost-estimation/useGetEstimations";
+import estimationColumns from "@/features/projects/cost-estimation/tableConfig";
+import TableHeader from "@/features/projects/cost-estimation/TableHeader";
 
 export default function CostEstimation() {
   const { isLoading, data } = useGetEstimations();

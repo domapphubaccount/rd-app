@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getRequest } from "@/lib/axiosApi";
 import { useSearchParams } from "react-router";
-import type { ProjectsResponse } from "./types";
+import type { ProjectsResponse } from "./projects-list/types";
 
 export default function useGetProjects() {
   const [searchParams] = useSearchParams();

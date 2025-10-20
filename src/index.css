@@ -83,6 +83,12 @@
     cursor: pointer;
   }
 
+  .data-table{
+    &::-webkit-scrollbar{
+      height: 4px;
+    }
+  }
+
   .btn_basic {
     padding: 12px 16px;
     background: var(--main);

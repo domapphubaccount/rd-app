@@ -18,7 +18,7 @@ export default function LoginForm() {
 
   return (
     <form
-      className="absolute bottom-12 left-1/2 translate-x-[-50%] bg-white shadow-[#959da533_0_8px_24px] rounded-[24px] py-6 px-5 w-[min(100%-32px,520px)]"
+      className="absolute left-1/2 translate-x-[-50%] translate-y-[-50%] bg-white shadow-[#959da533_0_8px_24px] rounded-[24px] py-6 px-5 w-[min(100%-32px,520px)]"
       onSubmit={handleSubmit((data) => loginAction(data))}
     >
       <h2 className="text-[var(--main)] text-[22px] font-bold text-center mb-2">

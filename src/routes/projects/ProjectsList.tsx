@@ -1,10 +1,10 @@
-import type { Project } from "@/features/projects/types";
+import type { Project } from "@/features/projects/projects-list/types";
 import { useState } from "react";
-import { projectColumns } from "@/features/projects/tableConfig";
+import { projectColumns } from "@/features/projects/projects-list/tableConfig";
 import DataTable from "@/components/data-table/DataTable";
-import useGetProjects from "@/features/projects/useGetProjects";
 import DataLoader from "@/components/shared/DataLoader";
-import TableHeader from "@/features/projects/TableHeader";
+import useGetProjects from "@/features/projects/projects-list/useGetProjects";
+import TableHeader from "@/features/projects/projects-list/TableHeader";
 
 export default function ProjectsList() {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);

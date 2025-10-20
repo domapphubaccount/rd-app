@@ -20,6 +20,8 @@ import Rd6Reports from "@/routes/reports/Rd6Reports";
 import Rd7Reports from "@/routes/reports/Rd7Reports";
 import DrReports from "@/routes/reports/DrReports";
 import InspectionReports from "@/routes/reports/InspectionReports";
+// Visits
+import Visit from "@/routes/visits/Visit";
 
 // Quotations
 import AdditionalVisit from "@/routes/quotations/AdditionalVisit";
@@ -94,6 +96,10 @@ export const router = createBrowserRouter([
       {
         path: "/inspection-reports",
         element: <InspectionReports />,
+      },
+      {
+        path: "/visits",
+        element: <Visit />,
       },
       {
         path: "/rd7-quotations",

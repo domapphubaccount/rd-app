@@ -1,5 +1,6 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import type { VisitRequest } from "./types";
+import { format } from "date-fns";
 
 export const visitColumns = (): ColumnDef<VisitRequest>[] => {
   return [
@@ -22,6 +23,10 @@ export const visitColumns = (): ColumnDef<VisitRequest>[] => {
     {
       accessorKey: "request_date",
       header: "Request Date",
+      cell: ({ getValue }) => {
+        const value = getValue<string>();
+        return value ? format(new Date(value), "dd/MM/yyyy") : "-";
+      },
     },
     {
       accessorKey: "visit_date",

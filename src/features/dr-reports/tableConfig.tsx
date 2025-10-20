@@ -1,8 +1,8 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import type { Rd1Report } from "./types";
+import type { DrReport } from "./types";
 import { Eye } from "lucide-react";
 
-export const Rd1Columns = (): ColumnDef<Rd1Report>[] => {
+export const DrColumns = (): ColumnDef<DrReport>[] => {
   return [
     {
       header: "Report Id",
@@ -60,24 +60,23 @@ export const Rd1Columns = (): ColumnDef<Rd1Report>[] => {
       header: "Soil Report",
       accessorKey: "soil_company",
     },
- {
-  header: "Status",
-  accessorKey: "report_status.status",
-  cell: ({ row }) => {
-    const status = row.original.report_status.status;
-    const color = row.original.report_status.color;
+    {
+      header: "Status",
+      accessorKey: "report_status.status",
+      cell: ({ row }) => {
+        const status = row.original.report_status.status;
+        const color = row.original.report_status.color;
 
-    return (
-      <span
-        className="py-1 px-3 rounded-full w-fit flex items-center gap-1 text-sm font-medium text-white"
-        style={{ backgroundColor: color }}
-      >
-        {status}
-      </span>
-    );
-  },
-},
-
+        return (
+          <span
+            className="py-1 px-3 rounded-full w-fit flex items-center gap-1 text-sm font-medium text-white"
+            style={{ backgroundColor: color }}
+          >
+            {status}
+          </span>
+        );
+      },
+    },
 
     {
       header: "Actions",

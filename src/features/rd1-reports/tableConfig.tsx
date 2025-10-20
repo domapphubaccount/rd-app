@@ -61,29 +61,24 @@ export const Rd1Columns = (): ColumnDef<Rd1Report>[] => {
       header: "Soil Report",
       accessorKey: "soil_company",
     },
-    {
-      header: "Status",
-      accessorKey: "report_status.status",
-      cell: ({ row }) => {
-        const status = row.original.report_status.status;
-        const color = row.original.report_status.color;
+ {
+  header: "Status",
+  accessorKey: "report_status.status",
+  cell: ({ row }) => {
+    const status = row.original.report_status.status;
+    const color = row.original.report_status.color;
 
-        return (
-          <Button
-            className="bg-[color]"
-            style={{
-              backgroundColor: color,
-              color: "#fff",
-              borderRadius: "8px",
-              padding: "4px 10px",
-              fontSize: "0.8rem",
-            }}
-          >
-            {status}
-          </Button>
-        );
-      },
-    },
+    return (
+      <span
+        className="py-1 px-3 rounded-full w-fit flex items-center gap-1 text-sm font-medium text-white"
+        style={{ backgroundColor: color }}
+      >
+        {status}
+      </span>
+    );
+  },
+},
+
 
     {
       header: "Actions",

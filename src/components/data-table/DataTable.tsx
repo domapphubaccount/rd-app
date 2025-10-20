@@ -37,41 +37,43 @@ export default function DataTable<T>({
   });
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full border-collapse text-sm">
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  className="px-3 py-4 text-left border-b border-gray-300 bg-gray-100 font-semibold rounded-0"
-                >
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
+    <div className="flex flex-col">
+      <div className="overflow-x-auto whitespace-nowrap data-table">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th
+                    key={header.id}
+                    className="px-3 py-4 text-left border-b border-gray-300 bg-gray-100 font-semibold rounded-0"
+                  >
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
 
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr
-              key={row.id}
-              className="hover:bg-gray-50 border-b last:border-b-0 border-gray-200"
-            >
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-3 py-4">
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr
+                key={row.id}
+                className="hover:bg-gray-50 border-b last:border-b-0 border-gray-200"
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} className="px-3 py-4">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {data.length === 0 && (
         <div className="w-full min-h-[60vh] flex flex-col items-center justify-center gap-4">
@@ -82,9 +84,7 @@ export default function DataTable<T>({
         </div>
       )}
 
-      {hasPagination && (
-        <Pagination total={total} perPage={perPage} />
-      )}
+      {hasPagination && <Pagination total={total} perPage={perPage} />}
     </div>
   );
 }

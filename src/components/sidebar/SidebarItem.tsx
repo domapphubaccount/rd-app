@@ -71,12 +71,14 @@ export default function SidebarItem({ item, open, setOpen }: Props) {
                       : "text-[var(--text)] hover:text-[var(--main)]"
                   } ${
                     index !== item.items.length - 1
-                      ? 'relative after:content-[""] after:absolute after:left-[3px] after:top-[calc(100%-10px)] after:w-[2px] after:h-[36px] after:bg-[var(--text)]'
+                      ? `relative after:content-[""] after:absolute after:left-[3px] after:top-[calc(100%-4px)] after:w-[2px] after:h-[19px] after:bg-[#99a2b3] ${
+                          isActive ? "after:bg-[var(--text)]" : ""
+                        }`
                       : ""
                   }`
                 }
               >
-                <span className="w-2 h-2 bg-[#545a6d] rounded-full z-[1]" />
+                <span className="w-2 h-2 bg-[#99a2b3] rounded-full z-[1]" />
                 {sub.label}
               </NavLink>
             ))}

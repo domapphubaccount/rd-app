@@ -8,6 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { format } from "date-fns";
 
 export const AdditionalVisitColumns = (): ColumnDef<AdditionalVisit>[] => {
   return [
@@ -46,6 +47,10 @@ export const AdditionalVisitColumns = (): ColumnDef<AdditionalVisit>[] => {
     {
       header: "Quotation Date",
       accessorKey: "quotation_date",
+      cell: ({ getValue }) => {
+        const value = getValue<string>();
+        return value ? format(new Date(value), "dd/MM/yyyy") : "-";
+      },
     },
     {
       header: "Payment Date",

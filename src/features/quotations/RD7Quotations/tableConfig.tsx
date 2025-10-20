@@ -1,6 +1,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import { Eye, Trash2 } from "lucide-react";
 import type { Rd7Quotation } from "./types";
+import { format } from "date-fns";
 
 export const RD7QuotationsColumns = (): ColumnDef<Rd7Quotation>[] => {
   return [
@@ -11,10 +12,14 @@ export const RD7QuotationsColumns = (): ColumnDef<Rd7Quotation>[] => {
     {
       header: "Category",
       accessorKey: "category",
+      cell: ({ getValue }) => {
+        const value = getValue<string>();
+        return value ? <i className={`mdi ${value}`}></i> : "-";
+      },
     },
     {
       header: "Reference  No",
-      accessorKey: "reference_no",
+      accessorKey: "reference_number",
     },
     {
       header: "Policy No.",
@@ -39,6 +44,10 @@ export const RD7QuotationsColumns = (): ColumnDef<Rd7Quotation>[] => {
     {
       header: "Quotation Date",
       accessorKey: "quotation_date",
+      cell: ({ getValue }) => {
+        const value = getValue<string>();
+        return value ? format(new Date(value), "dd/MM/yyyy") : "-";
+      },
     },
     {
       header: "Payment Status",
@@ -63,7 +72,7 @@ export const RD7QuotationsColumns = (): ColumnDef<Rd7Quotation>[] => {
                 <Eye className="w-4 h-4" />
               </button>
               <button className="text-[var(--main)]">
-                <Trash2   className="w-4 h-4 text-[red]" />
+                <Trash2 className="w-4 h-4 text-[red]" />
               </button>
             </div>
           </>

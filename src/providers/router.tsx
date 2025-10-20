@@ -20,10 +20,14 @@ import Rd6Reports from "@/routes/reports/Rd6Reports";
 import Rd7Reports from "@/routes/reports/Rd7Reports";
 import DrReports from "@/routes/reports/DrReports";
 import InspectionReports from "@/routes/reports/InspectionReports";
+
 // Quotations
 import AdditionalVisit from "@/routes/quotations/AdditionalVisit";
 import ProjectQuotations from "@/routes/quotations/ProjectQuotations";
 import RD7Quotations from "@/routes/quotations/RD7Quotations";
+
+// tickets
+import TicketList from "@/routes/tickets/TicketList";
 
 export const router = createBrowserRouter([
   {
@@ -102,6 +106,10 @@ export const router = createBrowserRouter([
       {
         path: "/projects-quotations",
         element: <ProjectQuotations />,
+      },
+      {
+        path: "/tickets",
+        element: <TicketList />,
       },
     ],
   },

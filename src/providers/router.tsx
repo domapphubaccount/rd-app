@@ -21,6 +21,14 @@ import Rd7Reports from "@/routes/reports/Rd7Reports";
 import DrReports from "@/routes/reports/DrReports";
 import InspectionReports from "@/routes/reports/InspectionReports";
 
+// Quotations
+import AdditionalVisit from "@/routes/quotations/AdditionalVisit";
+import ProjectQuotations from "@/routes/quotations/ProjectQuotations";
+import RD7Quotations from "@/routes/quotations/RD7Quotations";
+
+// tickets
+import TicketList from "@/routes/tickets/TicketList";
+
 export const router = createBrowserRouter([
   {
     path: "/login",
@@ -86,6 +94,22 @@ export const router = createBrowserRouter([
       {
         path: "/inspection-reports",
         element: <InspectionReports />,
+      },
+      {
+        path: "/rd7-quotations",
+        element: <RD7Quotations />,
+      },
+      {
+        path: "/additional-visit",
+        element: <AdditionalVisit />,
+      },
+      {
+        path: "/projects-quotations",
+        element: <ProjectQuotations />,
+      },
+      {
+        path: "/tickets",
+        element: <TicketList />,
       },
     ],
   },

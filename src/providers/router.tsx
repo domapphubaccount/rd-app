@@ -41,6 +41,10 @@ import GeneralSettings from "@/routes/settings/GeneralSettings";
 
 // Settings-Companies
 import Companies from "@/routes/settings/Companies/Companies";
+// Templates
+import SMS from "@/routes/settings/Templates/SMS";
+import Email from "@/routes/settings/Templates/Email";
+import WhatsApp from "@/routes/settings/Templates/WhatsApp";
 
 export const router = createBrowserRouter([
   {
@@ -103,6 +107,18 @@ export const router = createBrowserRouter([
           {
             path: "companies",
             element: <Companies />,
+          },
+          {
+            path: "email-templates",
+            element: <Email />,
+          },
+          {
+            path: "sms-templates",
+            element: <SMS />,
+          },
+          {
+            path: "whatsApp-templates",
+            element: <WhatsApp />,
           },
         ],
       },

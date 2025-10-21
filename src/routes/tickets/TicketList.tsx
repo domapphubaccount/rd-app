@@ -17,7 +17,7 @@ export default function TicketList() {
           <DataLoader />
         ) : (
           <div className="flex flex-col gap-4">
-            <TableHeader/>
+            <TableHeader />
 
             <DataTable<Ticket>
               data={data?.data || []}

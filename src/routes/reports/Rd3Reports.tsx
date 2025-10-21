@@ -1,13 +1,13 @@
 import DataTable from "@/components/data-table/DataTable";
 import DataLoader from "@/components/shared/DataLoader";
-import { Rd3Columns } from "@/features/rd3-reports/tableConfig";
-import TableHeader from "@/features/rd3-reports/TableHeader";
-import type { Rd3Report } from "@/features/rd3-reports/types";
-import useGetReports from "@/features/rd3-reports/useGetReports";
+import { Rd3Columns } from "@/features/reports/rd3-reports/tableConfig";
+import TableHeader from "@/features/reports/rd3-reports/TableHeader";
+import type { Rd3Report } from "@/features/reports/rd3-reports/types";
+import useGetReports from "@/features/reports/rd3-reports/useGetReports";
 
 export default function Rd3Reports() {
-    const { data, isLoading } = useGetReports();
-  
+  const { data, isLoading } = useGetReports();
+
   return (
     <>
       <title>RD App | RD3 Reports</title>

@@ -1,9 +1,9 @@
 import DataTable from "@/components/data-table/DataTable";
 import DataLoader from "@/components/shared/DataLoader";
-import { InspectionColumns } from "@/features/inspection-reports/tableConfig";
-import TableHeader from "@/features/inspection-reports/TableHeader";
-import type { InspectionReport } from "@/features/inspection-reports/types";
-import useGetReports from "@/features/inspection-reports/useGetReports";
+import { InspectionColumns } from "@/features/reports/inspection-reports/tableConfig";
+import TableHeader from "@/features/reports/inspection-reports/TableHeader";
+import type { InspectionReport } from "@/features/reports/inspection-reports/types";
+import useGetReports from "@/features/reports/inspection-reports/useGetReports";
 
 export default function InspectionReports() {
   const { data, isLoading } = useGetReports();

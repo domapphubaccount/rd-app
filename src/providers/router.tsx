@@ -40,7 +40,8 @@ import TicketList from "@/routes/tickets/TicketList";
 import GeneralSettings from "@/routes/settings/GeneralSettings";
 import Stages from "@/routes/settings/stages/Stages";
 import TaxRates from "@/routes/settings/tax-rates/TaxRates";
-import WeirdPeople from './../routes/settings/weird-people/WeirdPeople';
+import WeirdPeople from "@/routes/settings/weird-people/WeirdPeople";
+import Category from "@/routes/settings/category/Category";
 
 export const router = createBrowserRouter([
   {
@@ -111,6 +112,10 @@ export const router = createBrowserRouter([
           {
             path: "weird-people",
             element: <WeirdPeople />,
+          },
+          {
+            path: "category",
+            element: <Category />,
           },
         ],
       },

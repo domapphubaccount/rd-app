@@ -65,13 +65,15 @@ export const TicketColumns = (): ColumnDef<Ticket>[] => {
           <>
             <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
-                  <MoreVerticalIcon />
+                <MoreVerticalIcon />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-40" align="end">
                 <DropdownMenuGroup>
                   <DropdownMenuItem>Update</DropdownMenuItem>
                   <DropdownMenuItem>Receiving data</DropdownMenuItem>
-                  <DropdownMenuItem className="text-[red]">Delete</DropdownMenuItem>
+                  <DropdownMenuItem className="text-[red]">
+                    Delete
+                  </DropdownMenuItem>
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>

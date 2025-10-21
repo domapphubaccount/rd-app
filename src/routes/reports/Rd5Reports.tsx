@@ -1,9 +1,9 @@
 import DataLoader from "@/components/shared/DataLoader";
-import useGetReports from "@/features/rd5-reports/useGetReports";
-import type { Rd5Report } from "@/features/rd5-reports/types";
+import useGetReports from "@/features/reports/rd5-reports/useGetReports";
+import type { Rd5Report } from "@/features/reports/rd5-reports/types";
 import DataTable from "@/components/data-table/DataTable";
-import { Rd5Columns } from "@/features/rd5-reports/tableConfig";
-import TableHeader from "@/features/rd5-reports/TableHeader";
+import { Rd5Columns } from "@/features/reports/rd5-reports/tableConfig";
+import TableHeader from "@/features/reports/rd5-reports/TableHeader";
 
 export default function Rd5Reports() {
   const { data, isLoading } = useGetReports();

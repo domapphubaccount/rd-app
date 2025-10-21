@@ -1,7 +1,7 @@
-import useGetReports from "@/features/rd7-reports/useGetReports";
-import type { Rd7Report } from "@/features/rd7-reports/types";
-import { Rd7Columns } from "@/features/rd7-reports/tableConfig";
-import TableHeader from "@/features/rd7-reports/TableHeader";
+import useGetReports from "@/features/reports/rd7-reports/useGetReports";
+import type { Rd7Report } from "@/features/reports/rd7-reports/types";
+import { Rd7Columns } from "@/features/reports/rd7-reports/tableConfig";
+import TableHeader from "@/features/reports/rd7-reports/TableHeader";
 import DataLoader from "@/components/shared/DataLoader";
 import DataTable from "@/components/data-table/DataTable";
 

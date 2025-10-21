@@ -1,10 +1,10 @@
 import DataTable from "@/components/data-table/DataTable";
 import DataLoader from "@/components/shared/DataLoader";
-import { Rd6Columns } from "@/features/rd6-reports/tableConfig";
-import type { Rd6Report } from "@/features/rd6-reports/types";
+import { Rd6Columns } from "@/features/reports/rd6-reports/tableConfig";
+import type { Rd6Report } from "@/features/reports/rd6-reports/types";
 
-import TableHeader from "@/features/rd6-reports/TableHeader";
-import useGetReports from "@/features/rd6-reports/useGetReports";
+import TableHeader from "@/features/reports/rd6-reports/TableHeader";
+import useGetReports from "@/features/reports/rd6-reports/useGetReports";
 
 export default function Rd6Reports() {
   const { data, isLoading } = useGetReports();

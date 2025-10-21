@@ -1,9 +1,9 @@
 import DataTable from "@/components/data-table/DataTable";
 import DataLoader from "@/components/shared/DataLoader";
-import { Rd1Columns } from "@/features/rd1-reports/tableConfig";
-import TableHeader from "@/features/rd1-reports/TableHeader";
-import type { Rd1Report } from "@/features/rd1-reports/types";
-import useGetReports from "@/features/rd1-reports/useGetReports";
+import { Rd1Columns } from "@/features/reports/rd1-reports/tableConfig";
+import TableHeader from "@/features/reports/rd1-reports/TableHeader";
+import type { Rd1Report } from "@/features/reports/rd1-reports/types";
+import useGetReports from "@/features/reports/rd1-reports/useGetReports";
 
 export default function Rd1Reports() {
   const { data, isLoading } = useGetReports();

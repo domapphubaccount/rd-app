@@ -1,8 +1,8 @@
 import DataTable from "@/components/data-table/DataTable";
 import DataLoader from "@/components/shared/DataLoader";
-import { DrColumns } from "@/features/dr-reports/tableConfig";
-import type { DrReport } from "@/features/dr-reports/types";
-import useGetReports from "@/features/dr-reports/useGetReports";
+import { DrColumns } from "@/features/reports/dr-reports/tableConfig";
+import type { DrReport } from "@/features/reports/dr-reports/types";
+import useGetReports from "@/features/reports/dr-reports/useGetReports";
 import TableHeader from "@/features/users/TableHeader";
 
 export default function DrReports() {

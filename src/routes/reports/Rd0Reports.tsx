@@ -1,10 +1,10 @@
-import type { Rd0Report } from "@/features/rd0-reports/types";
+import type { Rd0Report } from "@/features/reports/rd0-reports/types";
 import { useState } from "react";
-import { Rd0Columns } from "@/features/rd0-reports/tableConfig";
+import { Rd0Columns } from "@/features/reports/rd0-reports/tableConfig";
 import DataTable from "@/components/data-table/DataTable";
 import DataLoader from "@/components/shared/DataLoader";
-import TableHeader from "@/features/rd0-reports/TableHeader";
-import useGetReports from "@/features/rd0-reports/useGetReports";
+import TableHeader from "@/features/reports/rd0-reports/TableHeader";
+import useGetReports from "@/features/reports/rd0-reports/useGetReports";
 
 export default function Rd0Reports() {
   const { data, isLoading } = useGetReports();

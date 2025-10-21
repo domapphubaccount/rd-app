@@ -12,6 +12,7 @@ import CostEstimation from "@/routes/projects/CostEstimation";
 
 // Users
 import Users from "@/routes/users/Users";
+import Enduser from "@/routes/users/Enduser";
 
 // Reports
 import Rd0Reports from "@/routes/reports/Rd0Reports";
@@ -57,6 +58,7 @@ export const router = createBrowserRouter([
 
       // Users
       { path: "users", element: <Users /> },
+      { path: "end-users", element: <Enduser /> },
 
       // Reports
       { path: "rd0-reports", element: <Rd0Reports /> },

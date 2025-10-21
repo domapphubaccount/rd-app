@@ -40,6 +40,7 @@ import TicketList from "@/routes/tickets/TicketList";
 import GeneralSettings from "@/routes/settings/GeneralSettings";
 import Stages from "@/routes/settings/stages/Stages";
 import TaxRates from "@/routes/settings/tax-rates/TaxRates";
+import WeirdPeople from './../routes/settings/weird-people/WeirdPeople';
 
 export const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ export const router = createBrowserRouter([
           {
             path: "tax-rates",
             element: <TaxRates />,
+          },
+          {
+            path: "weird-people",
+            element: <WeirdPeople />,
           },
         ],
       },

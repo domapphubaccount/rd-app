@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreVerticalIcon } from "lucide-react";
+import { MoreVertical } from "lucide-react";
 
 export const TicketColumns = (): ColumnDef<Ticket>[] => {
   return [
@@ -65,13 +65,20 @@ export const TicketColumns = (): ColumnDef<Ticket>[] => {
           <>
             <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
-                  <MoreVerticalIcon />
+                    <MoreVertical className="w-4 h-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-40" align="end">
+              <DropdownMenuContent
+                className="w-40 bg-white p-2 rounded-md shadow-lg"
+                side="right"
+                align="start"
+                sideOffset={8}
+              >
                 <DropdownMenuGroup>
                   <DropdownMenuItem>Update</DropdownMenuItem>
                   <DropdownMenuItem>Receiving data</DropdownMenuItem>
-                  <DropdownMenuItem className="text-[red]">Delete</DropdownMenuItem>
+                  <DropdownMenuItem className="text-[red]">
+                    Delete
+                  </DropdownMenuItem>
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>

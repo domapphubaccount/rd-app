@@ -1,5 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import { Eye, MoreVerticalIcon } from "lucide-react";
+import { Eye, MoreVertical } from "lucide-react";
 import type { AdditionalVisit } from "./types";
 import {
   DropdownMenu,
@@ -43,6 +43,20 @@ export const AdditionalVisitColumns = (): ColumnDef<AdditionalVisit>[] => {
     {
       header: "Payment Status",
       accessorKey: "payment_status",
+      cell: (info) => {
+        const paid = info.getValue<string>();
+        return (
+          <span
+            className={`px-4 py-1 text-[12px] rounded-full font-bold ${
+              paid === "Yes"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+            }`}
+          >
+            {paid === "Yes" ? "Paid" : "Unpaid"}
+          </span>
+        );
+      },
     },
     {
       header: "Quotation Date",
@@ -63,15 +77,20 @@ export const AdditionalVisitColumns = (): ColumnDef<AdditionalVisit>[] => {
         return (
           <>
             <div className="flex items-center gap-4 text-[14px]">
-              <button className="text-[var(--main)]">
+              <button className="text-blue-400">
                 <Eye className="w-4 h-4" />
               </button>
               <button className="text-[var(--main)]">
                 <DropdownMenu modal={false}>
                   <DropdownMenuTrigger asChild>
-                    <MoreVerticalIcon className="w-4 h-4" />
+                    <MoreVertical className="w-4 h-4" />
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-40" align="end">
+                  <DropdownMenuContent
+                    className="w-56 bg-white p-2 rounded-md shadow-lg"
+                    side="right"
+                    align="start"
+                    sideOffset={8}
+                  >
                     <DropdownMenuGroup>
                       <DropdownMenuItem>Change Payment Status</DropdownMenuItem>
                       <DropdownMenuItem>Transfer To</DropdownMenuItem>

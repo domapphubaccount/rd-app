@@ -38,6 +38,7 @@ import TicketList from "@/routes/tickets/TicketList";
 
 // Settings
 import GeneralSettings from "@/routes/settings/GeneralSettings";
+import Stages from "@/routes/settings/stages/Stages";
 
 export const router = createBrowserRouter([
   {
@@ -96,6 +97,10 @@ export const router = createBrowserRouter([
           {
             path: "general-settings",
             element: <GeneralSettings />,
+          },
+          {
+            path: "stages",
+            element: <Stages />,
           },
         ],
       },

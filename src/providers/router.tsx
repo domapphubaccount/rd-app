@@ -39,6 +39,9 @@ import TicketList from "@/routes/tickets/TicketList";
 // Settings
 import GeneralSettings from "@/routes/settings/GeneralSettings";
 
+// Settings - Insurance
+import Insurance from "@/routes/settings/insurance/Insurance";
+
 export const router = createBrowserRouter([
   {
     path: "/login",
@@ -96,6 +99,10 @@ export const router = createBrowserRouter([
           {
             path: "general-settings",
             element: <GeneralSettings />,
+          },
+          {
+            path: "insurance-companies",
+            element: <Insurance />,
           },
         ],
       },

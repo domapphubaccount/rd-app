@@ -1,9 +1,9 @@
 import DataTable from "@/components/data-table/DataTable";
 import DataLoader from "@/components/shared/DataLoader";
 import { SectionColumns } from "@/features/settings/sections/tableConfig";
+import TableHeader from "@/features/settings/sections/TableHeader";
 import type { Section } from "@/features/settings/sections/types";
 import useGetSections from "@/features/settings/sections/useGetSections";
-import TableHeader from "@/features/users/TableHeader";
 
 export default function Sections() {
   const { data, isLoading } = useGetSections();

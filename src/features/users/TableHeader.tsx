@@ -1,17 +1,11 @@
-import { ChevronDown, Plus, SlidersHorizontal } from "lucide-react";
+import { Plus } from "lucide-react";
 
 export default function TableHeader() {
   return (
     <div className="flex items-center justify-end px-4">
       <div className="flex items-center gap-4 text-[14px]">
         <button className="px-2 py-2 bg-[var(--main)] text-white flex items-center gap-2 rounded-md text-[14px]">
-          <Plus className="w-4 h-4" /> Add New Report
-        </button>
-
-        <button className="px-2 py-2 bg-[var(--main)] text-white flex items-center gap-2 rounded-md text-[14px]">
-          <SlidersHorizontal className="w-3 h-3" />
-          Filter
-          <ChevronDown className="w-4 h-4" />
+          <Plus className="w-4 h-4" /> Add Suspend Filter
         </button>
       </div>
     </div>

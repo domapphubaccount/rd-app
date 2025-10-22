@@ -9,7 +9,6 @@ export default function useGetSupsendP() {
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["taxes", page],
-    enabled: false,
     queryFn: (): Promise<SuspendProjectsResponse> =>
       getRequest<SuspendProjectsResponse>("/taxes", {
         params: {

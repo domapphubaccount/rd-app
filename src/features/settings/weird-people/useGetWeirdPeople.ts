@@ -9,6 +9,8 @@ export default function useGetWeirdPeople() {
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["weird-people", page],
+    enabled: false,
+
     queryFn: (): Promise<WeirdPeopleResponse> =>
       getRequest<WeirdPeopleResponse>("/weird-people", {
         params: {

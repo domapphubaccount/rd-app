@@ -1,7 +1,6 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import type { Rd2Report } from "./types";
 import { Eye } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export const Rd2Columns = (): ColumnDef<Rd2Report>[] => {
   return [
@@ -69,18 +68,12 @@ export const Rd2Columns = (): ColumnDef<Rd2Report>[] => {
         const color = row.original.report_status.color;
 
         return (
-          <Button
-            className="bg-[color]"
-            style={{
-              backgroundColor: color,
-              color: "#fff",
-              borderRadius: "8px",
-              padding: "4px 10px",
-              fontSize: "0.8rem",
-            }}
+          <span
+            className="py-1 px-3 rounded-full w-fit flex items-center gap-1 text-sm font-medium text-white"
+            style={{ backgroundColor: color }}
           >
             {status}
-          </Button>
+          </span>
         );
       },
     },

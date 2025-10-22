@@ -1,6 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import type { SuspendProject } from "./types";
-import ActionsMenu from "./ActionsMenu";
 
 export const SuspendFiltersColumns = (): ColumnDef<SuspendProject>[] => {
   return [
@@ -51,9 +50,8 @@ export const SuspendFiltersColumns = (): ColumnDef<SuspendProject>[] => {
           <div className="flex items-center gap-3">
             <button className="text-white bg-gray-400 rounded-[12px] px-4 py-2">
               {" "}
-              Suspendsend Projects
+              Action
             </button>
-            <ActionsMenu />
           </div>
         );
       },

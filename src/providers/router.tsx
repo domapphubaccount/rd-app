@@ -49,6 +49,7 @@ import TaxRates from "@/routes/settings/TaxRates";
 import Insurance from "@/routes/settings/Insurance";
 import WeirdPeople from "@/routes/settings/WeirdPeople";
 import SuspendFilters from "@/routes/settings/SuspendFilters";
+import Sections from "@/routes/settings/Sections";
 import SuspendedProjects from "@/routes/settings/SuspendedProjects";
 
 export const router = createBrowserRouter([
@@ -115,6 +116,7 @@ export const router = createBrowserRouter([
           { path: "suspend-filters", element: <SuspendFilters /> },
           { path: "suspended-projects", element: <SuspendedProjects /> },
           { path: "insurance-companies", element: <Insurance /> },
+          { path: "sections", element: <Sections /> },
         ],
       },
     ],

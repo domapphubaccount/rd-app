@@ -49,6 +49,7 @@ import TaxRates from "@/routes/settings/TaxRates";
 import Insurance from "@/routes/settings/Insurance";
 import WeirdPeople from "@/routes/settings/WeirdPeople";
 import SuspendFilters from "@/routes/settings/SuspendFilters";
+import Sections from "@/routes/settings/Sections";
 
 export const router = createBrowserRouter([
   {
@@ -113,6 +114,7 @@ export const router = createBrowserRouter([
           { path: "category", element: <Category /> },
           { path: "suspend-filters", element: <SuspendFilters /> },
           { path: "insurance-companies", element: <Insurance /> },
+          { path: "sections", element: <Sections /> },
         ],
       },
     ],

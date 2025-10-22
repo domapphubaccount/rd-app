@@ -1,12 +1,12 @@
 import DataTable from "@/components/data-table/DataTable";
 import DataLoader from "@/components/shared/DataLoader";
-import { SuspendFiltersColumns } from "@/features/settings/suspend-filters/tableConfig";
-import TableHeader from "@/features/settings/suspend-filters/TableHeader";
-import type { SuspendProject } from "@/features/settings/suspend-filters/types";
-import useGetSupsendP from "@/features/settings/suspend-filters/useGetSupsendP";
+import { SuspendFiltersColumns } from "@/features/settings/suspended-projects/tableConfig";
+import TableHeader from "@/features/settings/suspended-projects/TableHeader";
+import type { SuspendProject } from "@/features/settings/suspended-projects/types";
+import useGetSupProjects from "@/features/settings/suspended-projects/useGetSupProjects";
 
-export default function SuspendFilters() {
-  const { data, isLoading } = useGetSupsendP();
+export default function SuspendedProjects() {
+  const { data, isLoading } = useGetSupProjects();
 
   return (
     <>

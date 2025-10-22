@@ -3,7 +3,7 @@ import { getRequest } from "@/lib/axiosApi";
 import { useSearchParams } from "react-router";
 import type { SuspendProjectsResponse } from "./types";
 
-export default function useGetSupsendP() {
+export default function useGetSupProjects() {
   const [searchParams] = useSearchParams();
   const page = searchParams.get("page") || "1";
 

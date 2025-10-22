@@ -46,6 +46,7 @@ import Stages from "@/routes/settings/stages/Stages";
 import Companies from "@/routes/settings/Companies/Companies";
 import Category from "@/routes/settings/category/Category";
 import TaxRates from "@/routes/settings/tax-rates/TaxRates";
+import Insurance from "@/routes/settings/insurance/Insurance";
 import WeirdPeople from "@/routes/settings/weird-people/WeirdPeople";
 import SuspendFilters from "@/routes/settings/suspend-filters/SuspendFilters";
 
@@ -111,6 +112,7 @@ export const router = createBrowserRouter([
           { path: "weird-people", element: <WeirdPeople /> },
           { path: "category", element: <Category /> },
           { path: "suspend-filters", element: <SuspendFilters /> },
+          { path: "insurance-companies", element: <Insurance /> },
         ],
       },
     ],

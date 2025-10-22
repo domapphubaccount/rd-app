@@ -1,9 +1,10 @@
+import type { Insurance } from "@/features/settings/insurance/types";
+import { insuranceColumns } from "@/features/settings/insurance/tableConfig";
 import DataTable from "@/components/data-table/DataTable";
 import DataLoader from "@/components/shared/DataLoader";
-import { insuranceColumns } from "@/features/settings/insurance/tableConfig";
 import useGetInsurance from "@/features/settings/insurance/useGetInsurance";
-import type { Insurance } from "@/features/settings/insurance/types";
 import TableHeader from "@/features/settings/insurance/TableHeader";
+
 export default function Insurance() {
   const { data, isLoading } = useGetInsurance();
 

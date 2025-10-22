@@ -1,5 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import { Eye, Trash2 } from "lucide-react";
+import { Eye, Trash } from "lucide-react";
 import type { Rd7Quotation } from "./types";
 import { format } from "date-fns";
 
@@ -52,6 +52,20 @@ export const RD7QuotationsColumns = (): ColumnDef<Rd7Quotation>[] => {
     {
       header: "Payment Status",
       accessorKey: "payment_status",
+      cell: (info) => {
+        const paid = info.getValue<string>();
+        return (
+          <span
+            className={`px-4 py-1 text-[12px] rounded-full font-bold ${
+              paid === "Yes"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+            }`}
+          >
+            {paid === "Yes" ? "Paid" : "Unpaid"}
+          </span>
+        );
+      },
     },
     {
       header: "Payment Date",
@@ -68,11 +82,11 @@ export const RD7QuotationsColumns = (): ColumnDef<Rd7Quotation>[] => {
         return (
           <>
             <div className="flex items-center gap-4 text-[14px]">
-              <button className="text-[var(--main)]">
+              <button className="text-blue-400">
                 <Eye className="w-4 h-4" />
               </button>
               <button className="text-[var(--main)]">
-                <Trash2 className="w-4 h-4 text-[red]" />
+                <Trash className="w-4 h-4 text-[red]" />
               </button>
             </div>
           </>

@@ -1,7 +1,6 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import type { InspectionReport } from "./types";
 import { Eye, FileText, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export const InspectionColumns = (): ColumnDef<InspectionReport>[] => {
   return [
@@ -54,18 +53,12 @@ export const InspectionColumns = (): ColumnDef<InspectionReport>[] => {
         const color = row.original.report_status.color;
 
         return (
-          <Button
-            className="bg-[color]"
-            style={{
-              backgroundColor: color,
-              color: "#fff",
-              borderRadius: "8px",
-              padding: "4px 10px",
-              fontSize: "0.8rem",
-            }}
+          <span
+            className="py-1 px-3 rounded-full w-fit flex items-center gap-1 text-sm font-medium text-white"
+            style={{ backgroundColor: color }}
           >
             {status}
-          </Button>
+          </span>
         );
       },
     },

@@ -1,8 +1,8 @@
 import { createBrowserRouter, Navigate } from "react-router";
+
 import RootLayout from "@/layouts/RootLayout";
 import AuthGuard from "./AuthGuard";
 
-// Auth
 import Login from "@/routes/Login";
 import Error from "@/routes/Error";
 
@@ -38,24 +38,19 @@ import TicketList from "@/routes/tickets/TicketList";
 
 // Settings
 import GeneralSettings from "@/routes/settings/GeneralSettings";
-
-// Settings-Companies
-import Companies from "@/routes/settings/Companies/Companies";
-
-// Templates
-import SMS from "@/routes/settings/templates/SMS";
-import Email from "@/routes/settings/templates/Email";
-import WhatsApp from "@/routes/settings/templates/WhatsApp";
-
-// Logs
-import EmailLog from "@/routes/settings/log/EmailLog";
-import SMSLog from "@/routes/settings/log/SMSLog";
-import WhatsAppLog from "@/routes/settings/log/WhatsAppLog";
-
-// Queues
-import EmailQueue from "@/routes/settings/queue/EmailQueue";
-import SMSQueue from "@/routes/settings/queue/SMSQueue";
-import WhatsAppQueue from "@/routes/settings/queue/WhatsAppQueue";
+import Modules from "@/routes/settings/Modules";
+import UserRoles from "@/routes/settings/UserRoles";
+import UnitControl from "@/routes/settings/UnitControl";
+import FAQCategory from "@/routes/settings/FAQCategory";
+import Stages from "@/routes/settings/Stages";
+import Companies from "@/routes/settings/Companies";
+import Category from "@/routes/settings/Category";
+import TaxRates from "@/routes/settings/TaxRates";
+import Insurance from "@/routes/settings/Insurance";
+import WeirdPeople from "@/routes/settings/WeirdPeople";
+import SuspendFilters from "@/routes/settings/SuspendFilters";
+import Sections from "@/routes/settings/Sections";
+import SuspendedProjects from "@/routes/settings/SuspendedProjects";
 
 export const router = createBrowserRouter([
   {
@@ -107,54 +102,21 @@ export const router = createBrowserRouter([
       {
         path: "settings",
         children: [
-          {
-            index: true,
-            element: <Navigate to="general-settings" replace />,
-          },
-          {
-            path: "general-settings",
-            element: <GeneralSettings />,
-          },
-          {
-            path: "companies",
-            element: <Companies />,
-          },
-          {
-            path: "email-templates",
-            element: <Email />,
-          },
-          {
-            path: "sms-templates",
-            element: <SMS />,
-          },
-          {
-            path: "whatsApp-templates",
-            element: <WhatsApp />,
-          },
-          {
-            path: "email-log",
-            element: <EmailLog />,
-          },
-          {
-            path: "sms-log",
-            element: <SMSLog />,
-          },
-          {
-            path: "whatsApp-log",
-            element: <WhatsAppLog />,
-          },
-          {
-            path: "email-queue",
-            element: <EmailQueue />,
-          },
-          {
-            path: "sms-queue",
-            element: <SMSQueue />,
-          },
-          {
-            path: "whatsApp-queue",
-            element: <WhatsAppQueue />,
-          },
+          { index: true, element: <Navigate to="general-settings" replace /> },
+          { path: "general-settings", element: <GeneralSettings /> },
+          { path: "modules", element: <Modules /> },
+          { path: "user-role", element: <UserRoles /> },
+          { path: "units-control", element: <UnitControl /> },
+          { path: "faq-categories", element: <FAQCategory /> },
+          { path: "companies", element: <Companies /> },
+          { path: "stages", element: <Stages /> },
+          { path: "tax-rates", element: <TaxRates /> },
+          { path: "weird-people", element: <WeirdPeople /> },
+          { path: "category", element: <Category /> },
+          { path: "suspend-filters", element: <SuspendFilters /> },
+          { path: "suspended-projects", element: <SuspendedProjects /> },
+          { path: "insurance-companies", element: <Insurance /> },
+          { path: "sections", element: <Sections /> },
         ],
       },
     ],

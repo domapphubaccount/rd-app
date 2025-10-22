@@ -46,9 +46,25 @@ export const Rd7Columns = (): ColumnDef<Rd7Report>[] => {
       accessorKey: "rd0_status",
     },
     {
-      header: "Quotation Status",
       accessorKey: "quotations_status",
+      header: "Quotation Status",
+      cell: (info) => {
+        const status = info.getValue() as string;
+
+        const isPaid = status?.toLowerCase() === "yes";
+
+        return (
+          <span
+            className={`px-4 py-1 text-[12px] rounded-full font-bold ${
+              isPaid ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+            }`}
+          >
+            {isPaid ? "Paid" : "Not Paid"}
+          </span>
+        );
+      },
     },
+
     {
       header: "RD7 Status",
       accessorKey: "rd7_status",

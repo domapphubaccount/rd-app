@@ -38,17 +38,17 @@ import TicketList from "@/routes/tickets/TicketList";
 
 // Settings
 import GeneralSettings from "@/routes/settings/GeneralSettings";
-import Modules from "@/routes/settings/Modules/Modules";
-import UserRoles from "@/routes/settings/userRoles/UserRoles";
-import UnitControl from "@/routes/settings/unitControl/UnitControl";
-import FAQCategory from "@/routes/settings/FAQ/FAQCategory";
-import Stages from "@/routes/settings/stages/Stages";
-import Companies from "@/routes/settings/Companies/Companies";
-import Category from "@/routes/settings/category/Category";
-import TaxRates from "@/routes/settings/tax-rates/TaxRates";
-import Insurance from "@/routes/settings/insurance/Insurance";
-import WeirdPeople from "@/routes/settings/weird-people/WeirdPeople";
-import SuspendFilters from "@/routes/settings/suspend-filters/SuspendFilters";
+import Modules from "@/routes/settings/Modules";
+import UserRoles from "@/routes/settings/UserRoles";
+import UnitControl from "@/routes/settings/UnitControl";
+import FAQCategory from "@/routes/settings/FAQCategory";
+import Stages from "@/routes/settings/Stages";
+import Companies from "@/routes/settings/Companies";
+import Category from "@/routes/settings/Category";
+import TaxRates from "@/routes/settings/TaxRates";
+import Insurance from "@/routes/settings/Insurance";
+import WeirdPeople from "@/routes/settings/WeirdPeople";
+import SuspendFilters from "@/routes/settings/SuspendFilters";
 
 export const router = createBrowserRouter([
   {

@@ -49,6 +49,9 @@ import UnitControl from "@/routes/settings/unitControl/UnitControl";
 // FAQ 
 import FAQCategory from "@/routes/settings/FAQ/FAQCategory";
 
+// Settings-Companies
+import Companies from "@/routes/settings/Companies/Companies";
+
 export const router = createBrowserRouter([
   {
     path: "/login",
@@ -122,6 +125,10 @@ export const router = createBrowserRouter([
           {
             path: "faq-categories",
             element: <FAQCategory />,
+          },
+          {
+            path: "companies",
+            element: <Companies />,
           },
         ],
       },

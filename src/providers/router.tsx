@@ -41,10 +41,21 @@ import GeneralSettings from "@/routes/settings/GeneralSettings";
 
 // Settings-Companies
 import Companies from "@/routes/settings/Companies/Companies";
+
 // Templates
-import SMS from "@/routes/settings/Templates/SMS";
-import Email from "@/routes/settings/Templates/Email";
-import WhatsApp from "@/routes/settings/Templates/WhatsApp";
+import SMS from "@/routes/settings/templates/SMS";
+import Email from "@/routes/settings/templates/Email";
+import WhatsApp from "@/routes/settings/templates/WhatsApp";
+
+// Logs
+import EmailLog from "@/routes/settings/log/EmailLog";
+import SMSLog from "@/routes/settings/log/SMSLog";
+import WhatsAppLog from "@/routes/settings/log/WhatsAppLog";
+
+// Queues
+import EmailQueue from "@/routes/settings/queue/EmailQueue";
+import SMSQueue from "@/routes/settings/queue/SMSQueue";
+import WhatsAppQueue from "@/routes/settings/queue/WhatsAppQueue";
 
 export const router = createBrowserRouter([
   {
@@ -119,6 +130,30 @@ export const router = createBrowserRouter([
           {
             path: "whatsApp-templates",
             element: <WhatsApp />,
+          },
+          {
+            path: "email-log",
+            element: <EmailLog />,
+          },
+          {
+            path: "sms-log",
+            element: <SMSLog />,
+          },
+          {
+            path: "whatsApp-log",
+            element: <WhatsAppLog />,
+          },
+          {
+            path: "email-queue",
+            element: <EmailQueue />,
+          },
+          {
+            path: "sms-queue",
+            element: <SMSQueue />,
+          },
+          {
+            path: "whatsApp-queue",
+            element: <WhatsAppQueue />,
           },
         ],
       },

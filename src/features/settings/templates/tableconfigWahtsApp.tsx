@@ -19,7 +19,7 @@ export const TemplateWhatsAPPColumns = (): ColumnDef<Template>[] => {
       cell: () => {
         return (
           <div className="flex gap-4">
-            <Eye size={16} className="text-gray-500 cursor-pointer" />
+            <Eye size={16} className="text-blue-400 cursor-pointer" />
           </div>
         );
       },

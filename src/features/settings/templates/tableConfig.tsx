@@ -19,7 +19,7 @@ export const TemplateColumns = (): ColumnDef<Template>[] => {
       cell: () => {
         return (
           <div className="flex gap-4">
-            <Eye size={16} className="text-gray-500 cursor-pointer" />
+            <Eye size={16} className="text-blue-400 cursor-pointer" />
             <Pencil size={16} className="text-gray-500 w-4 h-4 cursor-pointer" />
             <Trash size={16} className="text-red-500 cursor-pointer" />
           </div>

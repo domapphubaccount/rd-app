@@ -6,7 +6,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreVertical, UserCog, MessageSquare } from "lucide-react";
 
-const ActionsMenu: React.FC = () => {
+interface ActionsMenuProps {
+  policyNumber: number;
+}
+
+const ActionsMenu: React.FC<ActionsMenuProps> = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

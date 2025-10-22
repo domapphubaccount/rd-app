@@ -11,15 +11,15 @@ type DataTableProps<T> = {
   data: T[];
   columns: ColumnDef<T, unknown>[];
   hasPagination?: boolean;
-  total: number;
-  perPage: number;
+  total?: number;
+  perPage?: number;
 };
 
 export default function DataTable<T>({
   data,
   columns,
-  total,
-  perPage,
+  total=1,
+  perPage =1,
   hasPagination = true,
 }: DataTableProps<T>) {
   const [searchParams] = useSearchParams();

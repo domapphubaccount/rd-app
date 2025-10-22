@@ -1,8 +1,8 @@
 import { createBrowserRouter, Navigate } from "react-router";
+
 import RootLayout from "@/layouts/RootLayout";
 import AuthGuard from "./AuthGuard";
 
-// Auth
 import Login from "@/routes/Login";
 import Error from "@/routes/Error";
 
@@ -38,9 +38,16 @@ import TicketList from "@/routes/tickets/TicketList";
 
 // Settings
 import GeneralSettings from "@/routes/settings/GeneralSettings";
-
-// Settings - Insurance
-import Insurance from "@/routes/settings/insurance/Insurance";
+import Modules from "@/routes/settings/Modules/Modules";
+import UserRoles from "@/routes/settings/userRoles/UserRoles";
+import UnitControl from "@/routes/settings/unitControl/UnitControl";
+import FAQCategory from "@/routes/settings/FAQ/FAQCategory";
+import Stages from "@/routes/settings/stages/Stages";
+import Companies from "@/routes/settings/Companies/Companies";
+import Category from "@/routes/settings/category/Category";
+import TaxRates from "@/routes/settings/tax-rates/TaxRates";
+import WeirdPeople from "@/routes/settings/weird-people/WeirdPeople";
+import SuspendFilters from "@/routes/settings/suspend-filters/SuspendFilters";
 
 export const router = createBrowserRouter([
   {
@@ -92,18 +99,18 @@ export const router = createBrowserRouter([
       {
         path: "settings",
         children: [
-          {
-            index: true,
-            element: <Navigate to="general-settings" replace />,
-          },
-          {
-            path: "general-settings",
-            element: <GeneralSettings />,
-          },
-          {
-            path: "insurance-companies",
-            element: <Insurance />,
-          },
+          { index: true, element: <Navigate to="general-settings" replace /> },
+          { path: "general-settings", element: <GeneralSettings /> },
+          { path: "modules", element: <Modules /> },
+          { path: "user-role", element: <UserRoles /> },
+          { path: "units-control", element: <UnitControl /> },
+          { path: "faq-categories", element: <FAQCategory /> },
+          { path: "companies", element: <Companies /> },
+          { path: "stages", element: <Stages /> },
+          { path: "tax-rates", element: <TaxRates /> },
+          { path: "weird-people", element: <WeirdPeople /> },
+          { path: "category", element: <Category /> },
+          { path: "suspend-filters", element: <SuspendFilters /> },
         ],
       },
     ],

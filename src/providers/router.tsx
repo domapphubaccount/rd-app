@@ -1,8 +1,8 @@
 import { createBrowserRouter, Navigate } from "react-router";
+
 import RootLayout from "@/layouts/RootLayout";
 import AuthGuard from "./AuthGuard";
 
-// Auth
 import Login from "@/routes/Login";
 import Error from "@/routes/Error";
 
@@ -39,17 +39,9 @@ import TicketList from "@/routes/tickets/TicketList";
 // Settings
 import GeneralSettings from "@/routes/settings/GeneralSettings";
 import Modules from "@/routes/settings/Modules/Modules";
-
-// User Roles
 import UserRoles from "@/routes/settings/userRoles/UserRoles";
-
-// Unit Control
 import UnitControl from "@/routes/settings/unitControl/UnitControl";
-
-// FAQ 
 import FAQCategory from "@/routes/settings/FAQ/FAQCategory";
-
-// Settings-Companies
 import Companies from "@/routes/settings/Companies/Companies";
 
 export const router = createBrowserRouter([
@@ -102,34 +94,13 @@ export const router = createBrowserRouter([
       {
         path: "settings",
         children: [
-          {
-            index: true,
-            element: <Navigate to="general-settings" replace />,
-          },
-          {
-            path: "general-settings",
-            element: <GeneralSettings />,
-          },
-          {
-            path: "modules",
-            element: <Modules />,
-          },
-          {
-            path: "user-role",
-            element: <UserRoles />,
-          },
-          {
-            path: "units-control",
-            element: <UnitControl />,
-          },
-          {
-            path: "faq-categories",
-            element: <FAQCategory />,
-          },
-          {
-            path: "companies",
-            element: <Companies />,
-          },
+          { index: true, element: <Navigate to="general-settings" replace /> },
+          { path: "general-settings", element: <GeneralSettings /> },
+          { path: "modules", element: <Modules /> },
+          { path: "user-role", element: <UserRoles /> },
+          { path: "units-control", element: <UnitControl /> },
+          { path: "faq-categories", element: <FAQCategory /> },
+          { path: "companies", element: <Companies /> },
         ],
       },
     ],

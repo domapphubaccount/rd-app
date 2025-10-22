@@ -1,18 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { getRequest } from "@/lib/axiosApi";
 import { useSearchParams } from "react-router";
-import type { ProjectsResponse } from "./types";
+import type { Template, TemplatesResponse } from "./types";
 
-export default function useGetProjects() {
+export default function useGetTemplate(type: Template["type"]) {
   const [searchParams] = useSearchParams();
   const page = searchParams.get("page") || "1";
   const start_date = searchParams.get("start_date");
   const end_date = searchParams.get("end_date");
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["projects", page, start_date, end_date],
-    queryFn: (): Promise<ProjectsResponse> =>
-      getRequest<ProjectsResponse>("/projects", {
+    queryKey: ["templates",type, page, start_date, end_date],
+    queryFn: (): Promise<TemplatesResponse > =>
+      getRequest<TemplatesResponse >(`/templates?type=${type}`, {
         params: {
           page,
           start_date,

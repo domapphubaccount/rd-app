@@ -3,6 +3,7 @@ import { useSidebarStore } from "@/components/sidebar/themeStore";
 import Sidebar from "@/components/sidebar/Sidebar";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
+import FilterModal from "@/components/filter/FilterModal";
 
 export default function RootLayout() {
   const { isOpen } = useSidebarStore();
@@ -25,6 +26,7 @@ export default function RootLayout() {
         </div>
 
         <Footer />
+          <FilterModal />
       </main>
     </>
   );

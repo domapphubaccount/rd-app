@@ -36,7 +36,10 @@ export default function SelectField({
 }: SelectFieldProps) {
   return (
     <div className="flex flex-col gap-2 w-full">
-      <label htmlFor={id} className="text-sm flex items-center justify-between">
+      <label
+        htmlFor={id}
+        className=" flex items-center justify-between text-[16px] text-[#344155] font-bold"
+      >
         {label}
 
         {canReset && (

@@ -9,6 +9,8 @@ import DateRangePickers from "../shared/DateRangePickers";
 import InputField from "../shared/InputField";
 import SelectField from "../shared/SelectField";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { SlidersHorizontal } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 
 export default function FilterModal() {
   const { isOpen, options, closeFilter } = useFilterStore();
@@ -170,23 +172,26 @@ export default function FilterModal() {
   );
 
   return (
-    <Popover open={isOpen} onOpenChange={(open) => !open && closeFilter()}>
-      <PopoverTrigger asChild>
-        <div id="filter-trigger-button" />
-      </PopoverTrigger>
-
-      <PopoverContent
-        className="w-[500px] h-[500px] p-0 shadow-lg rounded-lg"
-        side="bottom"
-        align="end"
+    <Dialog
+      open={isOpen}
+      onOpenChange={(open) => !open && closeFilter()}
+    >
+      <DialogContent
+        className="w-[700px] h-[500px] p-0 shadow-lg rounded-lg border absolute top-6 right-6 translate-x-0 mt-[80px] mr-[10px]"
+        style={{ left: "auto", transform: "none" }}
       >
-        <div className="border-b px-6 py-4">
-          <p className="text-lg font-semibold text-[#31538E] text-start">
-            Filters
-          </p>
-        </div>
+        <DialogHeader className="border-b px-6 py-3 pb-0 flex gap-3">
+          <div className="flex gap-3 ">
+            <div className="p-1 border border-gray-300 rounded-md">
+              <SlidersHorizontal className="w-5 h-5 text-[#344155]" />
+            </div>
+            <DialogTitle className="text-[18px] font-bold text-[#344155]">
+              Filters
+            </DialogTitle>
+          </div>
+        </DialogHeader>
 
-        <ScrollArea className="max-h-[350px] overflow-y-auto px-6">
+        <ScrollArea className="max-h-[350px] overflow-y-auto px-6 flex-1">
           <div className="flex flex-col gap-4">
             {options.map((opt) => renderInput(opt))}
           </div>
@@ -201,7 +206,7 @@ export default function FilterModal() {
         <div className="flex gap-3 px-6 pb-6 pt-3">
           <button
             onClick={handleReset}
-            className="flex-1 bg-[#F4F6FB] text-[#31538E] py-3 rounded-[8px] text-[14px] font-medium hover:bg-[#E8ECF5] transition-colors"
+            className="flex-1 bg-[#F4F6FB] text-[#31538E]  rounded-[8px] text-[14px] font-medium hover:bg-[#E8ECF5] transition-colors"
             type="button"
           >
             Reset All
@@ -209,13 +214,13 @@ export default function FilterModal() {
 
           <button
             onClick={handleApply}
-            className="flex-1 bg-[#31538E] text-white py-3 rounded-[8px] text-[14px] font-medium hover:bg-[#264170] transition-colors"
+            className="flex-1 bg-[#667085] text-white  rounded-[8px] text-[14px] font-medium hover:bg-[#667085] transition-colors"
           >
             Apply
             {appliedCount > 0 && ` (${appliedCount})`}
           </button>
         </div>
-      </PopoverContent>
-    </Popover>
+      </DialogContent>
+    </Dialog>
   );
 }

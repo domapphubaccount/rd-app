@@ -1,11 +1,10 @@
-// SavedFiltersSection.tsx
+import { useState } from "react"; 
 import { ScrollArea } from "../ui/scroll-area";
 import { Settings, Star, Edit, Trash, Check, X, Plus } from "lucide-react";
 import { Button } from "../ui/button";
 import InputField from "../shared/InputField";
 import type { FiltersState, SavedFilter } from "./types";
 
-// Props interface for SavedFiltersSection
 interface SavedFiltersSectionProps {
   isFiltersLoading: boolean;
   savedFilters: SavedFilter[];
@@ -22,7 +21,6 @@ interface SavedFiltersSectionProps {
   setIsAddingFilter: (value: boolean) => void;
 }
 
-// Component to display saved filters and add/edit filter section
 export default function SavedFiltersSection({
   isFiltersLoading,
   savedFilters,
@@ -38,6 +36,21 @@ export default function SavedFiltersSection({
   handleCancelAddFilter,
   setIsAddingFilter,
 }: SavedFiltersSectionProps) {
+  const [deletingFilterId, setDeletingFilterId] = useState<string | null>(null);
+
+  const initiateDelete = (id: string) => {
+    setDeletingFilterId(id);
+  };
+
+  const confirmDelete = (id: string) => {
+    handleDeleteFilter(id);
+    setDeletingFilterId(null);
+  };
+
+  const cancelDelete = () => {
+    setDeletingFilterId(null);
+  };
+
   return (
     <div className="w-1/3 border-r border-gray-200 bg-[#F4F6FB]">
       <div className="flex flex-col gap-4 px-4 py-4 justify-between h-full">
@@ -66,48 +79,63 @@ export default function SavedFiltersSection({
                     {filter.name}
                   </span>
                   <div className="flex gap-2">
-                    <Star
-                      className={`w-4 h-4 cursor-pointer ${
-                        filter.default
-                          ? "text-yellow-500 fill-yellow-500"
-                          : "text-gray-400"
-                      }`}
-                      onClick={() => handleSetDefault(filter.id)}
-                    />
-                    <Edit
-                      className="w-4 h-4 cursor-pointer text-gray-600"
-                      onClick={() => handleEditFilter(filter)}
-                    />
-                    <Trash
-                      className="w-4 h-4 cursor-pointer text-red-500"
-                      onClick={() => handleDeleteFilter(filter.id)}
-                    />
+                    {deletingFilterId === filter.id ? (
+                      <>
+                        <Check
+                          className="w-4 h-4 cursor-pointer text-green-500"
+                          onClick={() => confirmDelete(filter.id)}
+                        />
+                        <X
+                          className="w-4 h-4 cursor-pointer text-red-500"
+                          onClick={cancelDelete}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <Star
+                          className={`w-4 h-4 cursor-pointer ${
+                            filter.default
+                              ? "text-yellow-500 fill-yellow-500"
+                              : "text-gray-400"
+                          }`}
+                          onClick={() => handleSetDefault(filter.id)}
+                        />
+                        <Edit
+                          className="w-4 h-4 cursor-pointer text-gray-600"
+                          onClick={() => handleEditFilter(filter)}
+                        />
+                        <Trash
+                          className="w-4 h-4 cursor-pointer text-red-500"
+                          onClick={() => initiateDelete(filter.id)}
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
               ))
             )}
           </ScrollArea>
         </div>
-        <div>
+        <div className="px-2">
           {isAddingFilter ? (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full">
               <InputField
                 name="filterName"
                 type="text"
                 placeholder="Enter filter name"
                 value={filterName}
                 onChange={(e) => setFilterName(e.target.value)}
-                className="flex-1"
+                className="flex-1 min-w-0"
               />
               <Button
-                className="bg-[#667085] text-white p-2 rounded-[8px]"
+                className="bg-[#667085] text-white p-2 rounded-[8px] flex-shrink-0"
                 onClick={handleSaveFilter}
                 disabled={!filterName.trim() || !isFilterValid}
               >
                 <Check className="w-4 h-4" />
               </Button>
               <Button
-                className="bg-transparent text-[#5A6778] border-[1px] border-[#5A6778] p-2 rounded-[8px]"
+                className="bg-transparent text-[#5A6778] border-[1px] border-[#5A6778] p-2 rounded-[8px] flex-shrink-0"
                 onClick={handleCancelAddFilter}
               >
                 <X className="w-4 h-4" />

@@ -57,7 +57,6 @@ export const useUpdateSavedFilter = () => {
       const currentFilter = savedFilters.find((f) => f.id === data.id);
       const defaultStatus = currentFilter ? currentFilter.default : false;
 
-      // Construct payload matching the expected structure
       return putRequest(`/filters/${data.id}`, {
         id: data.id,
         name: data.name,

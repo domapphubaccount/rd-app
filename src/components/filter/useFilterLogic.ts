@@ -18,26 +18,31 @@ type SavedFilterResponse = {
   name: string;
   category: string;
   details?: FilterDetail[];
-  filters?: FiltersState;
-  is_default: boolean;
+  default: boolean; // Changed from is_default to match API response
+  order?: number;
+};
+
+type ApiResponse = {
+  message: string;
+  data: SavedFilterResponse[];
 };
 
 export const useGetSavedFilters = (category: string) => {
   return useQuery({
     queryKey: ["savedFilters", category],
     queryFn: async () => {
-      const response = await getRequest<SavedFilterResponse[]>(
+      const response = await getRequest<ApiResponse>(
         `/filters/list?category=${category}`
       );
       console.log("API response:", response); // Debug API response
-      return response.map((f) => ({
+      return response.data.map((f) => ({
         ...f,
         filters: f.details
           ? f.details.reduce((acc: FiltersState, { key, value }) => {
               acc[key] = value;
               return acc;
             }, {})
-          : f.filters || {},
+          : {},
       }));
     },
     enabled: !!category,

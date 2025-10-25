@@ -45,8 +45,8 @@ export default function FilterModal() {
     useGetSavedFilters(category);
 
   useEffect(() => {
-    if (savedFiltersData && Array.isArray(savedFiltersData.data)) {
-      const normalized = savedFiltersData.data.map((f) => ({
+    if (savedFiltersData && Array.isArray(savedFiltersData)) {
+      const normalized = savedFiltersData.map((f) => ({
         id: f.id,
         name: f.name,
         category: f.category,
@@ -64,7 +64,7 @@ export default function FilterModal() {
     }
   }, [savedFiltersData, setSavedFilters]);
 
-  console.log('savedFiltersData', savedFiltersData)
+  console.log("savedFiltersData", savedFiltersData);
 
   useEffect(() => {
     if (isOpen) {
@@ -100,13 +100,11 @@ export default function FilterModal() {
     );
   }, [filters]);
 
-  // Mutations for filter operations
   const { mutate: addFilter } = useAddSavedFilter();
   const { mutate: updateFilter } = useUpdateSavedFilter();
   const { mutate: deleteFilter } = useDeleteSavedFilter();
   const { mutate: setDefault } = useSetDefaultFilter();
 
-  // Apply filters and update URL search params
   const handleApply = useCallback(() => {
     const policyNumber = searchParams.get("policy_number");
     const newParams = new URLSearchParams();
@@ -126,7 +124,6 @@ export default function FilterModal() {
     closeFilter();
   }, [filters, searchParams, setSearchParams, closeFilter, isInProjectPage]);
 
-  // Reset all filters and update URL
   const handleReset = useCallback(() => {
     const policyNumber = searchParams.get("policy_number");
     const newParams = new URLSearchParams();
@@ -168,7 +165,6 @@ export default function FilterModal() {
     });
   }, []);
 
-  // Update filter value
   const handleFilterChange = useCallback((key: string, value: string) => {
     setFilters((prev) => ({
       ...prev,
@@ -176,7 +172,6 @@ export default function FilterModal() {
     }));
   }, []);
 
-  // Save or update a filter
   const handleSaveFilter = () => {
     if (filterName.trim() && isFilterValid) {
       const details = Object.entries(filters)
@@ -216,21 +211,18 @@ export default function FilterModal() {
     }
   };
 
-  // Cancel adding/editing a filter
   const handleCancelAddFilter = () => {
     setIsAddingFilter(false);
     setFilterName("");
     setEditingFilter(null);
   };
 
-  // Delete a saved filter
   const handleDeleteFilter = (id: string) => {
     deleteFilter(id, {
       onSuccess: () => deleteSavedFilter(id),
     });
   };
 
-  // Set a filter as default
   const handleSetDefault = (id: string) => {
     setDefault(
       { id, category },
@@ -240,7 +232,6 @@ export default function FilterModal() {
     );
   };
 
-  // Edit a saved filter
   const handleEditFilter = (filter: SavedFilter) => {
     setEditingFilter(filter.id);
     setFilterName(filter.name);

@@ -1,5 +1,6 @@
+// FilterModal.tsx
 import { useState, useMemo, useEffect, useCallback } from "react";
-import { useLocation, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
 import { useFilterStore } from "./store";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { SlidersHorizontal } from "lucide-react";
@@ -34,8 +35,6 @@ export default function FilterModal() {
   // Local state for filters, adding/editing, and filter name
   const [filters, setFilters] = useState<FiltersState>({});
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
-  const isInProjectPage = location.pathname.includes("/projects");
   const [isAddingFilter, setIsAddingFilter] = useState(false);
   const [filterName, setFilterName] = useState("");
   const [editingFilter, setEditingFilter] = useState<string | null>(null);
@@ -44,19 +43,15 @@ export default function FilterModal() {
   const { data: savedFiltersData, isLoading: isFiltersLoading } =
     useGetSavedFilters(category);
 
+  // Normalize and set saved filters from API data
   useEffect(() => {
     if (savedFiltersData && Array.isArray(savedFiltersData)) {
       const normalized = savedFiltersData.map((f) => ({
         id: f.id,
         name: f.name,
         category: f.category,
-        filters: f.details
-          ? f.details.reduce((acc: FiltersState, { key, value }) => {
-              acc[key] = value;
-              return acc;
-            }, {})
-          : {},
-        isDefault: f.default || false,
+        filters: f.filters || {},
+        default: f.default || false,
       }));
       setSavedFilters(normalized);
     } else {
@@ -64,8 +59,7 @@ export default function FilterModal() {
     }
   }, [savedFiltersData, setSavedFilters]);
 
-  console.log("savedFiltersData", savedFiltersData);
-
+  // Initialize filters from URL or default filter
   useEffect(() => {
     if (isOpen) {
       const existingFilters: FiltersState = {};
@@ -79,7 +73,7 @@ export default function FilterModal() {
         }
       });
 
-      const defaultFilter = savedFilters.find((f) => f.isDefault);
+      const defaultFilter = savedFilters.find((f) => f.default);
       if (defaultFilter && Object.values(existingFilters).every((v) => !v)) {
         setFilters(defaultFilter.filters);
       } else {
@@ -88,30 +82,24 @@ export default function FilterModal() {
     }
   }, [isOpen, options, searchParams, savedFilters]);
 
+  // Calculate number of applied filters
   const appliedCount = useMemo(() => {
-    return Object.entries(filters).filter(
-      ([key, value]) => key !== "policy_number" && value && value !== ""
-    ).length;
+    return Object.entries(filters).filter(([_, value]) => value && value !== "")
+      .length;
   }, [filters]);
 
   const isFilterValid = useMemo(() => {
-    return Object.entries(filters).some(
-      ([key, value]) => key !== "policy_number" && value && value !== ""
-    );
+    return Object.entries(filters).some(([_, value]) => value && value !== "");
   }, [filters]);
 
+  // Mutations for filter operations
   const { mutate: addFilter } = useAddSavedFilter();
   const { mutate: updateFilter } = useUpdateSavedFilter();
   const { mutate: deleteFilter } = useDeleteSavedFilter();
   const { mutate: setDefault } = useSetDefaultFilter();
 
   const handleApply = useCallback(() => {
-    const policyNumber = searchParams.get("policy_number");
     const newParams = new URLSearchParams();
-
-    if (policyNumber && !isInProjectPage) {
-      newParams.set("policy_number", policyNumber);
-    }
 
     Object.entries(filters).forEach(([key, value]) => {
       if (value && value !== "") {
@@ -122,16 +110,10 @@ export default function FilterModal() {
     newParams.set("page", "1");
     setSearchParams(newParams, { replace: true });
     closeFilter();
-  }, [filters, searchParams, setSearchParams, closeFilter, isInProjectPage]);
+  }, [filters, setSearchParams, closeFilter]);
 
   const handleReset = useCallback(() => {
-    const policyNumber = searchParams.get("policy_number");
     const newParams = new URLSearchParams();
-
-    if (policyNumber && !isInProjectPage) {
-      newParams.set("policy_number", policyNumber);
-    }
-
     newParams.set("page", "1");
 
     const resetFilters: FiltersState = {};
@@ -140,19 +122,15 @@ export default function FilterModal() {
         resetFilters[opt.startName] = "";
         resetFilters[opt.endName] = "";
       } else {
-        resetFilters[opt.name] =
-          opt.name === "policy_number" && !isInProjectPage
-            ? policyNumber || ""
-            : "";
+        resetFilters[opt.name] = "";
       }
     });
 
     setFilters(resetFilters);
     setSearchParams(newParams, { replace: true });
     requestAnimationFrame(closeFilter);
-  }, [options, searchParams, setSearchParams, closeFilter, isInProjectPage]);
+  }, [options, setSearchParams, closeFilter]);
 
-  // Reset individual filter field(s)
   const handleFieldReset = useCallback((key: string | string[]) => {
     setFilters((prev) => {
       const updated = { ...prev };
@@ -200,7 +178,7 @@ export default function FilterModal() {
                 name: filterName,
                 category,
                 filters,
-                isDefault: false,
+                default: false,
               });
               setIsAddingFilter(false);
               setFilterName("");
@@ -211,6 +189,7 @@ export default function FilterModal() {
     }
   };
 
+  // Cancel adding/editing a filter
   const handleCancelAddFilter = () => {
     setIsAddingFilter(false);
     setFilterName("");
@@ -242,7 +221,7 @@ export default function FilterModal() {
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && closeFilter()}>
       <DialogContent
-        className="w-[700px] max-w-[1000px] h-[500px] p-0 shadow-lg rounded-lg border absolute top-6 right-6 translate-x-0 mt-[80px] mr-[10px] flex flex-col gap-0"
+        className=" max-w-[900px] h-[600px] p-0 shadow-lg rounded-lg border absolute top-6 right-6 translate-x-0 mt-[80px] mr-[10px] flex flex-col gap-0"
         style={{ left: "auto", transform: "none" }}
       >
         <DialogHeader className="border-b px-3 py-3 pb-0 mb-0 space-y-0">
@@ -256,7 +235,7 @@ export default function FilterModal() {
           </div>
         </DialogHeader>
 
-        <div className="flex flex-1">
+        <div className="flex flex-1 ">
           <SavedFiltersSection
             isFiltersLoading={isFiltersLoading}
             savedFilters={savedFilters}
@@ -273,7 +252,7 @@ export default function FilterModal() {
             setIsAddingFilter={setIsAddingFilter}
           />
 
-          <div className="w-2/3">
+          <div className="w-2/3 mt-4">
             <FilterInputsSection
               options={options}
               filters={filters}

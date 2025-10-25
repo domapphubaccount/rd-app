@@ -6,26 +6,8 @@ import {
   deleteRequest,
   putRequest,
 } from "@/lib/axiosApi";
-import type { FiltersState } from "./types";
-
-type FilterDetail = {
-  key: string;
-  value: string;
-};
-
-type SavedFilterResponse = {
-  id: string;
-  name: string;
-  category: string;
-  details?: FilterDetail[];
-  default: boolean; // Changed from is_default to match API response
-  order?: number;
-};
-
-type ApiResponse = {
-  message: string;
-  data: SavedFilterResponse[];
-};
+import type { ApiResponse, FilterDetail, FiltersState } from "./types";
+import { useFilterStore } from "./store";
 
 export const useGetSavedFilters = (category: string) => {
   return useQuery({
@@ -34,7 +16,7 @@ export const useGetSavedFilters = (category: string) => {
       const response = await getRequest<ApiResponse>(
         `/filters/list?category=${category}`
       );
-      console.log("API response:", response); // Debug API response
+      console.log("API response:", response);
       return response.data.map((f) => ({
         ...f,
         filters: f.details
@@ -55,14 +37,35 @@ export const useAddSavedFilter = () => {
       name: string;
       category: string;
       details: FilterDetail[];
-    }) => postRequest("/filters", data),
+    }) =>
+      postRequest("/filters", {
+        ...data,
+        default: false,
+      }),
   });
 };
 
 export const useUpdateSavedFilter = () => {
+  const { savedFilters } = useFilterStore();
+
   return useMutation({
-    mutationFn: (data: { id: string; name: string; details: FilterDetail[] }) =>
-      putRequest(`/filters/${data.id}`, data),
+    mutationFn: (data: {
+      id: string;
+      name: string;
+      details: FilterDetail[];
+    }) => {
+      const currentFilter = savedFilters.find((f) => f.id === data.id);
+      const defaultStatus = currentFilter ? currentFilter.default : false;
+
+      // Construct payload matching the expected structure
+      return putRequest(`/filters/${data.id}`, {
+        id: data.id,
+        name: data.name,
+        category: currentFilter?.category || "",
+        details: data.details,
+        default: defaultStatus,
+      });
+    },
   });
 };
 
@@ -75,7 +78,7 @@ export const useDeleteSavedFilter = () => {
 export const useSetDefaultFilter = () => {
   return useMutation({
     mutationFn: (data: { id: string; category: string }) =>
-      putRequest(`/filters/${data.id}/default`, {
+      putRequest(`/filters/${data.id}`, {
         category: data.category,
       }),
   });

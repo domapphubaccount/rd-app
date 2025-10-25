@@ -26,5 +26,24 @@ export type SavedFilter = {
   name: string;
   category: string;
   filters: FiltersState;
-  isDefault: boolean;
+  default: boolean;
+};
+
+export type FilterDetail = {
+  key: string;
+  value: string;
+};
+
+export type SavedFilterResponse = {
+  id: string;
+  name: string;
+  category: string;
+  details?: FilterDetail[];
+  default: boolean;
+  order?: number;
+};
+
+export type ApiResponse = {
+  message: string;
+  data: SavedFilterResponse[];
 };

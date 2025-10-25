@@ -102,7 +102,7 @@ export default function FilterInputsSection({
   };
 
   return (
-    <ScrollArea className="max-h-[350px] overflow-y-auto px-6 flex-1">
+    <ScrollArea className="h-[450px] overflow-y-auto px-6 flex-1">
       <div className="flex flex-col gap-4">
         {options.map((opt) => renderInput(opt))}
       </div>

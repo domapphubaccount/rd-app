@@ -23,7 +23,7 @@ export default function AddFilterSection({
   handleCancelAddFilter,
 }: AddFilterSectionProps) {
   return (
-    <div className="px-4">
+    <div className="">
       {isAddingFilter ? (
         <div className="flex items-center gap-2">
           <InputField

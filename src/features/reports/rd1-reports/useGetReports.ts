@@ -9,9 +9,10 @@ export default function useGetReports() {
   const start_date = searchParams.get("start_date");
   const end_date = searchParams.get("end_date");
   const PolicyNo = searchParams.get("PolicyNo");
+  const status = searchParams.get("status");
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["rd1-reports", page, start_date, end_date, PolicyNo],
+    queryKey: ["rd1-reports", page, start_date, end_date, PolicyNo, status],
     queryFn: (): Promise<Rd1Response> =>
       getRequest<Rd1Response>("/sp/reports/RD1", {
         params: {
@@ -19,6 +20,7 @@ export default function useGetReports() {
           start_date,
           end_date,
           PolicyNo,
+          status,
         },
       }),
   });

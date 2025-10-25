@@ -38,7 +38,7 @@ export const useFilterStore = create<FilterStore>((set) => ({
     set((state) => ({
       savedFilters: state.savedFilters.map((f) => ({
         ...f,
-        isDefault: f.id === id,
+        default: f.id === id,
       })),
     })),
   openFilter: (options, category) => set({ isOpen: true, options, category }),

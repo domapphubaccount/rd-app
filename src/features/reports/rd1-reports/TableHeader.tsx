@@ -1,52 +1,44 @@
+// TableHeader.tsx
 import { useFilterStore } from "@/components/filter/store";
 import TimeRange from "@/components/shared/TimeRange";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
+import type { FilterOption } from "@/components/filter/types";
 
 export default function TableHeader() {
   const { openFilter } = useFilterStore();
+
   const handleOpen = () => {
-    openFilter([
+    const filterOptions: FilterOption[] = [
       {
         name: "PolicyNo",
         type: "number",
-        label: "policy number",
+        label: "Policy Number",
         placeholder: "Enter Policy No",
       },
       {
         name: "status",
         type: "select",
-        label: "status",
+        label: "Status",
         options: [
-          {
-            label: "All",
-            value: "name",
-          },
-          {
-            label: "Pending",
-            value: "Pending",
-          },
-          {
-            label: "InProgress",
-            value: "InProgress",
-          },
-          {
-            label: "Completed",
-            value: "Completed",
-          },
+          { label: "All", value: "name" },
+          { label: "Pending", value: "Pending" },
+          { label: "InProgress", value: "InProgress" },
+          { label: "Completed", value: "Completed" },
         ],
       },
       {
         name: "type",
         type: "select",
-        label: "type",
-        options: [
-          {
-            label: "All",
-            value: "Home",
-          },
-        ],
+        label: "Type",
+        options: [{ label: "All", value: "Home" }],
       },
-    ]);
+      {
+        name: "isActive",
+        type: "checkbox",
+        label: "Active",
+      },
+    ];
+    openFilter(filterOptions, "rd1_reports");
   };
 
   return (
@@ -54,7 +46,6 @@ export default function TableHeader() {
       <div className="flex items-center gap-4">
         <TimeRange />
       </div>
-
       <div className="flex items-center gap-4 text-[14px]">
         <button
           id="filter-trigger-button"

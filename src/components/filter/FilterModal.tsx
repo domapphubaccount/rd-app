@@ -1,25 +1,8 @@
-// FilterModal.tsx
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { useLocation, useSearchParams } from "react-router";
 import { useFilterStore } from "./store";
-import { format } from "date-fns";
-import { ScrollArea } from "../ui/scroll-area";
-import DateRangePickers from "../shared/DateRangePickers";
-import InputField from "../shared/InputField";
-import SelectField from "../shared/SelectField";
-import { Checkbox } from "../ui/checkbox";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
-import { Button } from "../ui/button";
-import {
-  Check,
-  X,
-  Plus,
-  Settings,
-  SlidersHorizontal,
-  Edit,
-  Trash,
-  Star,
-} from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 import {
   useGetSavedFilters,
   useAddSavedFilter,
@@ -27,9 +10,14 @@ import {
   useDeleteSavedFilter,
   useSetDefaultFilter,
 } from "./useFilterLogic";
-import type { FilterOption, FiltersState } from "./types";
+import type { FiltersState, SavedFilter } from "./types";
+import SavedFiltersSection from "./SavedFiltersSection";
+import FilterInputsSection from "./FilterInputsSection";
+import FilterActions from "./FilterActions";
 
+// Main FilterModal component orchestrating state and child components
 export default function FilterModal() {
+  // State and hooks from useFilterStore
   const {
     isOpen,
     options,
@@ -42,6 +30,8 @@ export default function FilterModal() {
     setDefaultFilter,
     savedFilters,
   } = useFilterStore();
+
+  // Local state for filters, adding/editing, and filter name
   const [filters, setFilters] = useState<FiltersState>({});
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -66,16 +56,16 @@ export default function FilterModal() {
               return acc;
             }, {})
           : {},
-        isDefault: f.default || false, // لأن المفتاح اسمه "default" مش "is_default"
+        isDefault: f.default || false,
       }));
-
       setSavedFilters(normalized);
     } else {
       setSavedFilters([]);
     }
   }, [savedFiltersData, setSavedFilters]);
 
-  // Initialize filters from URL or default filter
+  console.log('savedFiltersData', savedFiltersData)
+
   useEffect(() => {
     if (isOpen) {
       const existingFilters: FiltersState = {};
@@ -89,7 +79,6 @@ export default function FilterModal() {
         }
       });
 
-      // Apply default filter if exists and no URL params
       const defaultFilter = savedFilters.find((f) => f.isDefault);
       if (defaultFilter && Object.values(existingFilters).every((v) => !v)) {
         setFilters(defaultFilter.filters);
@@ -105,18 +94,19 @@ export default function FilterModal() {
     ).length;
   }, [filters]);
 
-  // Validate that at least one filter option is selected
   const isFilterValid = useMemo(() => {
     return Object.entries(filters).some(
       ([key, value]) => key !== "policy_number" && value && value !== ""
     );
   }, [filters]);
 
+  // Mutations for filter operations
   const { mutate: addFilter } = useAddSavedFilter();
   const { mutate: updateFilter } = useUpdateSavedFilter();
   const { mutate: deleteFilter } = useDeleteSavedFilter();
   const { mutate: setDefault } = useSetDefaultFilter();
 
+  // Apply filters and update URL search params
   const handleApply = useCallback(() => {
     const policyNumber = searchParams.get("policy_number");
     const newParams = new URLSearchParams();
@@ -136,6 +126,7 @@ export default function FilterModal() {
     closeFilter();
   }, [filters, searchParams, setSearchParams, closeFilter, isInProjectPage]);
 
+  // Reset all filters and update URL
   const handleReset = useCallback(() => {
     const policyNumber = searchParams.get("policy_number");
     const newParams = new URLSearchParams();
@@ -164,6 +155,7 @@ export default function FilterModal() {
     requestAnimationFrame(closeFilter);
   }, [options, searchParams, setSearchParams, closeFilter, isInProjectPage]);
 
+  // Reset individual filter field(s)
   const handleFieldReset = useCallback((key: string | string[]) => {
     setFilters((prev) => {
       const updated = { ...prev };
@@ -176,6 +168,7 @@ export default function FilterModal() {
     });
   }, []);
 
+  // Update filter value
   const handleFilterChange = useCallback((key: string, value: string) => {
     setFilters((prev) => ({
       ...prev,
@@ -183,6 +176,7 @@ export default function FilterModal() {
     }));
   }, []);
 
+  // Save or update a filter
   const handleSaveFilter = () => {
     if (filterName.trim() && isFilterValid) {
       const details = Object.entries(filters)
@@ -222,18 +216,21 @@ export default function FilterModal() {
     }
   };
 
+  // Cancel adding/editing a filter
   const handleCancelAddFilter = () => {
     setIsAddingFilter(false);
     setFilterName("");
     setEditingFilter(null);
   };
 
+  // Delete a saved filter
   const handleDeleteFilter = (id: string) => {
     deleteFilter(id, {
       onSuccess: () => deleteSavedFilter(id),
     });
   };
 
+  // Set a filter as default
   const handleSetDefault = (id: string) => {
     setDefault(
       { id, category },
@@ -243,92 +240,13 @@ export default function FilterModal() {
     );
   };
 
+  // Edit a saved filter
   const handleEditFilter = (filter: SavedFilter) => {
     setEditingFilter(filter.id);
     setFilterName(filter.name);
     setFilters(filter.filters);
     setIsAddingFilter(true);
   };
-
-  const renderInput = useCallback(
-    (opt: FilterOption) => {
-      switch (opt.type) {
-        case "date":
-          return (
-            <div key={`${opt.startName}-${opt.endName}`}>
-              <DateRangePickers
-                startName={opt.startName}
-                endName={opt.endName}
-                startValue={filters[opt.startName]}
-                endValue={filters[opt.endName]}
-                onChange={(field, value) =>
-                  handleFilterChange(
-                    field,
-                    value ? format(value, "yyyy-MM-dd") : ""
-                  )
-                }
-                canReset={true}
-                onReset={() => handleFieldReset([opt.startName, opt.endName])}
-              />
-            </div>
-          );
-        case "text":
-        case "number":
-          return (
-            <InputField
-              key={opt.name}
-              name={opt.name}
-              label={opt.label}
-              type={opt.type}
-              placeholder={opt.placeholder}
-              value={filters[opt.name] || ""}
-              onChange={(e) => handleFilterChange(opt.name, e.target.value)}
-              onReset={() => handleFieldReset(opt.name)}
-            />
-          );
-        case "select":
-          return (
-            <SelectField
-              key={opt.name}
-              label={opt.label}
-              id={opt.name}
-              options={opt.options || []}
-              placeholder="select"
-              value={filters[opt.name] || ""}
-              onChange={(value) => handleFilterChange(opt.name, value)}
-              canReset={true}
-              onReset={() => handleFieldReset(opt.name)}
-            />
-          );
-        case "checkbox":
-          return (
-            <div key={opt.name} className="flex items-center gap-2 py-2">
-              <Checkbox
-                id={opt.name}
-                checked={filters[opt.name] === "true"}
-                onCheckedChange={(checked) =>
-                  handleFilterChange(opt.name, checked ? "true" : "false")
-                }
-              />
-              <label htmlFor={opt.name} className="text-sm text-[#344155]">
-                {opt.label}
-              </label>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleFieldReset(opt.name)}
-                className="ml-auto text-[#31538E] hover:text-[#667085]"
-              >
-                Reset
-              </Button>
-            </div>
-          );
-        default:
-          return null;
-      }
-    },
-    [filters, handleFilterChange, handleFieldReset]
-  );
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && closeFilter()}>
@@ -348,123 +266,36 @@ export default function FilterModal() {
         </DialogHeader>
 
         <div className="flex flex-1">
-          <div className="w-1/3 border-r border-gray-200 bg-[#F4F6FB]">
-            <div className="flex flex-col gap-4 px-4 py-4 justify-between h-full">
-              <div>
-                <div className="flex items-center justify-between text-white bg-[#99A2B3] py-2 px-3 rounded-[8px] text-[16px] font-bold">
-                  <p>Saved Filters</p>
-                  <Settings className="w-5 h-5" />
-                </div>
-                <ScrollArea className="mt-4 max-h-[300px]">
-                  {isFiltersLoading ? (
-                    <div className="text-center text-gray-500 py-4">
-                      Loading...
-                    </div>
-                  ) : savedFilters.length === 0 ? (
-                    <div className="text-center text-gray-500 py-4">
-                      No saved filters
-                    </div>
-                  ) : (
-                    savedFilters.map((filter) => (
-                      <div
-                        key={filter.id}
-                        className="flex items-center justify-between p-2 mb-2 bg-white rounded-[8px] border border-gray-200"
-                      >
-                        <span
-                          className="cursor-pointer text-[#344155] hover:underline"
-                          onClick={() => setFilters(filter.filters)}
-                        >
-                          {filter.name}
-                        </span>
-                        <div className="flex gap-2">
-                          <Star
-                            className={`w-4 h-4 cursor-pointer ${
-                              filter.isDefault
-                                ? "text-yellow-500 fill-yellow-500"
-                                : "text-gray-400"
-                            }`}
-                            onClick={() => handleSetDefault(filter.id)}
-                          />
-                          <Edit
-                            className="w-4 h-4 cursor-pointer text-gray-600"
-                            onClick={() => handleEditFilter(filter)}
-                          />
-                          <Trash
-                            className="w-4 h-4 cursor-pointer text-red-500"
-                            onClick={() => handleDeleteFilter(filter.id)}
-                          />
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </ScrollArea>
-              </div>
-              <div>
-                {isAddingFilter ? (
-                  <div className="flex items-center gap-2">
-                    <InputField
-                      name="filterName"
-                      type="text"
-                      placeholder="Enter filter name"
-                      value={filterName}
-                      onChange={(e) => setFilterName(e.target.value)}
-                      className="flex-1"
-                    />
-                    <Button
-                      className="bg-[#667085] text-white p-2 rounded-[8px]"
-                      onClick={handleSaveFilter}
-                      disabled={!filterName.trim() || !isFilterValid}
-                    >
-                      <Check className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      className="bg-transparent text-[#5A6778] border-[1px] border-[#5A6778] p-2 rounded-[8px]"
-                      onClick={handleCancelAddFilter}
-                    >
-                      <X className="w-4 h-4" />
-                    </Button>
-                  </div>
-                ) : (
-                  <Button
-                    className="bg-transparent text-[#5A6778] border-[1px] border-[#5A6778] py-2 px-4 rounded-[8px] shadow-none font-black text-[16px] hover:bg-[#5A6778] hover:text-white w-full"
-                    onClick={() => setIsAddingFilter(true)}
-                  >
-                    <Plus className="w-4 h-4 mr-2" />
-                    Add Filter
-                  </Button>
-                )}
-              </div>
-            </div>
-          </div>
+          <SavedFiltersSection
+            isFiltersLoading={isFiltersLoading}
+            savedFilters={savedFilters}
+            isAddingFilter={isAddingFilter}
+            filterName={filterName}
+            setFilterName={setFilterName}
+            isFilterValid={isFilterValid}
+            setFilters={setFilters}
+            handleEditFilter={handleEditFilter}
+            handleDeleteFilter={handleDeleteFilter}
+            handleSetDefault={handleSetDefault}
+            handleSaveFilter={handleSaveFilter}
+            handleCancelAddFilter={handleCancelAddFilter}
+            setIsAddingFilter={setIsAddingFilter}
+          />
 
           <div className="w-2/3">
-            <ScrollArea className="max-h-[350px] overflow-y-auto px-6 flex-1">
-              <div className="flex flex-col gap-4">
-                {options.map((opt) => renderInput(opt))}
-              </div>
-              {options.length === 0 && (
-                <div className="text-center text-gray-500 py-8">
-                  No filters available
-                </div>
-              )}
-            </ScrollArea>
+            <FilterInputsSection
+              options={options}
+              filters={filters}
+              handleFilterChange={handleFilterChange}
+              handleFieldReset={handleFieldReset}
+            />
 
-            <div className="flex gap-3 px-6 pt-4">
-              <button
-                onClick={handleReset}
-                className="flex-1 bg-[#F4F6FB] text-[#31538E] py-2 rounded-[8px] text-[14px] font-medium hover:bg-[#E8ECF5] transition-colors"
-                type="button"
-              >
-                Reset All
-              </button>
-              <button
-                onClick={handleApply}
-                className="flex-1 bg-[#667085] text-white py-2 rounded-[8px] text-[14px] font-medium hover:bg-[#667085] transition-colors"
-                disabled={!isFilterValid}
-              >
-                Apply {appliedCount > 0 && ` (${appliedCount})`}
-              </button>
-            </div>
+            <FilterActions
+              appliedCount={appliedCount}
+              isFilterValid={isFilterValid}
+              handleApply={handleApply}
+              handleReset={handleReset}
+            />
           </div>
         </div>
       </DialogContent>

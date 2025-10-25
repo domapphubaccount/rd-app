@@ -32,11 +32,6 @@ export default function TableHeader() {
         label: "Type",
         options: [{ label: "All", value: "Home" }],
       },
-      {
-        name: "isActive",
-        type: "checkbox",
-        label: "Active",
-      },
     ];
     openFilter(filterOptions, "rd1_reports");
   };

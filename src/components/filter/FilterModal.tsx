@@ -9,8 +9,9 @@ import DateRangePickers from "../shared/DateRangePickers";
 import InputField from "../shared/InputField";
 import SelectField from "../shared/SelectField";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { SlidersHorizontal } from "lucide-react";
+import { Plus, Settings, SlidersHorizontal } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
+import { Button } from "../ui/button";
 
 export default function FilterModal() {
   const { isOpen, options, closeFilter } = useFilterStore();
@@ -172,53 +173,70 @@ export default function FilterModal() {
   );
 
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(open) => !open && closeFilter()}
-    >
+    <Dialog open={isOpen} onOpenChange={(open) => !open && closeFilter()}>
       <DialogContent
-        className="w-[700px] h-[500px] p-0 shadow-lg rounded-lg border absolute top-6 right-6 translate-x-0 mt-[80px] mr-[10px]"
+        className="w-[700px] max-w-[1000px] h-[500px] p-0 shadow-lg rounded-lg border absolute top-6 right-6 translate-x-0 mt-[80px] mr-[10px] flex flex-col gap-0 "
         style={{ left: "auto", transform: "none" }}
       >
-        <DialogHeader className="border-b px-6 py-3 pb-0 flex gap-3">
-          <div className="flex gap-3 ">
+        <DialogHeader className="border-b px-3 py-3 pb-0 mb-0 space-y-0">
+          <div className="flex gap-3 items-center mb-3">
             <div className="p-1 border border-gray-300 rounded-md">
               <SlidersHorizontal className="w-5 h-5 text-[#344155]" />
             </div>
-            <DialogTitle className="text-[18px] font-bold text-[#344155]">
+            <DialogTitle className="text-[18px] font-bold text-[#344155] p-0 m-0">
               Filters
             </DialogTitle>
           </div>
         </DialogHeader>
 
-        <ScrollArea className="max-h-[350px] overflow-y-auto px-6 flex-1">
-          <div className="flex flex-col gap-4">
-            {options.map((opt) => renderInput(opt))}
+        <div className="flex flex-1">
+          <div className="w-1/3 border-r border-gray-200 bg-[#F4F6FB] ">
+            <div className="flex flex-col gap-4 px-4 py-4 justify-between h-full ">
+              <div className="flex items-center justify-between text-white bg-[#99A2B3] py-2 px-3 rounded-[8px] text-[16px] font-bold">
+                <p>Saved Filters</p>
+                <Settings />
+              </div>
+
+              <div>
+                <Button className="bg-transparent text-[#5A6778] border-[1px] border-[#5A6778] py-2 px-4 rounded-[8px] shadow-none font-black text-[16px] hover:bg-[#5A6778] hover:text-white">
+                  <Plus className="w-4 h-4 mr-2 " />
+                  Add Filter
+                </Button>
+              </div>
+            </div>
           </div>
 
-          {options.length === 0 && (
-            <div className="text-center text-gray-500 py-8">
-              No filters available
+          <div className="w-2/3">
+            <ScrollArea className="max-h-[350px] overflow-y-auto px-6 flex-1">
+              <div className="flex flex-col gap-4">
+                {options.map((opt) => renderInput(opt))}
+              </div>
+
+              {options.length === 0 && (
+                <div className="text-center text-gray-500 py-8">
+                  No filters available
+                </div>
+              )}
+            </ScrollArea>
+
+            <div className="flex gap-3 px-6  pt-4">
+              <button
+                onClick={handleReset}
+                className="flex-1 bg-[#F4F6FB] text-[#31538E] py-2  rounded-[8px] text-[14px] font-medium hover:bg-[#E8ECF5] transition-colors"
+                type="button"
+              >
+                Reset All
+              </button>
+
+              <button
+                onClick={handleApply}
+                className="flex-1 bg-[#667085] text-white py-2  rounded-[8px] text-[14px] font-medium hover:bg-[#667085] transition-colors"
+              >
+                Apply
+                {appliedCount > 0 && ` (${appliedCount})`}
+              </button>
             </div>
-          )}
-        </ScrollArea>
-
-        <div className="flex gap-3 px-6 pb-6 pt-3">
-          <button
-            onClick={handleReset}
-            className="flex-1 bg-[#F4F6FB] text-[#31538E]  rounded-[8px] text-[14px] font-medium hover:bg-[#E8ECF5] transition-colors"
-            type="button"
-          >
-            Reset All
-          </button>
-
-          <button
-            onClick={handleApply}
-            className="flex-1 bg-[#667085] text-white  rounded-[8px] text-[14px] font-medium hover:bg-[#667085] transition-colors"
-          >
-            Apply
-            {appliedCount > 0 && ` (${appliedCount})`}
-          </button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

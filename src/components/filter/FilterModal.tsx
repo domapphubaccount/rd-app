@@ -1,4 +1,3 @@
-// FilterModal.tsx
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { useSearchParams } from "react-router";
 import { useFilterStore } from "./store";
@@ -16,9 +15,7 @@ import SavedFiltersSection from "./SavedFiltersSection";
 import FilterInputsSection from "./FilterInputsSection";
 import FilterActions from "./FilterActions";
 
-// Main FilterModal component orchestrating state and child components
 export default function FilterModal() {
-  // State and hooks from useFilterStore
   const {
     isOpen,
     options,
@@ -32,18 +29,15 @@ export default function FilterModal() {
     savedFilters,
   } = useFilterStore();
 
-  // Local state for filters, adding/editing, and filter name
   const [filters, setFilters] = useState<FiltersState>({});
   const [searchParams, setSearchParams] = useSearchParams();
   const [isAddingFilter, setIsAddingFilter] = useState(false);
   const [filterName, setFilterName] = useState("");
   const [editingFilter, setEditingFilter] = useState<string | null>(null);
 
-  // Fetch saved filters
   const { data: savedFiltersData, isLoading: isFiltersLoading } =
     useGetSavedFilters(category);
 
-  // Normalize and set saved filters from API data
   useEffect(() => {
     if (savedFiltersData && Array.isArray(savedFiltersData)) {
       const normalized = savedFiltersData.map((f) => ({
@@ -59,7 +53,6 @@ export default function FilterModal() {
     }
   }, [savedFiltersData, setSavedFilters]);
 
-  // Initialize filters from URL or default filter
   useEffect(() => {
     if (isOpen) {
       const existingFilters: FiltersState = {};
@@ -73,26 +66,25 @@ export default function FilterModal() {
         }
       });
 
-      const defaultFilter = savedFilters.find((f) => f.default);
-      if (defaultFilter && Object.values(existingFilters).every((v) => !v)) {
-        setFilters(defaultFilter.filters);
-      } else {
-        setFilters(existingFilters);
-      }
+      setFilters(existingFilters);
     }
   }, [isOpen, options, searchParams, savedFilters]);
 
-  // Calculate number of applied filters
   const appliedCount = useMemo(() => {
-    return Object.entries(filters).filter(([_, value]) => value && value !== "")
-      .length;
+    return Object.entries(filters).filter(
+      ([key, value]) =>
+        key !== "page" && value !== undefined && value !== null && value !== ""
+    ).length;
   }, [filters]);
 
+  console.log("appliedCount", appliedCount);
   const isFilterValid = useMemo(() => {
-    return Object.entries(filters).some(([_, value]) => value && value !== "");
+    return Object.entries(filters).some(
+      ([key, value]) =>
+        key !== "page" && value !== undefined && value !== null && value !== ""
+    );
   }, [filters]);
 
-  // Mutations for filter operations
   const { mutate: addFilter } = useAddSavedFilter();
   const { mutate: updateFilter } = useUpdateSavedFilter();
   const { mutate: deleteFilter } = useDeleteSavedFilter();
@@ -189,7 +181,6 @@ export default function FilterModal() {
     }
   };
 
-  // Cancel adding/editing a filter
   const handleCancelAddFilter = () => {
     setIsAddingFilter(false);
     setFilterName("");

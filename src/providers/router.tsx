@@ -52,9 +52,9 @@ import SuspendFilters from "@/routes/settings/SuspendFilters";
 import Sections from "@/routes/settings/Sections";
 import SuspendedProjects from "@/routes/settings/SuspendedProjects";
 
-import Email from "@/routes/settings/Templates/Email";
-import SMS from "@/routes/settings/Templates/SMS";
-import WhatsApp from "@/routes/settings/Templates/WhatsApp";
+import Email from "@/routes/settings/templates/Email";
+import SMS from "@/routes/settings/templates/SMS";
+import WhatsApp from "@/routes/settings/templates/WhatsApp";
 
 import EmailLog from "@/routes/settings/log/EmailLog";
 import SMSLog from "@/routes/settings/log/SMSLog";

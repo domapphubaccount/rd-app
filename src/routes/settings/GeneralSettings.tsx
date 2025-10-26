@@ -1,3 +1,4 @@
+import TableHeader from "@/features/settings/general-settings/TableHeader";
 export default function GeneralSettings() {
   return (
     <>
@@ -8,6 +9,7 @@ export default function GeneralSettings() {
           <h1 className="text-2xl font-bold">General Settings</h1>
           <p>This is the general settings page.</p>
         </div>
+        <TableHeader/>
       </section>
     </>
   );

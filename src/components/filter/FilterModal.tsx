@@ -77,7 +77,6 @@ export default function FilterModal() {
     ).length;
   }, [filters]);
 
-  console.log("appliedCount", appliedCount);
   const isFilterValid = useMemo(() => {
     return Object.entries(filters).some(
       ([key, value]) =>
@@ -181,6 +180,20 @@ export default function FilterModal() {
     }
   };
 
+  const handleApplySavedFilter = (savedFilterValues: FiltersState) => {
+    setFilters(savedFilterValues);
+
+    const newParams = new URLSearchParams();
+    Object.entries(savedFilterValues).forEach(([key, value]) => {
+      if (value && value !== "") {
+        newParams.set(key, value as string);
+      }
+    });
+
+    newParams.set("page", "1");
+    setSearchParams(newParams, { replace: true });
+  };
+
   const handleCancelAddFilter = () => {
     setIsAddingFilter(false);
     setFilterName("");
@@ -241,6 +254,7 @@ export default function FilterModal() {
             handleSaveFilter={handleSaveFilter}
             handleCancelAddFilter={handleCancelAddFilter}
             setIsAddingFilter={setIsAddingFilter}
+             handleApplySavedFilter={handleApplySavedFilter}
           />
 
           <div className="w-2/3 mt-4">

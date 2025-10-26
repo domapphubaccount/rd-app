@@ -1,4 +1,4 @@
-import { useState } from "react"; 
+import { useState } from "react";
 import { ScrollArea } from "../ui/scroll-area";
 import { Settings, Star, Edit, Trash, Check, X, Plus } from "lucide-react";
 import { Button } from "../ui/button";
@@ -12,7 +12,7 @@ interface SavedFiltersSectionProps {
   filterName: string;
   setFilterName: (name: string) => void;
   isFilterValid: boolean;
-  setFilters: (filters: FiltersState) => void;
+  handleApplySavedFilter: (filters: FiltersState) => void;
   handleEditFilter: (filter: SavedFilter) => void;
   handleDeleteFilter: (id: string) => void;
   handleSetDefault: (id: string) => void;
@@ -28,7 +28,7 @@ export default function SavedFiltersSection({
   filterName,
   setFilterName,
   isFilterValid,
-  setFilters,
+  handleApplySavedFilter,
   handleEditFilter,
   handleDeleteFilter,
   handleSetDefault,
@@ -70,12 +70,10 @@ export default function SavedFiltersSection({
               savedFilters.map((filter) => (
                 <div
                   key={filter.id}
-                  className="flex items-center justify-between p-2 mb-2 bg-white rounded-[8px] border border-gray-200"
+                  className="cursor-pointer flex items-center justify-between p-2 mb-2 bg-white rounded-[8px] border border-gray-200 "
+                  onClick={() => handleApplySavedFilter(filter.filters)}
                 >
-                  <span
-                    className="cursor-pointer text-[#344155] hover:underline"
-                    onClick={() => setFilters(filter.filters)}
-                  >
+                  <span className="cursor-pointer text-[#344155] hover:underline">
                     {filter.name}
                   </span>
                   <div className="flex gap-2">

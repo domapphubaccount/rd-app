@@ -4,12 +4,15 @@ export default function GeneralSettings() {
     <>
       <title>RD App | General Settings</title>
 
-      <section className="bg-white border border-[#E5E5E5] py-3 rounded-[12px]">
-        <div className="flex flex-col gap-4 p-4">
+      <section className="bg-white border border-[#E5E5E5]  rounded-[12px]">
+        <div className="flex flex-col gap-4 p-4 bg-[#eeecec] rounded-t-[12px]">
           <h1 className="text-2xl font-bold">General Settings</h1>
-          <p>This is the general settings page.</p>
+          <p>
+            Fill out the general settings below to customize your site's
+            functionality and appearance .
+          </p>
         </div>
-        <TableHeader/>
+        <TableHeader />
       </section>
     </>
   );

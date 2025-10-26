@@ -1,4 +1,3 @@
-// TableHeader.tsx
 import InputField from "@/components/shared/InputField";
 import SelectField from "@/components/shared/SelectField";
 import SubmitBtn from "@/components/shared/SubmitBtn";
@@ -15,12 +14,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import useGetGeneral from "./useGetGeneral";
 import useUpdateGeneral from "./useUpdateGeneral";
 import { generalSettingsSchema, type GeneralSettingsData } from "./schema";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import DataLoader from "@/components/shared/DataLoader";
-
+import { toast } from "sonner";
 export default function TableHeader() {
   const { data, isLoading } = useGetGeneral();
   const { updateGeneralAction, isPending } = useUpdateGeneral();
+  const originalValuesRef = useRef<Record<string, string>>({});
+
+  console.log("dara", data)
 
   const {
     register,
@@ -43,12 +45,21 @@ export default function TableHeader() {
 
       console.log(defaults);
       reset(defaults);
+      originalValuesRef.current = defaults;
     }
   }, [data, reset]);
 
   const onSubmit = (formValues: GeneralSettingsData) => {
     if (!data?.data) return;
-
+    const hasChanges = Object.keys(formValues).some(
+      (key) =>
+        formValues[key as keyof GeneralSettingsData]?.toString() !==
+        originalValuesRef.current[key]
+    );
+    if (!hasChanges) {
+      toast.info("No changes detected — nothing to update.");
+      return;
+    }
     const payload = {
       settings: data.data.map((setting) => {
         const rawValue = formValues[setting.key as keyof GeneralSettingsData];
@@ -91,6 +102,7 @@ export default function TableHeader() {
             type="number"
             {...register("product_purchase_code")}
             error={errors.product_purchase_code?.message}
+          
           />
 
           <Controller
@@ -102,7 +114,7 @@ export default function TableHeader() {
                 id="time_zone"
                 placeholder="Europe/Amsterdam"
                 options={timeZones}
-                value={field.value || ""}
+                value={field.value || "hhhhhhhh"}
                 onChange={field.onChange}
                 error={errors.time_zone?.message}
               />

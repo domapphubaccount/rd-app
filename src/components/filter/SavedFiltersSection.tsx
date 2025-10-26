@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ScrollArea } from "../ui/scroll-area";
-import { Settings, Star, Edit, Trash, Check, X, Plus } from "lucide-react";
+import { Settings, Edit, Trash, Check, X, Plus, Pin } from "lucide-react";
 import { Button } from "../ui/button";
 import type { FiltersState, SavedFilter } from "./types";
 
@@ -50,6 +50,10 @@ export default function SavedFiltersSection({
     setDeletingFilterId(null);
   };
 
+  const sortedFilters = [...savedFilters].sort((a, b) => {
+    if (a.default === b.default) return 0;
+    return a.default ? -1 : 1;
+  });
   return (
     <div className="w-1/3 border-r border-gray-200 bg-[#F4F6FB]">
       <div className="flex flex-col gap-4 px-4 py-4 justify-between h-full">
@@ -67,7 +71,7 @@ export default function SavedFiltersSection({
                 No saved filters
               </div>
             ) : (
-              savedFilters.map((filter) => (
+              sortedFilters.map((filter) => (
                 <div
                   key={filter.id}
                   className="mr-3 cursor-pointer flex items-center justify-between p-2 mb-2 bg-white rounded-[8px] border border-gray-200 "
@@ -90,10 +94,10 @@ export default function SavedFiltersSection({
                       </>
                     ) : (
                       <>
-                        <Star
+                        <Pin
                           className={`w-4 h-4 cursor-pointer ${
                             filter.default
-                              ? "text-yellow-500 fill-yellow-500"
+                              ? "text-gray-500 fill-gray-700"
                               : "text-gray-400"
                           }`}
                           onClick={() => handleSetDefault(filter.id)}
@@ -115,7 +119,7 @@ export default function SavedFiltersSection({
           </ScrollArea>
         </div>
 
-        <div >
+        <div>
           {isAddingFilter ? (
             <div className="flex items-center gap-2 w-full h-[32px]">
               <input

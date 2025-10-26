@@ -59,7 +59,7 @@ export default function SavedFiltersSection({
             <p>Saved Filters</p>
             <Settings className="w-5 h-5" />
           </div>
-          <ScrollArea className="mt-4 max-h-[300px]">
+          <ScrollArea className="mt-4 max-h-[390px] overflow-auto">
             {isFiltersLoading ? (
               <div className="text-center text-gray-500 py-4">Loading...</div>
             ) : savedFilters.length === 0 ? (
@@ -70,7 +70,7 @@ export default function SavedFiltersSection({
               savedFilters.map((filter) => (
                 <div
                   key={filter.id}
-                  className="cursor-pointer flex items-center justify-between p-2 mb-2 bg-white rounded-[8px] border border-gray-200 "
+                  className="mr-3 cursor-pointer flex items-center justify-between p-2 mb-2 bg-white rounded-[8px] border border-gray-200 "
                   onClick={() => handleApplySavedFilter(filter.filters)}
                 >
                   <span className="cursor-pointer text-[#344155] hover:underline">

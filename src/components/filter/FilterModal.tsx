@@ -1,232 +1,21 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
-import { useSearchParams } from "react-router";
-import { useFilterStore } from "./store";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { SlidersHorizontal } from "lucide-react";
-import {
-  useGetSavedFilters,
-  useAddSavedFilter,
-  useUpdateSavedFilter,
-  useDeleteSavedFilter,
-  useSetDefaultFilter,
-} from "./useFilterLogic";
-import type { FiltersState, SavedFilter } from "./types";
 import SavedFiltersSection from "./SavedFiltersSection";
 import FilterInputsSection from "./FilterInputsSection";
 import FilterActions from "./FilterActions";
+import { useFilterModalLogic } from "./useFilterModalLogic";
 
 export default function FilterModal() {
-  const {
-    isOpen,
-    options,
-    category,
-    closeFilter,
-    setSavedFilters,
-    addSavedFilter,
-    updateSavedFilter,
-    deleteSavedFilter,
-    setDefaultFilter,
-    savedFilters,
-  } = useFilterStore();
-
-  const [filters, setFilters] = useState<FiltersState>({});
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [isAddingFilter, setIsAddingFilter] = useState(false);
-  const [filterName, setFilterName] = useState("");
-  const [editingFilter, setEditingFilter] = useState<string | null>(null);
-
-  const { data: savedFiltersData, isLoading: isFiltersLoading } =
-    useGetSavedFilters(category);
-
-  useEffect(() => {
-    if (savedFiltersData && Array.isArray(savedFiltersData)) {
-      const normalized = savedFiltersData.map((f) => ({
-        id: f.id,
-        name: f.name,
-        category: f.category,
-        filters: f.filters || {},
-        default: f.default || false,
-      }));
-      setSavedFilters(normalized);
-    } else {
-      setSavedFilters([]);
-    }
-  }, [savedFiltersData, setSavedFilters]);
-
-  useEffect(() => {
-    if (isOpen) {
-      const existingFilters: FiltersState = {};
-      options.forEach((opt) => {
-        if (opt.type === "date") {
-          existingFilters[opt.startName] =
-            searchParams.get(opt.startName) || "";
-          existingFilters[opt.endName] = searchParams.get(opt.endName) || "";
-        } else {
-          existingFilters[opt.name] = searchParams.get(opt.name) || "";
-        }
-      });
-
-      setFilters(existingFilters);
-    }
-  }, [isOpen, options, searchParams, savedFilters]);
-
-  const appliedCount = useMemo(() => {
-    return Object.entries(filters).filter(
-      ([key, value]) =>
-        key !== "page" && value !== undefined && value !== null && value !== ""
-    ).length;
-  }, [filters]);
-
-  const isFilterValid = useMemo(() => {
-    return Object.entries(filters).some(
-      ([key, value]) =>
-        key !== "page" && value !== undefined && value !== null && value !== ""
-    );
-  }, [filters]);
-
-  const { mutate: addFilter } = useAddSavedFilter();
-  const { mutate: updateFilter } = useUpdateSavedFilter();
-  const { mutate: deleteFilter } = useDeleteSavedFilter();
-  const { mutate: setDefault } = useSetDefaultFilter();
-
-  const handleApply = useCallback(() => {
-    const newParams = new URLSearchParams();
-
-    Object.entries(filters).forEach(([key, value]) => {
-      if (value && value !== "") {
-        newParams.set(key, value as string);
-      }
-    });
-
-    newParams.set("page", "1");
-    setSearchParams(newParams, { replace: true });
-    closeFilter();
-  }, [filters, setSearchParams, closeFilter]);
-
-  const handleReset = useCallback(() => {
-    const newParams = new URLSearchParams();
-    newParams.set("page", "1");
-
-    const resetFilters: FiltersState = {};
-    options.forEach((opt) => {
-      if (opt.type === "date") {
-        resetFilters[opt.startName] = "";
-        resetFilters[opt.endName] = "";
-      } else {
-        resetFilters[opt.name] = "";
-      }
-    });
-
-    setFilters(resetFilters);
-    setSearchParams(newParams, { replace: true });
-    requestAnimationFrame(closeFilter);
-  }, [options, setSearchParams, closeFilter]);
-
-  const handleFieldReset = useCallback((key: string | string[]) => {
-    setFilters((prev) => {
-      const updated = { ...prev };
-      if (Array.isArray(key)) {
-        key.forEach((k) => (updated[k] = ""));
-      } else {
-        updated[key] = "";
-      }
-      return updated;
-    });
-  }, []);
-
-  const handleFilterChange = useCallback((key: string, value: string) => {
-    setFilters((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-  }, []);
-
-  const handleSaveFilter = () => {
-    if (filterName.trim() && isFilterValid) {
-      const details = Object.entries(filters)
-        .filter(([_, value]) => value && value !== "")
-        .map(([key, value]) => ({ key, value }));
-
-      if (editingFilter) {
-        updateFilter(
-          { id: editingFilter, name: filterName, details },
-          {
-            onSuccess: () => {
-              updateSavedFilter(editingFilter, { name: filterName, filters });
-              setIsAddingFilter(false);
-              setFilterName("");
-              setEditingFilter(null);
-            },
-          }
-        );
-      } else {
-        addFilter(
-          { name: filterName, category, details },
-          {
-            onSuccess: (data) => {
-              addSavedFilter({
-                id: data.id,
-                name: filterName,
-                category,
-                filters,
-                default: false,
-              });
-              setIsAddingFilter(false);
-              setFilterName("");
-            },
-          }
-        );
-      }
-    }
-  };
-
-  const handleApplySavedFilter = (savedFilterValues: FiltersState) => {
-    setFilters(savedFilterValues);
-
-    const newParams = new URLSearchParams();
-    Object.entries(savedFilterValues).forEach(([key, value]) => {
-      if (value && value !== "") {
-        newParams.set(key, value as string);
-      }
-    });
-
-    newParams.set("page", "1");
-    setSearchParams(newParams, { replace: true });
-  };
-
-  const handleCancelAddFilter = () => {
-    setIsAddingFilter(false);
-    setFilterName("");
-    setEditingFilter(null);
-  };
-
-  const handleDeleteFilter = (id: string) => {
-    deleteFilter(id, {
-      onSuccess: () => deleteSavedFilter(id),
-    });
-  };
-
-  const handleSetDefault = (id: string) => {
-    setDefault(
-      { id, category },
-      {
-        onSuccess: () => setDefaultFilter(id),
-      }
-    );
-  };
-
-  const handleEditFilter = (filter: SavedFilter) => {
-    setEditingFilter(filter.id);
-    setFilterName(filter.name);
-    setFilters(filter.filters);
-    setIsAddingFilter(true);
-  };
+  const logic = useFilterModalLogic();
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && closeFilter()}>
+    <Dialog
+      open={logic.isOpen}
+      onOpenChange={(open) => !open && logic.closeFilter()}
+    >
       <DialogContent
-        className=" max-w-[900px] h-[600px] p-0 shadow-lg rounded-lg border absolute top-6 right-6 translate-x-0 mt-[80px] mr-[10px] flex flex-col gap-0"
         style={{ left: "auto", transform: "none" }}
+        className="max-w-[900px] h-[600px] p-0 shadow-lg rounded-lg border absolute top-6 right-6 translate-x-0 mt-[80px] mr-[10px] flex flex-col gap-0"
       >
         <DialogHeader className="border-b px-3 py-3 pb-0 mb-0 space-y-0">
           <div className="flex gap-3 items-center mb-3">
@@ -239,37 +28,22 @@ export default function FilterModal() {
           </div>
         </DialogHeader>
 
-        <div className="flex flex-1 ">
-          <SavedFiltersSection
-            isFiltersLoading={isFiltersLoading}
-            savedFilters={savedFilters}
-            isAddingFilter={isAddingFilter}
-            filterName={filterName}
-            setFilterName={setFilterName}
-            isFilterValid={isFilterValid}
-            setFilters={setFilters}
-            handleEditFilter={handleEditFilter}
-            handleDeleteFilter={handleDeleteFilter}
-            handleSetDefault={handleSetDefault}
-            handleSaveFilter={handleSaveFilter}
-            handleCancelAddFilter={handleCancelAddFilter}
-            setIsAddingFilter={setIsAddingFilter}
-             handleApplySavedFilter={handleApplySavedFilter}
-          />
+        <div className="flex flex-1">
+          <SavedFiltersSection {...logic} />
 
           <div className="w-2/3 mt-4">
             <FilterInputsSection
-              options={options}
-              filters={filters}
-              handleFilterChange={handleFilterChange}
-              handleFieldReset={handleFieldReset}
+              options={logic.options}
+              filters={logic.filters}
+              handleFilterChange={logic.handleFilterChange}
+              handleFieldReset={logic.handleFieldReset}
             />
 
             <FilterActions
-              appliedCount={appliedCount}
-              isFilterValid={isFilterValid}
-              handleApply={handleApply}
-              handleReset={handleReset}
+              appliedCount={logic.appliedCount}
+              isFilterValid={logic.isFilterValid}
+              handleApply={logic.handleApply}
+              handleReset={logic.handleReset}
             />
           </div>
         </div>

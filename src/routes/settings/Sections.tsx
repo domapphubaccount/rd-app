@@ -10,7 +10,7 @@ export default function Sections() {
 
   return (
     <>
-      <title>RD App | Tickets </title>
+      <title>RD App | Section </title>
 
       <section className="bg-white border border-[#E5E5E5] py-3 rounded-[12px]">
         {isLoading ? (

@@ -63,6 +63,7 @@ import WhatsAppLog from "@/routes/settings/log/WhatsAppLog";
 import EmailQueue from "@/routes/settings/queue/EmailQueue";
 import SMSQueue from "@/routes/settings/queue/SMSQueue";
 import WhatsAppQueue from "@/routes/settings/queue/WhatsAppQueue";
+import QuestionsList from "@/routes/settings/QuestionsList";
 
 export const router = createBrowserRouter([
   {
@@ -138,6 +139,7 @@ export const router = createBrowserRouter([
           { path: "email-queue", element: <EmailQueue /> },
           { path: "sms-queue", element: <SMSQueue /> },
           { path: "whatsApp-queue", element: <WhatsAppQueue /> },
+          { path: "sections/:id", element: <QuestionsList /> },
         ],
       },
     ],

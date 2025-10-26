@@ -2,7 +2,6 @@ import { useState } from "react";
 import { ScrollArea } from "../ui/scroll-area";
 import { Settings, Star, Edit, Trash, Check, X, Plus } from "lucide-react";
 import { Button } from "../ui/button";
-import InputField from "../shared/InputField";
 import type { FiltersState, SavedFilter } from "./types";
 
 interface SavedFiltersSectionProps {
@@ -55,11 +54,12 @@ export default function SavedFiltersSection({
     <div className="w-1/3 border-r border-gray-200 bg-[#F4F6FB]">
       <div className="flex flex-col gap-4 px-4 py-4 justify-between h-full">
         <div>
-          <div className="flex items-center justify-between text-white bg-[#99A2B3] py-2 px-3 rounded-[8px] text-[16px] font-bold">
+          <div className="flex items-center justify-between text-white bg-[#99A2B3] py-2 px-3 rounded-[8px] text-[16px]">
             <p>Saved Filters</p>
             <Settings className="w-5 h-5" />
           </div>
-          <ScrollArea className="mt-4 max-h-[390px] overflow-auto">
+
+          <ScrollArea className="mt-4 max-h-[450px] overflow-auto">
             {isFiltersLoading ? (
               <div className="text-center text-gray-500 py-4">Loading...</div>
             ) : savedFilters.length === 0 ? (
@@ -114,26 +114,29 @@ export default function SavedFiltersSection({
             )}
           </ScrollArea>
         </div>
-        <div className="px-2">
+
+        <div >
           {isAddingFilter ? (
-            <div className="flex items-center gap-2 w-full">
-              <InputField
+            <div className="flex items-center gap-2 w-full h-[32px]">
+              <input
                 name="filterName"
                 type="text"
                 placeholder="Enter filter name"
                 value={filterName}
                 onChange={(e) => setFilterName(e.target.value)}
-                className="flex-1 min-w-0"
+                className=" min-w-0 h-full p-3 rounded border-[1px] "
               />
+
               <Button
-                className="bg-[#667085] text-white p-2 rounded-[8px] flex-shrink-0"
+                className="bg-[#667085] text-white p-2 rounded-[8px] flex-shrink-0 h-full border-[1px] border-[#5A6778]"
                 onClick={handleSaveFilter}
                 disabled={!filterName.trim() || !isFilterValid}
               >
                 <Check className="w-4 h-4" />
               </Button>
+
               <Button
-                className="bg-transparent text-[#5A6778] border-[1px] border-[#5A6778] p-2 rounded-[8px] flex-shrink-0"
+                className="h-full bg-transparent text-[#5A6778] border-[1px] border-[#5A6778] p-2 rounded-[8px] flex-shrink-0 hover:text-white hover:bg-[#5A6778] "
                 onClick={handleCancelAddFilter}
               >
                 <X className="w-4 h-4" />
@@ -141,7 +144,7 @@ export default function SavedFiltersSection({
             </div>
           ) : (
             <Button
-              className="bg-transparent text-[#5A6778] border-[1px] border-[#5A6778] py-2 px-4 rounded-[8px] shadow-none font-black text-[16px] hover:bg-[#5A6778] hover:text-white w-full"
+              className="bg-transparent text-[#5A6778] border-[1px] border-[#5A6778] py-2  h-full rounded-[8px] shadow-none text-[16px] hover:bg-[#5A6778] hover:text-white w-full"
               onClick={() => setIsAddingFilter(true)}
             >
               <Plus className="w-4 h-4 mr-2" />

@@ -44,7 +44,7 @@ export default function SelectField({
 
         {canReset && (
           <button onClick={onReset} className="text-[var(--second)]">
-            resetAns
+            reset
           </button>
         )}
       </label>

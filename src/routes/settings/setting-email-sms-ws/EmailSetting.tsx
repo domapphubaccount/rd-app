@@ -15,6 +15,8 @@ export default function EmailSetting() {
         ) : (
           <div className="flex flex-col gap-4">
             <TableHeader
+              tokenId={token?.id ?? 0}
+              dataType={token?.data_type ?? "string"}
               tokenValue={token?.value ?? ""}
               title="Mailersend API Token"
               description="Enter your Mailersend API Token below to integrate with our email system"

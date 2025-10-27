@@ -11,7 +11,7 @@ export default function InputField({
   return (
     <div className="flex flex-col gap-2">
       {label && (
-        <label htmlFor={props.id} className="text-[14px] text-[var(--main)]">
+        <label htmlFor={props.id} className="text-[16px] text-[#344155] font-bold">
           {label}
         </label>
       )}

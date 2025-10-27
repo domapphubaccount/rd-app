@@ -16,14 +16,12 @@ interface FilterInputsSectionProps {
   handleFieldReset: (key: string | string[]) => void;
 }
 
-// Component to render filter input fields
 export default function FilterInputsSection({
   options,
   filters,
   handleFilterChange,
   handleFieldReset,
 }: FilterInputsSectionProps) {
-  // Render input based on filter option type
   const renderInput = (opt: FilterOption) => {
     switch (opt.type) {
       case "date":
@@ -57,6 +55,7 @@ export default function FilterInputsSection({
             value={filters[opt.name] || ""}
             onChange={(e) => handleFilterChange(opt.name, e.target.value)}
             onReset={() => handleFieldReset(opt.name)}
+            canReset={true}
           />
         );
       case "select":
@@ -102,7 +101,7 @@ export default function FilterInputsSection({
   };
 
   return (
-    <ScrollArea className="h-[450px] overflow-y-auto px-6 flex-1">
+    <ScrollArea className=" max-h-[700px] overflow-auto px-6 flex-1">
       <div className="flex flex-col gap-4">
         {options.map((opt) => renderInput(opt))}
       </div>

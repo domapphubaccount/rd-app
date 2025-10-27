@@ -1,5 +1,5 @@
 import type { ApiResponse, FilterDetail, FiltersState } from "./types";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useFilterStore } from "./store";
 import {
   getRequest,
@@ -31,6 +31,8 @@ export const useGetSavedFilters = (category: string) => {
 };
 
 export const useAddSavedFilter = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (data: {
       name: string;
@@ -41,6 +43,9 @@ export const useAddSavedFilter = () => {
         ...data,
         default: false,
       }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["savedFilters"] });
+    },
   });
 };
 

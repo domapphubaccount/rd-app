@@ -54,8 +54,9 @@ export default function SavedFiltersSection({
     if (a.default === b.default) return 0;
     return a.default ? -1 : 1;
   });
+
   return (
-    <div className="w-1/3 border-r border-gray-200 bg-[#F4F6FB]">
+    <div className="w-1/3 border-r border-gray-200 rounded bg-[#fafafa]">
       <div className="flex flex-col gap-4 px-4 py-4 justify-between h-full">
         <div>
           <div className="flex items-center justify-between text-white bg-[#99A2B3] py-2 px-3 rounded-[8px] text-[16px]">
@@ -63,7 +64,7 @@ export default function SavedFiltersSection({
             <Settings className="w-5 h-5" />
           </div>
 
-          <ScrollArea className="mt-4 max-h-[450px] overflow-auto">
+          <ScrollArea className="mt-4 max-h-[650px] overflow-auto">
             {isFiltersLoading ? (
               <div className="text-center text-gray-500 py-4">Loading...</div>
             ) : savedFilters.length === 0 ? (

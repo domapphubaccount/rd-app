@@ -24,7 +24,7 @@ export default function InputField({
         )}
         {canReset && (
           <button onClick={props.onReset} className="text-[var(--second)]">
-            reset
+            Reset
           </button>
         )}
       </div>

@@ -42,6 +42,7 @@ import Modules from "@/routes/settings/Modules";
 import UserRoles from "@/routes/settings/UserRoles";
 import UnitControl from "@/routes/settings/UnitControl";
 import FAQCategory from "@/routes/settings/FAQCategory";
+import FAQQuestions from "@/routes/settings/FAQQuestions";
 import Stages from "@/routes/settings/Stages";
 import Companies from "@/routes/settings/Companies";
 import Category from "@/routes/settings/Category";
@@ -122,6 +123,7 @@ export const router = createBrowserRouter([
           { path: "user-role", element: <UserRoles /> },
           { path: "units-control", element: <UnitControl /> },
           { path: "faq-categories", element: <FAQCategory /> },
+          { path: "faq-categories/:id", element: <FAQQuestions /> },
           { path: "companies", element: <Companies /> },
           { path: "stages", element: <Stages /> },
           { path: "tax-rates", element: <TaxRates /> },

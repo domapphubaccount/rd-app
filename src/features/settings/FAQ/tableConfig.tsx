@@ -1,6 +1,7 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import { Eye, Pencil, Trash } from "lucide-react";
 import type { FAQ } from "./types";
+import { Link } from "react-router";
 
 export const FAQColumns = (): ColumnDef<FAQ>[] => {
   return [
@@ -23,13 +24,15 @@ export const FAQColumns = (): ColumnDef<FAQ>[] => {
 
     {
       header: "Action",
-      cell: () => {
+      cell: ({ row }) => {
+        const id = row.original.id;
+
         return (
           <>
             <div className="flex items-center gap-4 text-[14px]">
-              <button className="text-blue-400">
+              <Link to={id.toString()} className="text-blue-400">
                 <Eye className="w-4 h-4" />
-              </button>
+              </Link>
               <button className="text-[var(--text)]">
                 <Pencil className="w-4 h-4" />
               </button>

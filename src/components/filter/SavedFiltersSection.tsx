@@ -54,8 +54,9 @@ export default function SavedFiltersSection({
     if (a.default === b.default) return 0;
     return a.default ? -1 : 1;
   });
+
   return (
-    <div className="w-1/3 border-r border-gray-200 bg-[#F4F6FB]">
+    <div className="w-1/3 border-r border-gray-200 rounded bg-[#fafafa]">
       <div className="flex flex-col gap-4 px-4 py-4 justify-between h-full">
         <div>
           <div className="flex items-center justify-between text-white bg-[#99A2B3] py-2 px-3 rounded-[8px] text-[16px]">
@@ -63,7 +64,7 @@ export default function SavedFiltersSection({
             <Settings className="w-5 h-5" />
           </div>
 
-          <ScrollArea className="mt-4 max-h-[450px] overflow-auto">
+          <ScrollArea className="mt-4 max-h-[650px] overflow-auto">
             {isFiltersLoading ? (
               <div className="text-center text-gray-500 py-4">Loading...</div>
             ) : savedFilters.length === 0 ? (
@@ -74,10 +75,10 @@ export default function SavedFiltersSection({
               sortedFilters.map((filter) => (
                 <div
                   key={filter.id}
-                  className="mr-3 cursor-pointer flex items-center justify-between p-2 mb-2 bg-white rounded-[8px] border border-gray-200 "
+                  className="mr-3 cursor-pointer flex items-center justify-between p-2 mb-2 bg-white rounded-[8px] border border-gray-200 hover:bg-gray-200"
                   onClick={() => handleApplySavedFilter(filter.filters)}
                 >
-                  <span className="cursor-pointer text-[#344155] hover:underline">
+                  <span className="cursor-pointer text-[#344155]">
                     {filter.name}
                   </span>
                   <div className="flex gap-2">
@@ -151,7 +152,7 @@ export default function SavedFiltersSection({
               className="bg-transparent text-[#5A6778] border-[1px] border-[#5A6778] py-2  h-full rounded-[8px] shadow-none text-[16px] hover:bg-[#5A6778] hover:text-white w-full"
               onClick={() => setIsAddingFilter(true)}
             >
-              <Plus className="w-4 h-4 mr-2" />
+              <Plus className="w-4 h-4" />
               Add Filter
             </Button>
           )}

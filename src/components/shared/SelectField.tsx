@@ -26,7 +26,7 @@ type SelectFieldProps = {
 export default function SelectField({
   label,
   id,
-  value,
+  value ,
   onChange,
   options,
   canReset,
@@ -43,8 +43,11 @@ export default function SelectField({
         {label}
 
         {canReset && (
-          <button onClick={onReset} className="text-[var(--second)]">
-            reset
+          <button
+            onClick={onReset}
+            className="text-[var(--second)] font-normal"
+          >
+            Reset
           </button>
         )}
       </label>

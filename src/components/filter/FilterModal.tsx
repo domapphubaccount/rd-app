@@ -15,10 +15,10 @@ export default function FilterModal() {
     >
       <DialogContent
         style={{ left: "auto", transform: "none" }}
-        className="max-w-[750px] p-0 shadow-lg rounded-lg border absolute right-6 top-6 bottom-6 flex flex-col gap-0"
+        className="max-w-[750px] p-0 shadow-lg rounded-lg border absolute right-[20px] top-[90px] bottom-6 flex flex-col gap-0"
       >
         <DialogHeader className="border-b px-3 py-3 pb-0 mb-0 space-y-0">
-          <div className="flex gap-3 items-center mb-3">
+          <div className="flex gap-3 items-center mb-5">
             <div className="p-1 border border-gray-300 rounded-md">
               <SlidersHorizontal className="w-5 h-5 text-[#344155]" />
             </div>

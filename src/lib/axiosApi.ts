@@ -25,6 +25,43 @@ export const postRequest = async <T>(
   const res = await axiosApi.post<T>(url, data, config);
   return res.data;
 };
+export const postFormDataRequest = async <T>(
+  url: string,
+  data?: Record<string, any>,
+  config?: AxiosRequestConfig
+): Promise<T> => {
+  const formData = objectToFormData(data || {});
+
+  const res = await axiosApi.post<T>(url, formData, {
+    ...config,
+    headers: {
+      ...config?.headers,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  return res.data;
+};
+
+function objectToFormData(obj: Record<string, any>): FormData {
+  const formData = new FormData();
+
+  const buildFormData = (data: any, parentKey?: string) => {
+    if (data && typeof data === "object" && !(data instanceof File)) {
+      Object.keys(data).forEach((key) => {
+        buildFormData(data[key], parentKey ? `${parentKey}[${key}]` : key);
+      });
+    } else {
+      const value = data == null ? "" : data;
+      formData.append(
+        parentKey || "",
+        typeof value === "number" ? value : value.toString()
+      );
+    }
+  };
+  buildFormData(obj);
+  return formData;
+}
 
 export const putRequest = async <T>(
   url: string,

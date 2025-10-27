@@ -128,7 +128,7 @@ export function useFilterModalLogic() {
   const handleSaveFilter = useCallback(() => {
     if (filterName.trim() && isFilterValid) {
       const details = Object.entries(filters)
-        .filter(([_, value]) => value && value !== "")
+        .filter(([, value]) => value && value !== "")
         .map(([key, value]) => ({ key, value }));
 
       if (editingFilter) {
@@ -149,7 +149,7 @@ export function useFilterModalLogic() {
           {
             onSuccess: (data) => {
               addSavedFilter({
-                id: data.id,
+                id: (data as { id: string }).id,
                 name: filterName,
                 category,
                 filters,

@@ -1,13 +1,12 @@
-// filters.ts
+import type { ApiResponse, FilterDetail, FiltersState } from "./types";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useFilterStore } from "./store";
 import {
   getRequest,
   postRequest,
   deleteRequest,
   putRequest,
 } from "@/lib/axiosApi";
-import type { ApiResponse, FilterDetail, FiltersState } from "./types";
-import { useFilterStore } from "./store";
 
 export const useGetSavedFilters = (category: string) => {
   return useQuery({
@@ -16,7 +15,7 @@ export const useGetSavedFilters = (category: string) => {
       const response = await getRequest<ApiResponse>(
         `/filters/list?category=${category}`
       );
-      console.log("API response:", response);
+
       return response.data.map((f) => ({
         ...f,
         filters: f.details

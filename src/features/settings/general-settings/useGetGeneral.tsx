@@ -7,7 +7,7 @@ export default function useGetGeneral() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["general"],
     queryFn: (): Promise<GeneralResponse> =>
-      getRequest<GeneralResponse>("/settings/show?type=general "),
+      getRequest<GeneralResponse>("/settings/show?type=general"),
   });
 
   return { isLoading, data, error };

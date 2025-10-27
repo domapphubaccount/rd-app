@@ -1,13 +1,7 @@
 import TimeRange from "@/components/shared/TimeRange";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 
-export default function TableHeader({
-  selectedIds,
-  setSelectedIds,
-}: {
-  selectedIds: number[];
-  setSelectedIds: React.Dispatch<React.SetStateAction<number[]>>;
-}) {
+export default function TableHeader() {
   return (
     <div className="flex items-center justify-between px-4">
       <div className="flex items-center gap-4">

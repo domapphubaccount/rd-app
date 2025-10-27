@@ -1,18 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { getRequest } from "@/lib/axiosApi";
 import { useSearchParams } from "react-router";
-import type { WeirdPeopleResponse } from "./types";
+import type { SuspendProjectsResponse } from "./types";
 
-export default function useGetWeirdPeople() {
+export default function useGetSupProjects() {
   const [searchParams] = useSearchParams();
   const page = searchParams.get("page") || "1";
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["weird-people", page],
-    enabled: false,
-
-    queryFn: (): Promise<WeirdPeopleResponse> =>
-      getRequest<WeirdPeopleResponse>("/weird-people", {
+    queryKey: ["taxes", page],
+    queryFn: (): Promise<SuspendProjectsResponse> =>
+      getRequest<SuspendProjectsResponse>("/taxes", {
         params: {
           page,
         },

@@ -49,6 +49,20 @@ import TaxRates from "@/routes/settings/TaxRates";
 import Insurance from "@/routes/settings/Insurance";
 import WeirdPeople from "@/routes/settings/WeirdPeople";
 import SuspendFilters from "@/routes/settings/SuspendFilters";
+import Sections from "@/routes/settings/Sections";
+import SuspendedProjects from "@/routes/settings/SuspendedProjects";
+
+import Email from "@/routes/settings/Templates/Email";
+import SMS from "@/routes/settings/Templates/SMS";
+import WhatsApp from "@/routes/settings/Templates/WhatsApp";
+
+import EmailLog from "@/routes/settings/log/EmailLog";
+import SMSLog from "@/routes/settings/log/SMSLog";
+import WhatsAppLog from "@/routes/settings/log/WhatsAppLog";
+
+import EmailQueue from "@/routes/settings/queue/EmailQueue";
+import SMSQueue from "@/routes/settings/queue/SMSQueue";
+import WhatsAppQueue from "@/routes/settings/queue/WhatsAppQueue";
 
 export const router = createBrowserRouter([
   {
@@ -112,7 +126,18 @@ export const router = createBrowserRouter([
           { path: "weird-people", element: <WeirdPeople /> },
           { path: "category", element: <Category /> },
           { path: "suspend-filters", element: <SuspendFilters /> },
+          { path: "suspended-projects", element: <SuspendedProjects /> },
           { path: "insurance-companies", element: <Insurance /> },
+          { path: "sections", element: <Sections /> },
+          { path: "email-templates", element: <Email /> },
+          { path: "sms-templates", element: <SMS /> },
+          { path: "whatsApp-templates", element: <WhatsApp /> },
+          { path: "email-log", element: <EmailLog /> },
+          { path: "sms-log", element: <SMSLog /> },
+          { path: "whatsApp-log", element: <WhatsAppLog /> },
+          { path: "email-queue", element: <EmailQueue /> },
+          { path: "sms-queue", element: <SMSQueue /> },
+          { path: "whatsApp-queue", element: <WhatsAppQueue /> },
         ],
       },
     ],

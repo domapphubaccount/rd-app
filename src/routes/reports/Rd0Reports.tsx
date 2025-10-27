@@ -19,10 +19,7 @@ export default function Rd0Reports() {
           <DataLoader />
         ) : (
           <div className="flex flex-col gap-4">
-            <TableHeader
-              selectedIds={selectedIds}
-              setSelectedIds={setSelectedIds}
-            />
+            <TableHeader />
 
             <DataTable<Rd0Report>
               data={data?.data || []}

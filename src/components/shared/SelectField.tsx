@@ -36,13 +36,16 @@ export default function SelectField({
 }: SelectFieldProps) {
   return (
     <div className="flex flex-col gap-2 w-full">
-      <label htmlFor={id} className="text-sm flex items-center justify-between">
+      <label
+        htmlFor={id}
+        className=" flex items-center justify-between text-[16px] text-[#344155] font-bold"
+      >
         {label}
+
         {canReset && (
           <button
-            type="button"
             onClick={onReset}
-            className="text-[var(--second)]"
+            className="text-[var(--second)] font-normal"
           >
             Reset
           </button>
@@ -51,8 +54,8 @@ export default function SelectField({
 
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger
-          id={id}
           className="w-full px-4 !h-[48px] rounded-[8px] border-[#f4f4f4] bg-[#fafafa]"
+          id={id}
         >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>

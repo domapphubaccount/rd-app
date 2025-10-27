@@ -42,6 +42,7 @@ import Modules from "@/routes/settings/Modules";
 import UserRoles from "@/routes/settings/UserRoles";
 import UnitControl from "@/routes/settings/UnitControl";
 import FAQCategory from "@/routes/settings/FAQCategory";
+import FAQQuestions from "@/routes/settings/FAQQuestions";
 import Stages from "@/routes/settings/Stages";
 import Companies from "@/routes/settings/Companies";
 import Category from "@/routes/settings/Category";
@@ -49,7 +50,9 @@ import TaxRates from "@/routes/settings/TaxRates";
 import Insurance from "@/routes/settings/Insurance";
 import WeirdPeople from "@/routes/settings/WeirdPeople";
 import SuspendFilters from "@/routes/settings/SuspendFilters";
+import QuestionsList from "@/routes/settings/QuestionsList";
 import Sections from "@/routes/settings/Sections";
+
 import SuspendedProjects from "@/routes/settings/SuspendedProjects";
 
 import Email from "@/routes/settings/templates/Email";
@@ -120,21 +123,28 @@ export const router = createBrowserRouter([
           { path: "user-role", element: <UserRoles /> },
           { path: "units-control", element: <UnitControl /> },
           { path: "faq-categories", element: <FAQCategory /> },
+          { path: "faq-categories/:id", element: <FAQQuestions /> },
           { path: "companies", element: <Companies /> },
           { path: "stages", element: <Stages /> },
           { path: "tax-rates", element: <TaxRates /> },
           { path: "weird-people", element: <WeirdPeople /> },
           { path: "category", element: <Category /> },
+          { path: "insurance-companies", element: <Insurance /> },
+          
           { path: "suspend-filters", element: <SuspendFilters /> },
           { path: "suspended-projects", element: <SuspendedProjects /> },
-          { path: "insurance-companies", element: <Insurance /> },
-          { path: "sections", element: <Sections /> },
+
+          { path: "sections", element: <Sections /> ,},
+          { path: "sections/:id", element: <QuestionsList /> },
+
           { path: "email-templates", element: <Email /> },
           { path: "sms-templates", element: <SMS /> },
           { path: "whatsApp-templates", element: <WhatsApp /> },
+
           { path: "email-log", element: <EmailLog /> },
           { path: "sms-log", element: <SMSLog /> },
           { path: "whatsApp-log", element: <WhatsAppLog /> },
+          
           { path: "email-queue", element: <EmailQueue /> },
           { path: "sms-queue", element: <SMSQueue /> },
           { path: "whatsApp-queue", element: <WhatsAppQueue /> },

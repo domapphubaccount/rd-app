@@ -26,7 +26,7 @@ type SelectFieldProps = {
 export default function SelectField({
   label,
   id,
-  value,
+  value ,
   onChange,
   options,
   canReset,

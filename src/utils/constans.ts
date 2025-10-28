@@ -1,41 +1,18 @@
 export const CASES_OPTIONS = [
-  {
-    id: "A",
-    name: "A",
-  },
-  {
-    id: "B",
-    name: "B",
-  },
-  {
-    id: "C",
-    name: "C",
-  },
-  {
-    id: "D",
-    name: "D",
-  },
+  { id: "A", name: "A" },
+  { id: "B", name: "B" },
+  { id: "C", name: "C" },
+  { id: "D", name: "D" },
 ];
 export const REPORT_TYPE = [
-  {
-    id: "Simple",
-    name: "Simple",
-  },
-  {
-    id: "Complex",
-    name: "Complex",
-  },
-
+  { id: "Simple", name: "Simple" },
+  { id: "Complex", name: "Complex" },
 ];
+
 export const DELETE_REPORT = [
-  {
-    id: "1",
-    name: "yes",
-  },
-  {
-    id: "0",
-    name: "No",
-  },
+  { id: "1", name: "yes" },
+  { id: "0", name: "No" },
+];
 
 export const TIME_ZONES = [
   "Asia/Dubai",
@@ -109,4 +86,10 @@ export const SHOW_SESSION_TIMEOUT_POPUP = [
 export const LEFT_MENU_POSITION = [
   { label: "Collapsed", value: "Collapsed" },
   { label: "Expanded", value: "Expanded" },
+];
+
+export const PAYMENT_STATUS = [
+  { label: "Not Paid", value: "Not Paid" },
+  { label: "Paid", value: "Paid" },
+  { label: "Pending", value: "Pending" },
 ];

@@ -1,14 +1,16 @@
-import { useFilterStore } from "@/components/filter/store";
 import type { FilterOption } from "@/components/filter/types";
-import TimeRange from "@/components/shared/TimeRange";
-// import useGetAllUsers, { useGetAllBuildingCategories } from "@/utils/constans";
+import { useFilterStore } from "@/components/filter/store";
 import { ChevronDown, Plus, SlidersHorizontal } from "lucide-react";
+import { useGetAllBuildingCategories } from "@/hooks/useGetAllBuildingCategories";
+import { PAYMENT_STATUS } from "@/utils/constans";
+import TimeRange from "@/components/shared/TimeRange";
+import useGetAllUsers from "@/hooks/useGetAllUsers";
 
 export default function TableHeader() {
   const { openFilter } = useFilterStore();
 
-  // const { data } = useGetAllUsers();
-  // const { data: categories } = useGetAllBuildingCategories();
+  const { data } = useGetAllUsers();
+  const { data: categories } = useGetAllBuildingCategories();
 
   const handleOpen = () => {
     const filterOptions: FilterOption[] = [
@@ -24,26 +26,26 @@ export default function TableHeader() {
         label: "Reference No",
         placeholder: "Enter numbers &press enter",
       },
-      // {
-      //   name: "category",
-      //   type: "select",
-      //   label: "Category",
-      //   options:
-      //     categories?.data?.map((category) => ({
-      //       label: category.name,
-      //       value: category.id.toString(),
-      //     })) || [],
-      // },
-      // {
-      //   name: "quoted_by",
-      //   type: "select",
-      //   label: "Quoted By",
-      //   options:
-      //     data?.data?.map((user) => ({
-      //       label: user.name,
-      //       value: user.uuid.toString(),
-      //     })) || [],
-      // },
+      {
+        name: "category",
+        type: "select",
+        label: "Category",
+        options:
+          categories?.data?.map((category) => ({
+            label: category.name,
+            value: category.id.toString(),
+          })) || [],
+      },
+      {
+        name: "quoted_by",
+        type: "select",
+        label: "Quoted By",
+        options:
+          data?.data?.map((user) => ({
+            label: user.name,
+            value: user.uuid.toString(),
+          })) || [],
+      },
       {
         name: "cost_from",
         type: "number",
@@ -60,11 +62,11 @@ export default function TableHeader() {
         name: "payment_status",
         type: "select",
         label: "Payment Status",
-        options: [
-          { label: "Not Paid", value: "Not Paid" },
-          { label: "Paid", value: "Paid" },
-          { label: "Pending", value: "Pending" },
-        ],
+        options:
+          PAYMENT_STATUS.map((s) => ({
+            label: s.label,
+            value: s.value,
+          })) || [],
       },
       {
         type: "date",

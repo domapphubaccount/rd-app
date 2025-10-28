@@ -1,7 +1,7 @@
 import { useFilterStore } from "@/components/filter/store";
 import type { FilterOption } from "@/components/filter/types";
-import useGetAllUsers from "@/components/hooks/useGetAllUsers";
-import useGetRD0ReportStatus from "@/components/hooks/useGetRD0ReportStatus";
+import useGetAllUsers from "@/hooks/useGetAllUsers";
+import useGetRD0ReportStatus from "@/hooks/useGetRD0ReportStatus";
 import TimeRange from "@/components/shared/TimeRange";
 import { DELETE_REPORT } from "@/utils/constans";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";

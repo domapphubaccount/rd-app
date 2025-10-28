@@ -1,4 +1,3 @@
-// FilterInputsSection.tsx
 import { ScrollArea } from "../ui/scroll-area";
 import { format } from "date-fns";
 import DateRangePickers from "../shared/DateRangePickers";
@@ -8,7 +7,6 @@ import { Checkbox } from "../ui/checkbox";
 import { Button } from "../ui/button";
 import type { FilterOption, FiltersState } from "./types";
 
-// Props interface for FilterInputsSection
 interface FilterInputsSectionProps {
   options: FilterOption[];
   filters: FiltersState;

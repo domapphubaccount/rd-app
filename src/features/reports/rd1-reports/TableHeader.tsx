@@ -3,9 +3,9 @@ import { useFilterStore } from "@/components/filter/store";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import TimeRange from "@/components/shared/TimeRange";
 import { CASES_OPTIONS, DELETE_REPORT, REPORT_TYPE } from "@/utils/constans";
-import useGetAllUsers from "@/components/hooks/useGetAllUsers";
-import useGetAllregion from "@/components/hooks/useGetRegionCosts";
-import useGetAllDegrees from "@/components/hooks/useGetTicketDegrees";
+import useGetAllUsers from "@/hooks/useGetAllUsers";
+import useGetAllregion from "@/hooks/useGetRegionCosts";
+import useGetAllDegrees from "@/hooks/useGetTicketDegrees";
 
 export default function TableHeader() {
   const { openFilter } = useFilterStore();

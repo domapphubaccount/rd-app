@@ -3,6 +3,7 @@ import { useFilterStore } from "@/components/filter/store";
 import { ChevronDown, Plus, SlidersHorizontal } from "lucide-react";
 import TimeRange from "@/components/shared/TimeRange";
 import useGetAllUsers from "@/hooks/useGetAllUsers";
+import { PAYMENT_STATUS } from "@/utils/constans";
 
 export default function TableHeader() {
   const { openFilter } = useFilterStore();
@@ -37,11 +38,11 @@ export default function TableHeader() {
         name: "payments_status",
         type: "select",
         label: "Payment Status",
-        options: [
-          { label: "Not Paid", value: "Not Paid" },
-          { label: "Paid", value: "Paid" },
-          { label: "Pending", value: "Pending" },
-        ],
+        options:
+          PAYMENT_STATUS.map((s) => ({
+            label: s.label,
+            value: s.value,
+          })) || [],
       },
     ];
     openFilter(filterOptions, "av_quotation");

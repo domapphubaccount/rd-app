@@ -98,3 +98,9 @@ export const RD5_REPORT_TYPE = [
   { label: "Ins-Missing State", value: "Ms" },
   { label: "Ins-Work-interruption", value: "WI" },
 ];
+export const Classification = [
+  { label: "SP", value: "SP" },
+  { label: "NON-SP", value: "NON-SP" },
+  { label: "NT", value: "NT" },
+  { label: "FT", value: "FT" },
+];

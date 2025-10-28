@@ -67,6 +67,10 @@ import EmailQueue from "@/routes/settings/queue/EmailQueue";
 import SMSQueue from "@/routes/settings/queue/SMSQueue";
 import WhatsAppQueue from "@/routes/settings/queue/WhatsAppQueue";
 
+import EmailSetting from "@/routes/settings/setting-email-sms-ws/EmailSetting";
+import SMSSetting from "@/routes/settings/setting-email-sms-ws/SMSSetting";
+import WhatsAppSetting from "@/routes/settings/setting-email-sms-ws/WhatsAppSetting";
+
 export const router = createBrowserRouter([
   {
     path: "/login",
@@ -148,6 +152,10 @@ export const router = createBrowserRouter([
           { path: "email-queue", element: <EmailQueue /> },
           { path: "sms-queue", element: <SMSQueue /> },
           { path: "whatsApp-queue", element: <WhatsAppQueue /> },
+          
+          { path: "email-settings", element: <EmailSetting /> },
+          { path: "sms-settings", element: <SMSSetting /> },
+          { path: "whatsApp-settings", element: <WhatsAppSetting /> },
         ],
       },
     ],

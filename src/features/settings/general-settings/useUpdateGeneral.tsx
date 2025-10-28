@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postFormDataRequest } from "@/lib/axiosApi"; // استخدمي الدالة الجديدة
+import { postFormDataRequest } from "@/lib/axiosApi"; 
 import { toast } from "sonner";
 import type { AxiosError } from "axios";
 import type { UpdateSettingPayload } from "./types";

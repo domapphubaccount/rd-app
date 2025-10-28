@@ -26,7 +26,7 @@ type SelectFieldProps = {
 export default function SelectField({
   label,
   id,
-  value,
+  value ,
   onChange,
   options,
   canReset,
@@ -38,7 +38,7 @@ export default function SelectField({
     <div className="flex flex-col gap-2 w-full">
       <label
         htmlFor={id}
-        className=" flex items-center justify-between text-[16px] text-[#344155] font-bold"
+        className="flex items-center justify-between text-[14px] text-[var(--main)] font-semibold"
       >
         {label}
 

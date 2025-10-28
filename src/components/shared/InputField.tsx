@@ -1,14 +1,17 @@
 type InputFieldProps = {
   label?: string;
   error?: string;
+  id?: string;
   canReset?: boolean;
   onReset?: React.MouseEventHandler<HTMLButtonElement>;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 export default function InputField({
   label,
+  id,
   error,
   canReset,
+  onReset,
   ...props
 }: InputFieldProps) {
   return (
@@ -16,16 +19,20 @@ export default function InputField({
       <div className="flex items-center justify-between  gap-2 w-full">
         {label && (
           <label
-            htmlFor={props.id}
-            className="text-[16px] text-[#344155] font-bold"
+            htmlFor={id}
+            className="flex items-center justify-between text-[14px] text-[var(--main)] font-semibold w-full"
           >
             {label}
+
+            {canReset && (
+              <button
+                onClick={onReset}
+                className="text-[var(--second)] font-normal"
+              >
+                Reset
+              </button>
+            )}
           </label>
-        )}
-        {canReset && (
-          <button onClick={props.onReset} className="text-[var(--second)]">
-            Reset
-          </button>
         )}
       </div>
       <input

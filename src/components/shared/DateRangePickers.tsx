@@ -50,7 +50,7 @@ export default function DateRangePickerWithIcon({
       <div className="flex gap-4">
         <div className="flex flex-col gap-2 w-full relative ">
           <Label className="text-sm" htmlFor={startName}>
-            date.from
+            from
           </Label>
 
           <Popover open={startOpen} onOpenChange={setStartOpen}>
@@ -96,10 +96,10 @@ export default function DateRangePickerWithIcon({
             className="text-sm flex items-center justify-between"
             htmlFor={endName}
           >
-            date.to
+           to
             {canReset && (
               <button className="text-[var(--second)]" onClick={onReset}>
-                reset
+                Reset
               </button>
             )}
           </Label>

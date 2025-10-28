@@ -73,6 +73,7 @@ import WhatsAppSetting from "@/routes/settings/setting-email-sms-ws/WhatsAppSett
 // end user
 import EditEndUser from "@/routes/settings/EditEndUser";
 import Currency from "@/routes/settings/Currency";
+import CronJob from "@/routes/settings/CronJob";
 
 export const router = createBrowserRouter([
   {
@@ -163,6 +164,8 @@ export const router = createBrowserRouter([
           { path: "edit-end-user", element: <EditEndUser /> },
           
           { path: "currency", element: <Currency /> },
+
+          { path: "cron-job-settings", element: <CronJob /> },
         ],
       },
     ],

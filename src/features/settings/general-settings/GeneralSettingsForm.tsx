@@ -37,14 +37,21 @@ export default function GeneralSettingsForm() {
   useEffect(() => {
     if (!data?.data?.length) return;
 
-    const defaults: Record<string, string> = {};
+    const defaults: Record<string, string | number> = {};
+
     data.data.forEach((setting) => {
-      defaults[setting.key] = setting.value?.toString() ?? "";
+      let value: string | number = setting.value;
+
+      if (setting.data_type === "number") {
+        value = Number(setting.value);
+      }
+
+      defaults[setting.key] = value;
     });
 
     queueMicrotask(() => {
-      reset(defaults);
-      originalValuesRef.current = defaults;
+      reset(defaults as GeneralSettingsData);
+      originalValuesRef.current = defaults as Record<string, string>;
     });
   }, [data, reset]);
 
@@ -66,7 +73,9 @@ export default function GeneralSettingsForm() {
       settings: data.data.map((setting) => {
         const rawValue = formValues[setting.key as keyof GeneralSettingsData];
         const value =
-          setting.data_type === "number" ? Number(rawValue) || 0 : rawValue ?? "";
+          setting.data_type === "number"
+            ? Number(rawValue) || 0
+            : rawValue ?? "";
 
         return {
           id: setting.id,

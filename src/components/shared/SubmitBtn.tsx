@@ -7,11 +7,11 @@ type SubmitBtnBrobs = {
 export default function SubmitBtn({ text, loading = false }: SubmitBtnBrobs) {
   return (
     <button
-      className="w-full h-[42px] bg-[var(--main)] text-white rounded-[8px] flex items-center justify-center gap-2"
+      className="w-full h-[42px] bg-[var(--main)] text-white rounded-[8px] flex items-center justify-center gap-1"
       disabled={loading}
       style={{ opacity: loading ? 0.5 : 1 }}
     >
-      {text} {loading && <LoaderCircle className="animate-spin w-4 h-4" />}
+      {text} {loading && <LoaderCircle className="animate-spin w-5 h-5" />}
     </button>
   );
 }

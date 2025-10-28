@@ -55,9 +55,9 @@ import Sections from "@/routes/settings/Sections";
 
 import SuspendedProjects from "@/routes/settings/SuspendedProjects";
 
-import Email from "@/routes/settings/templates/Email";
-import SMS from "@/routes/settings/templates/SMS";
-import WhatsApp from "@/routes/settings/templates/WhatsApp";
+import Email from "@/routes/settings/Templates/Email";
+import SMS from "@/routes/settings/Templates/SMS";
+import WhatsApp from "@/routes/settings/Templates/WhatsApp";
 
 import EmailLog from "@/routes/settings/log/EmailLog";
 import SMSLog from "@/routes/settings/log/SMSLog";
@@ -70,6 +70,8 @@ import WhatsAppQueue from "@/routes/settings/queue/WhatsAppQueue";
 import EmailSetting from "@/routes/settings/setting-email-sms-ws/EmailSetting";
 import SMSSetting from "@/routes/settings/setting-email-sms-ws/SMSSetting";
 import WhatsAppSetting from "@/routes/settings/setting-email-sms-ws/WhatsAppSetting";
+// end user
+import EditEndUser from "@/routes/settings/EditEndUser";
 
 export const router = createBrowserRouter([
   {
@@ -156,6 +158,8 @@ export const router = createBrowserRouter([
           { path: "email-settings", element: <EmailSetting /> },
           { path: "sms-settings", element: <SMSSetting /> },
           { path: "whatsApp-settings", element: <WhatsAppSetting /> },
+
+          { path: "edit-end-user", element: <EditEndUser /> },
         ],
       },
     ],

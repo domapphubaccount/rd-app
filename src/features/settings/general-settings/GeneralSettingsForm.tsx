@@ -11,15 +11,15 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { generalSettingsSchema, type GeneralSettingsData } from "./schema";
 import { toast } from "sonner";
-import useGetGeneral from "./useGetGeneral";
-import useUpdateGeneral from "./useUpdateGeneral";
 import DataLoader from "@/components/shared/DataLoader";
 import InputField from "@/components/shared/InputField";
 import SelectField from "@/components/shared/SelectField";
 import SubmitBtn from "@/components/shared/SubmitBtn";
+import useGetSettings from "@/components/shared/setting-features/useGetSetting";
+import useUpdateGeneral from "@/components/shared/setting-features/useUpdateGeneral";
 
 export default function GeneralSettingsForm() {
-  const { data, isLoading } = useGetGeneral();
+  const { data, isLoading } = useGetSettings("general");
   const { updateGeneralAction, isPending } = useUpdateGeneral();
   const originalValuesRef = useRef<Record<string, string>>({});
 

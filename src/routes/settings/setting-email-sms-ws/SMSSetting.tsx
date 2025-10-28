@@ -1,9 +1,10 @@
 import DataLoader from "@/components/shared/DataLoader";
-import TableHeader from "@/features/settings/sitting-email-sms-ws/TableHeader";
-import useGetToken from "@/features/settings/sitting-email-sms-ws/useGetToken";
+import TableHeader from "@/components/shared/setting-features/TableHeader";
+import useGetSettings from "@/components/shared/setting-features/useGetSetting";
+import TableConfig from "@/features/settings/sitting-email-sms-ws/tableConfig";
 
 export default function SMSSetting() {
-  const { isLoading, token } = useGetToken("sms_api_token");
+  const { isLoading, token } = useGetSettings("token", "sms_api_token");
 
   return (
     <>
@@ -15,11 +16,14 @@ export default function SMSSetting() {
         ) : (
           <div className="flex flex-col gap-4">
             <TableHeader
+              title="Msegat API Token"
+              description="Enter your Msegat API Token below to integrate with our email system"
+            />
+            <TableConfig
               tokenId={token?.id ?? 0}
               dataType={token?.data_type ?? "string"}
               tokenValue={token?.value ?? ""}
-              title="Msegat API Token"
-              description="Enter your Msegat API Token below to integrate with our email system"
+              title="Mailersend API Token"
             />
           </div>
         )}

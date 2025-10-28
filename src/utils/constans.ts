@@ -93,3 +93,8 @@ export const PAYMENT_STATUS = [
   { label: "Paid", value: "Paid" },
   { label: "Pending", value: "Pending" },
 ];
+export const RD5_REPORT_TYPE = [
+  { label: "Design", value: "Des" },
+  { label: "Ins-Missing State", value: "Ms" },
+  { label: "Ins-Work-interruption", value: "WI" },
+];

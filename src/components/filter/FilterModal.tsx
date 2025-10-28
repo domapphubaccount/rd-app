@@ -14,9 +14,19 @@ export default function FilterModal() {
       onOpenChange={(open) => !open && logic.closeFilter()}
     >
       <DialogContent
-        style={{ left: "auto", transform: "none" }}
+        forceMount
         className="max-w-[750px] p-0 shadow-lg rounded-lg border absolute right-[20px] top-[90px] bottom-6 flex flex-col gap-0
-        h-auto"
+             data-[state=open]:animate-none
+             data-[state=closed]:animate-none
+             transition-none
+             !duration-0
+             !delay-0"
+        style={{
+          left: "auto",
+          transform: "none",
+          animation: "none",
+          transition: "none",
+        }}
       >
         <DialogHeader className="border-b px-3 py-3 pb-0 mb-0 space-y-0">
           <div className="flex gap-3 items-center mb-5">
@@ -39,7 +49,7 @@ export default function FilterModal() {
               handleFilterChange={logic.handleFilterChange}
               handleFieldReset={logic.handleFieldReset}
             />
-            
+
             <FilterActions
               appliedCount={logic.appliedCount}
               isFilterValid={logic.isFilterValid}

@@ -4,6 +4,7 @@ import type {
   Setting,
   UpdateSettingPayload,
 } from "@/components/shared/setting-features/types";
+import SubmitBtn from "@/components/shared/SubmitBtn";
 
 interface Section {
   title: string;
@@ -203,18 +204,13 @@ export default function TableConfig({
         );
       })}
 
-      <div className="flex justify-end mt-6">
-        <button
-          type="submit"
-          disabled={!isChanged || isPending}
-          className={`px-6 py-2 bg-[var(--main)] text-white rounded-md transition-all duration-200 ${
-            !isChanged || isPending
-              ? "opacity-50 cursor-not-allowed"
-              : "opacity-100 cursor-pointer"
-          }`}
-        >
-          {isPending ? "Saving..." : "Apply"}
-        </button>
+      <div className="flex justify-end">
+        <SubmitBtn
+          text="Save"
+          loading={isPending}
+          disabled={!isChanged}
+          className=" w-[140px] "
+        />
       </div>
     </form>
   );

@@ -19,7 +19,7 @@ export default function FilterModal() {
       >
         <DialogHeader className="border-b px-3 py-3 pb-0 mb-0 space-y-0">
           <div className="flex gap-3 items-center mb-5">
-            <div className="p-1 border border-gray-300 rounded-md">
+            <div className="p-1">
               <SlidersHorizontal className="w-5 h-5 text-[#344155]" />
             </div>
             <DialogTitle className="text-[18px] font-bold text-[#344155] p-0 m-0">
@@ -31,7 +31,7 @@ export default function FilterModal() {
         <div className="flex flex-1">
           <SavedFiltersSection {...logic} />
 
-          <div className="w-2/3 mt-4 flex flex-col justify-between">
+          <div className="w-2/3 flex flex-col justify-between">
             <FilterInputsSection
               options={logic.options}
               filters={logic.filters}

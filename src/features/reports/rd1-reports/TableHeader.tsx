@@ -13,7 +13,6 @@ export default function TableHeader() {
   const { data: users } = useGetAllUsers();
   const { data: region } = useGetAllregion();
   const { data: degree } = useGetAllDegrees();
-  console.log("region", region);
 
   const handleOpen = () => {
     const filterOptions: FilterOption[] = [

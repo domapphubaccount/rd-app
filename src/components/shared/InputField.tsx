@@ -1,7 +1,7 @@
 type InputFieldProps = {
   label?: string;
   error?: string;
-  id?:string;
+  id?: string;
   canReset?: boolean;
   onReset?: React.MouseEventHandler<HTMLButtonElement>;
 } & React.InputHTMLAttributes<HTMLInputElement>;
@@ -20,7 +20,7 @@ export default function InputField({
         {label && (
           <label
             htmlFor={id}
-            className="flex items-center justify-between text-[14px] text-[var(--main)] font-semibold"
+            className="flex items-center justify-between text-[14px] text-[var(--main)] font-semibold w-full"
           >
             {label}
 

@@ -28,6 +28,7 @@ export default function FilterModal() {
             </DialogTitle>
           </div>
         </DialogHeader>
+
         <div className="flex flex-1 h-200 overflow-y-auto">
           <SavedFiltersSection {...logic} />
 
@@ -38,6 +39,7 @@ export default function FilterModal() {
               handleFilterChange={logic.handleFilterChange}
               handleFieldReset={logic.handleFieldReset}
             />
+            
             <FilterActions
               appliedCount={logic.appliedCount}
               isFilterValid={logic.isFilterValid}

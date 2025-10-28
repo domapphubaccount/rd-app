@@ -1,13 +1,13 @@
 import { useFilterStore } from "@/components/filter/store";
 import type { FilterOption } from "@/components/filter/types";
 import TimeRange from "@/components/shared/TimeRange";
-import useGetAllUsers from "@/utils/constans";
+// import useGetAllUsers from "@/utils/constans";
 import { ChevronDown, Plus, SlidersHorizontal } from "lucide-react";
 
 export default function TableHeader() {
   const { openFilter } = useFilterStore();
 
-  const { data } = useGetAllUsers();
+  // const { data } = useGetAllUsers();
 
   const handleOpen = () => {
     const filterOptions: FilterOption[] = [
@@ -23,17 +23,16 @@ export default function TableHeader() {
         label: "Reference Numbers",
         placeholder: "Enter numbers &press enter",
       },
-
-      {
-        name: "user",
-        type: "select",
-        label: "Quoted By",
-        options:
-          data?.data?.map((user) => ({
-            label: user.name,
-            value: user.uuid.toString(),
-          })) || [],
-      },
+      // {
+      //   name: "user",
+      //   type: "select",
+      //   label: "Quoted By",
+      //   options:
+      //     data?.data?.map((user) => ({
+      //       label: user.name,
+      //       value: user.uuid.toString(),
+      //     })) || [],
+      // },
       {
         name: "payments_status",
         type: "select",

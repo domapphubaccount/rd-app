@@ -56,7 +56,7 @@ export default function SavedFiltersSection({
   });
 
   return (
-    <div className="w-1/3 border-r border-gray-200 rounded bg-[#fafafa]">
+    <div className="w-1/3 border-r border-gray-200 bg-[#fafafa]">
       <div className="flex flex-col gap-4 px-4 py-4 justify-between h-full">
         <div>
           <div className="flex items-center justify-between text-white bg-[#99A2B3] py-2 px-3 rounded-[8px] text-[16px]">

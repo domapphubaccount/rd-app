@@ -1,5 +1,5 @@
 import InputField from "@/components/shared/InputField";
-import useUpdateGeneral from "../../../components/shared/setting-features/useUpdateGeneral";
+import useUpdateGeneral from "@/components/shared/setting-features/useUpdateGeneral";
 import { useMemo, useState } from "react";
 
 interface TableConfigProps {

@@ -23,7 +23,7 @@ export default function EmailSetting() {
             <TableConfig
               tokenId={token?.id ?? 0}
               dataType={token?.data_type ?? "string"}
-              tokenValue={token?.value ?? ""}
+              tokenValue={String(token?.value ?? "")} 
               title="Mailersend API Token"
             />
           </div>

@@ -15,7 +15,8 @@ export default function FilterModal() {
     >
       <DialogContent
         style={{ left: "auto", transform: "none" }}
-        className="max-w-[750px] p-0 shadow-lg rounded-lg border absolute right-[20px] top-[90px] bottom-6 flex flex-col gap-0"
+        className="max-w-[750px] p-0 shadow-lg rounded-lg border absolute right-[20px] top-[90px] bottom-6 flex flex-col gap-0
+        h-auto"
       >
         <DialogHeader className="border-b px-3 py-3 pb-0 mb-0 space-y-0">
           <div className="flex gap-3 items-center mb-5">
@@ -27,8 +28,7 @@ export default function FilterModal() {
             </DialogTitle>
           </div>
         </DialogHeader>
-
-        <div className="flex flex-1">
+        <div className="flex flex-1 h-200 overflow-y-auto">
           <SavedFiltersSection {...logic} />
 
           <div className="w-2/3 mt-4 flex flex-col justify-between">

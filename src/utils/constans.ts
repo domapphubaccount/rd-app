@@ -71,3 +71,22 @@ export const LEFT_MENU_POSITION = [
   { label: "Collapsed", value: "Collapsed" },
   { label: "Expanded", value: "Expanded" },
 ];
+
+// 🪙 Currency Settings Constants
+
+export const CURRENCY_CODES = [
+  { label: "US Dollar (USD)", value: "USD" },
+  { label: "Euro (EUR)", value: "EUR" },
+  { label: "Egyptian Pound (EGP)", value: "EGP" },
+  { label: "Saudi Riyal (SAR)", value: "SAR" },
+  { label: "UAE Dirham (AED)", value: "AED" },
+];
+
+export const DECIMAL_SEPARATORS = [
+  { label: ".", value: "." },
+  { label: ",", value: "," },
+];
+export const SYMBOL_POSITIONS = [
+  { label: "Left", value: "Left" },
+  { label: "Right", value: "Right" },
+];

@@ -1,5 +1,6 @@
 import InputField from "@/components/shared/InputField";
 import useUpdateGeneral from "@/components/shared/setting-features/useUpdateGeneral";
+import SubmitBtn from "@/components/shared/SubmitBtn";
 import { useMemo, useState } from "react";
 
 interface TableConfigProps {
@@ -60,19 +61,12 @@ export default function TableConfig({
         </div>
 
         <div className="flex justify-end">
-          <button
-            type="submit"
-            disabled={!isChanged || isPending}
-            className={`px-4 py-2 bg-[var(--main)] text-white flex items-center 
-              justify-center gap-2 rounded-md text-[14px] transition-all duration-200
-              ${
-                !isChanged || isPending
-                  ? "opacity-50 cursor-not-allowed"
-                  : "opacity-100 cursor-pointer"
-              }`}
-          >
-            {isPending ? "Saving..." : "Save"}
-          </button>
+          <SubmitBtn
+            text="Save"
+            loading={isPending}
+            disabled={!isChanged}
+            className=" w-[140px] "
+          />
         </div>
       </form>
     </div>

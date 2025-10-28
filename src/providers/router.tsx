@@ -72,6 +72,7 @@ import SMSSetting from "@/routes/settings/setting-email-sms-ws/SMSSetting";
 import WhatsAppSetting from "@/routes/settings/setting-email-sms-ws/WhatsAppSetting";
 // end user
 import EditEndUser from "@/routes/settings/EditEndUser";
+import Currency from "@/routes/settings/Currency";
 
 export const router = createBrowserRouter([
   {
@@ -160,6 +161,8 @@ export const router = createBrowserRouter([
           { path: "whatsApp-settings", element: <WhatsAppSetting /> },
 
           { path: "edit-end-user", element: <EditEndUser /> },
+          
+          { path: "currency", element: <Currency /> },
         ],
       },
     ],

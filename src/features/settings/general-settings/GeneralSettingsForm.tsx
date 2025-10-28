@@ -252,10 +252,9 @@ export default function GeneralSettingsForm() {
           {...register("min_visit_number")}
           error={errors.min_visit_number?.message}
         />
-
-        <div className="col-start-3 flex justify-end">
-          <SubmitBtn text="Save" loading={isPending} />
-        </div>
+      </div>
+      <div className="flex justify-end">
+        <SubmitBtn text="Save" loading={isPending} className=" w-[140px] " />
       </div>
     </form>
   );

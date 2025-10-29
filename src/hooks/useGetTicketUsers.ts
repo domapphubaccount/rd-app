@@ -12,10 +12,10 @@ interface TicketsResponse {
 
 export default function useGetTicketUsers() {
   const { isLoading, data, isError } = useQuery({
-    queryKey: ["all-Degrees"],
+    queryKey: ["all-Tickets"],
 
     queryFn: (): Promise<TicketsResponse> =>
-      getRequest<TicketsResponse>("/specialists/all", {
+      getRequest<TicketsResponse>("specialists/all", {
         params: {},
       }),
   });

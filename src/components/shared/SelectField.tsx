@@ -54,7 +54,7 @@ export default function SelectField({
 
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger
-          className="w-full px-4 !h-[48px] rounded-[8px] border-[#f4f4f4] bg-[#fafafa]"
+          className="w-full px-4 !h-[44px] rounded-[8px] border-[#f4f4f4] bg-[#fafafa]"
           id={id}
         >
           <SelectValue placeholder={placeholder} />

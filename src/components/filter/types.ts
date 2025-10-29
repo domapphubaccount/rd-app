@@ -1,4 +1,3 @@
-// types.ts
 export type FiltersState = Record<string, string>;
 
 export type FilterOption =

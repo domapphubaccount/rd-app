@@ -61,7 +61,7 @@ export default function DateRangePickerWithIcon({
                 value={startDate ? format(startDate, "PPP") : ""}
                 placeholder="Placeholder"
                 readOnly
-                className="bg-[#fafafa] border border-[#f4f4f4] text-[14px] rounded-[8px] px-3 py-1 h-[48px] shadow-none"
+                className="bg-[#fafafa] border border-[#f4f4f4] text-[14px] rounded-[8px] px-3 py-1 h-[44px] shadow-none"
               />
               <PopoverTrigger asChild>
                 <Button
@@ -112,7 +112,7 @@ export default function DateRangePickerWithIcon({
                 value={endDate ? format(endDate, "PPP") : ""}
                 placeholder="Placeholder"
                 readOnly
-                className="bg-[#fafafa] border border-[#f4f4f4]  text-[14px] rounded-[8px] px-3 py-1 h-[48px] shadow-none"
+                className="bg-[#fafafa] border border-[#f4f4f4]  text-[14px] rounded-[8px] px-3 py-1 h-[44px] shadow-none"
               />
 
               <PopoverTrigger asChild>

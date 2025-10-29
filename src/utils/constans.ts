@@ -93,3 +93,8 @@ export const PAYMENT_STATUS = [
   { label: "Paid", value: "Paid" },
   { label: "Pending", value: "Pending" },
 ];
+
+export const TICKET_TYPE = [
+  { label: "Tnspection", value: "inspection" },
+  { label: "Design", value: "design" },
+];

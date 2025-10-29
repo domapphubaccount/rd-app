@@ -88,6 +88,24 @@ export const LEFT_MENU_POSITION = [
   { label: "Expanded", value: "Expanded" },
 ];
 
+// 🪙 Currency Settings Constants
+
+export const CURRENCY_CODES = [
+  { label: "US Dollar (USD)", value: "USD" },
+  { label: "Euro (EUR)", value: "EUR" },
+  { label: "Egyptian Pound (EGP)", value: "EGP" },
+  { label: "Saudi Riyal (SAR)", value: "SAR" },
+  { label: "UAE Dirham (AED)", value: "AED" },
+];
+
+export const DECIMAL_SEPARATORS = [
+  { label: ".", value: "." },
+  { label: ",", value: "," },
+];
+export const SYMBOL_POSITIONS = [
+  { label: "Left", value: "Left" },
+  { label: "Right", value: "Right" },
+  ]
 export const PAYMENT_STATUS = [
   { label: "Not Paid", value: "0" },
   { label: "Paid", value: "1" },

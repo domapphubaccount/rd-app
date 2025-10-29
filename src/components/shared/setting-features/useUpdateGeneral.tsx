@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postFormDataRequest } from "@/lib/axiosApi"; 
+import { postFormDataRequest } from "@/lib/axiosApi";
 import { toast } from "sonner";
 import type { AxiosError } from "axios";
 import type { UpdateSettingPayload } from "./types";
@@ -9,7 +9,7 @@ interface UpdateGeneralResponse {
   data?: unknown;
 }
 
-export default function useUpdateGeneral() {
+export default function useUpdateGeneral(queryKey?: string) {
   const queryClient = useQueryClient();
 
   const { mutate: updateGeneralAction, isPending } = useMutation<
@@ -18,14 +18,13 @@ export default function useUpdateGeneral() {
     UpdateSettingPayload
   >({
     mutationFn: (payload) =>
-      postFormDataRequest<UpdateGeneralResponse>(
-        "/settings/update",
-        payload
-      ),
+      postFormDataRequest<UpdateGeneralResponse>("/settings/update", payload),
 
     onSuccess: (res) => {
       toast.success(res.message || "Settings updated successfully");
-      queryClient.invalidateQueries({ queryKey: ["general-settings"] });
+      if (queryKey)
+        queryClient.invalidateQueries({ queryKey: ["settings", queryKey] });
+      else queryClient.invalidateQueries();
     },
 
     onError: (err) => {

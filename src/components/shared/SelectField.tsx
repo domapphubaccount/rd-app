@@ -38,7 +38,7 @@ export default function SelectField({
     <div className="flex flex-col gap-2 w-full">
       <label
         htmlFor={id}
-        className="flex items-center justify-between text-[14px] text-[var(--main)] font-semibold"
+        className="flex items-center justify-between text-[14px] text-[var(--main)]"
       >
         {label}
 

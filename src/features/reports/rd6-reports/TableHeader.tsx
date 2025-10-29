@@ -45,17 +45,12 @@ export default function TableHeader() {
         placeholder: "Enter Toal Cost To",
       },
       {
-        name: "total_cost_from",
+        name: "reference_number",
         type: "number",
-        label: "Total Costs From",
-        placeholder: "Enter Toal Cost From",
+        label: "Reference No",
+        placeholder: "Enter numbers &press enter",
       },
-      {
-        name: "total_cost_to",
-        type: "number",
-        label: "Total Costs To",
-        placeholder: "Enter Toal Cost To",
-      },
+
       {
         name: "des_user_id",
         type: "select",

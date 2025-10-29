@@ -89,9 +89,24 @@ export const LEFT_MENU_POSITION = [
 ];
 
 export const PAYMENT_STATUS = [
-  { label: "Not Paid", value: "Not Paid" },
-  { label: "Paid", value: "Paid" },
-  { label: "Pending", value: "Pending" },
+  { label: "Not Paid", value: "0" },
+  { label: "Paid", value: "1" },
+  { label: "Pending", value: "2" },
+];
+
+export const TYPE_OPTIONS = [
+  { label: "NT", name: "NT" },
+  { label: "FT", name: "FT" },
+];
+
+export const CLASSIFICATION_OPTIONS = [
+  { label: "SP", name: "SP" },
+  { label: "RP", name: "RP" },
+];
+
+export const MISSING_STAGE = [
+  { label: "-", value: "0" },
+  { label: "MS", value: "1" },
 ];
 
 export const ACTIVE_OPTIONNS = [

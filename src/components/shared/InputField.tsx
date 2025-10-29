@@ -37,7 +37,7 @@ export default function InputField({
       </div>
       <input
         {...props}
-        className="bg-[#fafafa] border-[1px] text-[14px] border-[#f4f4f4] rounded-[8px] px-2 py-1 h-[48px]"
+        className="bg-[#fafafa] border-[1px] text-[14px] border-[#f4f4f4] rounded-[8px] px-2 py-1 h-[44px]"
       />
       {error && <span className="text-[12px] text-[red]">{error}</span>}
     </div>

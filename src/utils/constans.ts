@@ -108,3 +108,27 @@ export const MISSING_STAGE = [
   { label: "-", value: "0" },
   { label: "MS", value: "1" },
 ];
+
+export const ACTIVE_OPTIONNS = [
+  { lable: "Bloked", value: "0" },
+  { lable: "Active", value: "1" },
+];
+
+export const ROLE_ID = [
+  { lable: "Admin", value: "1" },
+  { lable: "User", value: "2" },
+  { lable: "Super Admin", value: "2" },
+];
+
+export const RD5_REPORT_TYPE = [
+  { label: "Design", value: "Des" },
+  { label: "Ins-Missing State", value: "Ms" },
+  { label: "Ins-Work-interruption", value: "WI" },
+];
+
+export const Classification = [
+  { label: "SP", value: "SP" },
+  { label: "NON-SP", value: "NON-SP" },
+  { label: "NT", value: "NT" },
+  { label: "FT", value: "FT" },
+];

@@ -135,7 +135,7 @@ export const ACTIVE_OPTIONNS = [
 export const ROLE_ID = [
   { lable: "Admin", value: "1" },
   { lable: "User", value: "2" },
-  { lable: "Super Admin", value: "2" },
+  { lable: "Super Admin", value: "3" },
 ];
 
 export const RD5_REPORT_TYPE = [
@@ -154,4 +154,12 @@ export const Classification = [
 export const TICKET_TYPE = [
   { label: "Inspection", value: "inspection" },
   { label: "Design", value: "design" },
+];
+
+export const INPROGRESS = [
+  { label: "Design Engineer", id: "1" },
+  { label: "Inspection Engineer", id: "2" },
+  { label: "Design Manager", id: "3" },
+  { label: "Area Manager", id: "4" },
+  { label: "RD6 Manager", id: "5" },
 ];

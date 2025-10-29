@@ -1,7 +1,4 @@
-import {
-  ChevronDown,
-  SlidersHorizontal,
-} from "lucide-react";
+import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import TimeRange from "@/components/shared/TimeRange";
 
 export default function TableHeader({}: {}) {

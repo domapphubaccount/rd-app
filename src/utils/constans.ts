@@ -150,3 +150,8 @@ export const Classification = [
   { label: "NT", value: "NT" },
   { label: "FT", value: "FT" },
 ];
+
+export const TICKET_TYPE = [
+  { label: "Inspection", value: "inspection" },
+  { label: "Design", value: "design" },
+];

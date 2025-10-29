@@ -93,6 +93,17 @@ export const PAYMENT_STATUS = [
   { label: "Paid", value: "Paid" },
   { label: "Pending", value: "Pending" },
 ];
+
+export const ACTIVE_OPTIONNS = [
+  { lable: "Bloked", value: "0" },
+  { lable: "Active", value: "1" },
+];
+
+export const ROLE_ID = [
+  { lable: "Admin", value: "1" },
+  { lable: "User", value: "2" },
+  { lable: "Super Admin", value: "2" },
+  ]
 export const RD5_REPORT_TYPE = [
   { label: "Design", value: "Des" },
   { label: "Ins-Missing State", value: "Ms" },

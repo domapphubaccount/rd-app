@@ -155,7 +155,7 @@ export default function TableConfig({
                   return (
                     <div
                       key={setting.id}
-                      className="col-span-3 flex flex-col gap-3"
+                      className="col-span-3 flex items-center justify-between gap-3"
                     >
                       <label className="block text-[14px] text-[var(--main)] font-semibold">
                         {setting.slug}

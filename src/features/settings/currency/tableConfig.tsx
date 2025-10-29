@@ -2,6 +2,7 @@ import InputField from "@/components/shared/InputField";
 import SelectField from "@/components/shared/SelectField";
 import SubmitBtn from "@/components/shared/SubmitBtn";
 import useUpdateGeneral from "@/components/shared/setting-features/useUpdateGeneral";
+import useGetSettings from "@/components/shared/setting-features/useGetSetting";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import {
@@ -9,15 +10,16 @@ import {
   DECIMAL_SEPARATORS,
   SYMBOL_POSITIONS,
 } from "@/utils/constans";
+import DataLoader from "@/components/shared/DataLoader";
 import type { Setting } from "@/components/shared/setting-features/types";
 
-interface TableConfigProps {
-  allSettings: Setting[];
-  isPending?: boolean;
-}
-
-export default function TableConfig({ allSettings }: TableConfigProps) {
+export default function TableConfig() {
+  const { data, isLoading } = useGetSettings("currency");
   const { updateGeneralAction, isPending } = useUpdateGeneral();
+  const allSettings = useMemo(
+    () => (data?.data ?? []) as Setting[],
+    [data?.data]
+  );
   const [values, setValues] = useState<Record<number, string | number>>({});
 
   useEffect(() => {
@@ -41,7 +43,7 @@ export default function TableConfig({ allSettings }: TableConfigProps) {
     e.preventDefault();
 
     if (!isChanged) {
-      toast.info("No changes detected.");
+      toast.info("No changes detected — nothing to update.");
       return;
     }
 
@@ -68,6 +70,7 @@ export default function TableConfig({ allSettings }: TableConfigProps) {
   const currency_symbol_position = allSettings.find(
     (s) => s.key === "currency_symbol_position"
   );
+  if (isLoading || !allSettings.length) return <DataLoader />;
 
   return (
     <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-6">
@@ -147,7 +150,6 @@ export default function TableConfig({ allSettings }: TableConfigProps) {
         <SubmitBtn
           text="Save"
           loading={isPending}
-          disabled={!isChanged}
           className=" w-[140px] "
         />
       </div>

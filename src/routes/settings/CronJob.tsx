@@ -8,7 +8,6 @@ export default function CronJob() {
 
   const setting = data?.data?.[0];
 
-  if (isLoading || !setting) return <DataLoader />;
 
   return (
     <>
@@ -20,19 +19,23 @@ export default function CronJob() {
             title="Cron Job Settings"
             description="Configure your application's Cron Job command below."
           />
-          <div className="p-6">
-            <InputField
-              label="Cron Job Command"
-              id={setting.key}
-              type="text"
-              value={
-                Array.isArray(setting.value)
-                  ? setting.value.join(", ")
-                  : String(setting.value ?? "")
-              }
-              readOnly
-            />
-          </div>
+          {isLoading || !setting? (
+            <DataLoader />
+          ) : (
+            <div className="p-6">
+              <InputField
+                label="Cron Job Command"
+                id={setting.key}
+                type="text"
+                value={
+                  Array.isArray(setting.value)
+                    ? setting.value.join(", ")
+                    : String(setting.value ?? "")
+                }
+                readOnly
+              />
+            </div>
+          )}
         </div>
       </section>
     </>

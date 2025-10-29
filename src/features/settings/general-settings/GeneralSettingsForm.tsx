@@ -40,7 +40,7 @@ export default function GeneralSettingsForm() {
     const defaults: Record<string, string | number> = {};
 
     data.data.forEach((setting) => {
-      let value: string | number = setting.value;
+      let value = setting.value as string | number;
 
       if (setting.data_type === "number") {
         value = Number(setting.value);
@@ -58,11 +58,11 @@ export default function GeneralSettingsForm() {
   const onSubmit = (formValues: GeneralSettingsData) => {
     if (!data?.data) return;
 
-    const hasChanges = Object.keys(formValues).some(
-      (key) =>
-        formValues[key as keyof GeneralSettingsData]?.toString() !==
-        originalValuesRef.current[key]
-    );
+    const hasChanges = Object.keys(formValues).some((key) => {
+      const current = formValues[key as keyof GeneralSettingsData];
+      const original = originalValuesRef.current[key];
+      return String(current ?? "") !== String(original ?? "");
+    });
 
     if (!hasChanges) {
       toast.info("No changes detected — nothing to update.");
@@ -250,6 +250,22 @@ export default function GeneralSettingsForm() {
           id="min_visit_number"
           type="number"
           {...register("min_visit_number")}
+          error={errors.min_visit_number?.message}
+        />
+
+        <InputField
+          label="Front End Payfort Callback Success Url"
+          id="front_end_payfort_callback_success_url"
+          type="text"
+          {...register("front_end_payfort_callback_success_url")}
+          error={errors.min_visit_number?.message}
+        />
+
+        <InputField
+          label="Front End Payfort Callback Success Url"
+          id="front_end_payfort_callback_fail_url"
+          type="text"
+          {...register("front_end_payfort_callback_fail_url")}
           error={errors.min_visit_number?.message}
         />
       </div>

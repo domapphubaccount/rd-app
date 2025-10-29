@@ -95,6 +95,6 @@ export const PAYMENT_STATUS = [
 ];
 
 export const TICKET_TYPE = [
-  { label: "Tnspection", value: "inspection" },
+  { label: "Inspection", value: "inspection" },
   { label: "Design", value: "design" },
 ];

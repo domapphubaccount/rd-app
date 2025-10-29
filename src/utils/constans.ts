@@ -4,6 +4,7 @@ export const CASES_OPTIONS = [
   { id: "C", name: "C" },
   { id: "D", name: "D" },
 ];
+
 export const REPORT_TYPE = [
   { id: "Simple", name: "Simple" },
   { id: "Complex", name: "Complex" },
@@ -135,7 +136,7 @@ export const ACTIVE_OPTIONNS = [
 export const ROLE_ID = [
   { lable: "Admin", value: "1" },
   { lable: "User", value: "2" },
-  { lable: "Super Admin", value: "2" },
+  { lable: "Super Admin", value: "3" },
 ];
 
 export const RD5_REPORT_TYPE = [

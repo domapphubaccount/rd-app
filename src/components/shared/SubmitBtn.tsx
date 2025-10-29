@@ -6,19 +6,19 @@ type SubmitBtnBrobs = {
   disabled?: boolean;
   className?: string;
 };
+
 export default function SubmitBtn({
   text,
   loading = false,
   disabled = false,
   className = "",
 }: SubmitBtnBrobs) {
+  const hasWidthClass = className.includes("w-");
   return (
     <button
-      className={`w-full h-[42px] bg-[var(--main)] text-white rounded-[8px] flex items-center justify-center gap-1  ${
-        disabled || loading
-          ? "opacity-50 cursor-not-allowed"
-          : "opacity-100  cursor-pointer"
-      } ${className}`}
+      className={`${!hasWidthClass ? "w-full" : ""} h-[42px] bg-[var(--main)] text-white rounded-[8px] flex items-center justify-center gap-1
+        ${disabled || loading ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"}
+        ${className}`}
       disabled={loading || disabled}
       style={{ opacity: loading ? 0.5 : 1 }}
     >

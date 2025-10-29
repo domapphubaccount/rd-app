@@ -1,14 +1,12 @@
-// FilterInputsSection.tsx
+import type { FilterOption, FiltersState } from "./types";
 import { ScrollArea } from "../ui/scroll-area";
+import { Button } from "../ui/button";
+import { Checkbox } from "../ui/checkbox";
 import { format } from "date-fns";
 import DateRangePickers from "../shared/DateRangePickers";
 import InputField from "../shared/InputField";
 import SelectField from "../shared/SelectField";
-import { Checkbox } from "../ui/checkbox";
-import { Button } from "../ui/button";
-import type { FilterOption, FiltersState } from "./types";
 
-// Props interface for FilterInputsSection
 interface FilterInputsSectionProps {
   options: FilterOption[];
   filters: FiltersState;
@@ -101,10 +99,11 @@ export default function FilterInputsSection({
   };
 
   return (
-    <ScrollArea className=" max-h-[700px] overflow-auto px-6 flex-1">
+    <ScrollArea className="overflow-auto p-5">
       <div className="flex flex-col gap-4">
         {options.map((opt) => renderInput(opt))}
       </div>
+
       {options.length === 0 && (
         <div className="text-center text-gray-500 py-8">
           No filters available

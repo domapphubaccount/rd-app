@@ -28,7 +28,7 @@ export default function PasswordField({
         <input
           type={showPassword ? "text" : "password"}
           {...props}
-          className="bg-[#fafafa] border-[1px] border-[#f4f4f4] rounded-[8px] px-2 py-1 h-[48px] w-full"
+          className="bg-[#fafafa] border-[1px] border-[#f4f4f4] rounded-[8px] px-2 py-1 h-[44px] w-full"
         />
 
         <span

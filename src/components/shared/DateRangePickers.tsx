@@ -50,7 +50,7 @@ export default function DateRangePickerWithIcon({
       <div className="flex gap-4">
         <div className="flex flex-col gap-2 w-full relative ">
           <Label className="text-sm" htmlFor={startName}>
-            date.from
+            from
           </Label>
 
           <Popover open={startOpen} onOpenChange={setStartOpen}>
@@ -61,7 +61,7 @@ export default function DateRangePickerWithIcon({
                 value={startDate ? format(startDate, "PPP") : ""}
                 placeholder="Placeholder"
                 readOnly
-                className="bg-[#fafafa] border border-[#f4f4f4] text-[14px] rounded-[8px] px-3 py-1 h-[48px] shadow-none"
+                className="bg-[#fafafa] border border-[#f4f4f4] text-[14px] rounded-[8px] px-3 py-1 h-[44px] shadow-none"
               />
               <PopoverTrigger asChild>
                 <Button
@@ -96,10 +96,10 @@ export default function DateRangePickerWithIcon({
             className="text-sm flex items-center justify-between"
             htmlFor={endName}
           >
-            date.to
+           to
             {canReset && (
               <button className="text-[var(--second)]" onClick={onReset}>
-                reset
+                Reset
               </button>
             )}
           </Label>
@@ -112,7 +112,7 @@ export default function DateRangePickerWithIcon({
                 value={endDate ? format(endDate, "PPP") : ""}
                 placeholder="Placeholder"
                 readOnly
-                className="bg-[#fafafa] border border-[#f4f4f4]  text-[14px] rounded-[8px] px-3 py-1 h-[48px] shadow-none"
+                className="bg-[#fafafa] border border-[#f4f4f4]  text-[14px] rounded-[8px] px-3 py-1 h-[44px] shadow-none"
               />
 
               <PopoverTrigger asChild>

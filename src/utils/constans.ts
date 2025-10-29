@@ -1,3 +1,19 @@
+export const CASES_OPTIONS = [
+  { id: "A", name: "A" },
+  { id: "B", name: "B" },
+  { id: "C", name: "C" },
+  { id: "D", name: "D" },
+];
+export const REPORT_TYPE = [
+  { id: "Simple", name: "Simple" },
+  { id: "Complex", name: "Complex" },
+];
+
+export const DELETE_REPORT = [
+  { id: "1", name: "yes" },
+  { id: "0", name: "No" },
+];
+
 export const TIME_ZONES = [
   "Asia/Dubai",
   "Asia/Riyadh",
@@ -89,4 +105,48 @@ export const DECIMAL_SEPARATORS = [
 export const SYMBOL_POSITIONS = [
   { label: "Left", value: "Left" },
   { label: "Right", value: "Right" },
+  ]
+export const PAYMENT_STATUS = [
+  { label: "Not Paid", value: "0" },
+  { label: "Paid", value: "1" },
+  { label: "Pending", value: "2" },
+];
+
+export const TYPE_OPTIONS = [
+  { label: "NT", name: "NT" },
+  { label: "FT", name: "FT" },
+];
+
+export const CLASSIFICATION_OPTIONS = [
+  { label: "SP", name: "SP" },
+  { label: "RP", name: "RP" },
+];
+
+export const MISSING_STAGE = [
+  { label: "-", value: "0" },
+  { label: "MS", value: "1" },
+];
+
+export const ACTIVE_OPTIONNS = [
+  { lable: "Bloked", value: "0" },
+  { lable: "Active", value: "1" },
+];
+
+export const ROLE_ID = [
+  { lable: "Admin", value: "1" },
+  { lable: "User", value: "2" },
+  { lable: "Super Admin", value: "2" },
+];
+
+export const RD5_REPORT_TYPE = [
+  { label: "Design", value: "Des" },
+  { label: "Ins-Missing State", value: "Ms" },
+  { label: "Ins-Work-interruption", value: "WI" },
+];
+
+export const Classification = [
+  { label: "SP", value: "SP" },
+  { label: "NON-SP", value: "NON-SP" },
+  { label: "NT", value: "NT" },
+  { label: "FT", value: "FT" },
 ];

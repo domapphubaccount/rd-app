@@ -26,7 +26,7 @@ export default function TableHeader() {
       {
         name: "role_id",
         type: "select",
-        label: "Select a Status",
+        label: "Permissions",
         options: ROLE_ID.map((r) => ({
           label: r.lable,
           value: r.value,

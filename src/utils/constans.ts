@@ -156,3 +156,11 @@ export const TICKET_TYPE = [
   { label: "Inspection", value: "inspection" },
   { label: "Design", value: "design" },
 ];
+
+export const INPROGRESS = [
+  { label: "Design Engineer", id: "1" },
+  { label: "Inspection Engineer", id: "2" },
+  { label: "Design Manager", id: "3" },
+  { label: "Area Manager", id: "4" },
+  { label: "RD6 Manager", id: "5" },
+];

@@ -74,6 +74,8 @@ import WhatsAppSetting from "@/routes/settings/setting-email-sms-ws/WhatsAppSett
 import EditEndUser from "@/routes/settings/EditEndUser";
 import Currency from "@/routes/settings/Currency";
 import CronJob from "@/routes/settings/CronJob";
+// Missing Data
+import MissingData from "@/routes/settings/MissingData";
 
 export const router = createBrowserRouter([
   {
@@ -166,6 +168,8 @@ export const router = createBrowserRouter([
           { path: "currency", element: <Currency /> },
 
           { path: "cron-job-settings", element: <CronJob /> },
+
+          { path: "missing-data", element: <MissingData /> },
         ],
       },
     ],
